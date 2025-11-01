@@ -1,0 +1,5 @@
+pymongo
+debugpy 
+flake8
+black
+mypy

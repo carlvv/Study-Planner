@@ -1,17 +1,19 @@
 version: "3.8"
 
 services:
+  # 1. SERVICE: PYTHON-BACKEND
   app:
-    build: .
+    build: ./server
     volumes:
-      - ./app:/app
+      - ./server:/app
     ports:
-      - "8000:8000"
-      - "5678:5678"  # Debugger
+      - "8000:8000"  # Port für deine App (z.B. FastAPI)
+      - "5678:5678"  # Port für den Python-Debugger
     command: sleep infinity
     depends_on:
       - mongo
 
+  # 2. SERVICE: DATENBANK
   mongo:
     image: mongo:6
     restart: unless-stopped

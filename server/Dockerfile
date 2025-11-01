@@ -11,8 +11,8 @@ RUN pip install --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt \
     && pip install debugpy  # optional für Remote Debug
 
-COPY ./app ./app
+COPY . .
 
 EXPOSE 8000
 EXPOSE 5678
-CMD ["sleep", "infinity"]
+
