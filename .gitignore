@@ -29,6 +29,7 @@ wheels/
 
 # Direnv
 .direnv/
+.envrc
 
 # IDE
 .vscode/
