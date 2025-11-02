@@ -1,26 +1,31 @@
 version: "3.8"
 
 services:
-  # 1. SERVICE: PYTHON-BACKEND
+  # 1. Python-Backend
   app:
     build: ./server
     volumes:
       - ./server:/app
-    ports:
-      - "8000:8000"  # Port für deine App (z.B. FastAPI)
-      - "5678:5678"  # Port für den Python-Debugger
     command: sleep infinity
     depends_on:
       - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/mydatabase
+    networks:
+      - backend-net
 
-  # 2. SERVICE: DATENBANK
+  # 2. MongoDB-Datenbank
   mongo:
     image: mongo:6
     restart: unless-stopped
     volumes:
       - mongo_data:/data/db
-    ports:
-      - "27017:27017"
+    networks:
+      - backend-net
 
 volumes:
   mongo_data:
+
+networks:
+  backend-net:
+    driver: bridge

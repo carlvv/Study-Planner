@@ -13,6 +13,4 @@ RUN pip install --upgrade pip \
 
 COPY . .
 
-EXPOSE 8000
-EXPOSE 5678
 
