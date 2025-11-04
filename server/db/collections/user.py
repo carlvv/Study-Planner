@@ -23,12 +23,6 @@ class User(Collection):
         hash_bytes = hashlib.sha256(bytes.fromhex(self.salt) + password.encode()).hexdigest()
         return hash_bytes == self.passworthash
 
-    def __repr__(self) -> str:
-        return (
-            f"User({self.FIELD_MATRIKELNUMMER}='{self.matrikelnummer}', "
-            f"{self.FIELD_NAME}='{self.name}', {self.FIELD_PASSWORD_HASH}='<hidden>', "
-            f"{self.FIELD_STUDY_ID}='{self.studiengangId}')"
-        )
 
     def json(self):
         return {
