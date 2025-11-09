@@ -2,7 +2,7 @@ from typing import List, Optional
 from datetime import datetime
 
 from bson import ObjectId
-from db.collections.todo import ToDo, Task
+from db.collections.todo import ToDo
 from manager.manager import BaseManager
 
 
