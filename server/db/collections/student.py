@@ -1,50 +1,66 @@
 import hashlib
 import secrets
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
-from db.collections.collection import Collection
+from db.collections.document import Document
 
 @dataclass
-class Student(Collection):
-
-    FIELD_STUDENT_ID: str = field(init=False, default="_id")
-    """Matrikelnummer Feld"""
-
-    FIELD_NAME: str = field(init=False, default="name")
-
-    FIELD_PASSWORD_HASH: str = field(init=False, default="pw_hash")
-    FIELD_SALT: str = field(init=False, default="salt")
-
-    FIELD_STUDY_ID: str = field(init=False, default="study_id")
-    """[B/M]_[Studiengang]_[NUMMER], Beispiel: B_INF_25, M_BWL_23"""
-
-    FIELD_START_SEMESTER: str = field(init=False, default="start_semester")
-    """FORMAT: [SEMESTER][JAHR], Beispiel: SS25, WS23"""
-
+class Student(Document):
 
     student_id: str
     """Matrikelnummer Feld"""
 
     name: str
-    
+    """Vorname und Nachname mit einen Leerzeichen getrennt"""
+
     passworthash: str
+    """Passowort Hash"""
+
     salt: str
+    """Passwort Salz"""
 
     study_id: str
     """[B/M]_[Studiengang]_[NUMMER], Beispiel: B_INF_25, M_BWL_23"""
 
     start_semester: str
     """FORMAT: [SEMESTER][JAHR], Beispiel: SS25, WS23"""
+
+    # ----------------------- Konstanten ----------------------
+    FIELD_STUDENT_ID: str = "_id"
+    FIELD_NAME: str = "name"
+    FIELD_PASSWORD_HASH: str = "pw_hash"
+    FIELD_SALT: str = "salt"
+    FIELD_STUDY_ID: str = "study_id"
+    FIELD_START_SEMESTER: str = "start_semester"
+  
     def verify_password(self, password: str) -> bool:
         """Überprüft, ob das Passwort mit dem gespeicherten Hash übereinstimmt."""
-        hash_bytes = hashlib.sha256(bytes.fromhex(self.salt) + password.encode()).hexdigest()
+        hash_bytes = hashlib.sha256(
+            bytes.fromhex(self.salt) + password.encode()
+        ).hexdigest()
         return hash_bytes == self.passworthash
 
+    @classmethod
+    def from_dict(cls, doc: dict):
+        if not doc:
+            return None
 
-    def json(self):
+        return (
+            Student.Builder()
+            .student_id(doc[Student.FIELD_STUDENT_ID])
+            .name(doc[Student.FIELD_NAME])
+            .password_from_hash(
+                doc[Student.FIELD_PASSWORD_HASH], doc[Student.FIELD_SALT]
+            )
+            .study_id(doc[Student.FIELD_STUDY_ID])
+            .start_semester(doc[Student.FIELD_START_SEMESTER])
+            .build()
+        )
+
+    def attributes(self):
         return {
-            self.FIELD_NAME: self.name,
             self.FIELD_STUDENT_ID: self.student_id,
+            self.FIELD_NAME: self.name,
             self.FIELD_PASSWORD_HASH: self.passworthash,
             self.FIELD_SALT: self.salt,
             self.FIELD_STUDY_ID: self.study_id,
@@ -69,7 +85,7 @@ class Student(Collection):
             return self
 
         def start_semester(self, semester: str):
-            self._start_semester = semester 
+            self._start_semester = semester
             return self
 
         def password(self, password: str):
@@ -89,13 +105,23 @@ class Student(Collection):
             return self
 
         def build(self) -> "Student":
-            if not all([self._student_id, self._name, self._passworthash, self._salt, self._study_id]):
-                raise ValueError("Alle Felder müssen gesetzt sein, bevor ein User erstellt wird.")
-            
-            assert self._student_id is not None 
+            if not all(
+                [
+                    self._student_id,
+                    self._name,
+                    self._passworthash,
+                    self._salt,
+                    self._study_id,
+                ]
+            ):
+                raise ValueError(
+                    "Alle Felder müssen gesetzt sein, bevor ein User erstellt wird."
+                )
+
+            assert self._student_id is not None
             assert self._name is not None
-            assert self._passworthash is not None 
-            assert self._salt is not None 
+            assert self._passworthash is not None
+            assert self._salt is not None
             assert self._study_id is not None
 
             return Student(
@@ -104,5 +130,5 @@ class Student(Collection):
                 passworthash=self._passworthash,
                 salt=self._salt,
                 study_id=self._study_id,
-                start_semester=self._start_semester or ""
+                start_semester=self._start_semester or "",
             )
