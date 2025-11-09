@@ -1,3 +1,0 @@
-# Python dependencies
-# Edit this file to add more pip packages
-flask
