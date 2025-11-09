@@ -8,7 +8,6 @@ class MongoDBConnector:
     def __init__(self):
         raise RuntimeError("Call get_db() instead")
 
-    
     @classmethod
     def _initDB(cls):
         """Liefert die Datenbank zurück"""

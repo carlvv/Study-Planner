@@ -1,33 +1,41 @@
+from typing import Any, Dict, List, Optional, Type
+from bson import ObjectId
+from db.collections.base_model import BaseModel
 from db.connector import MongoDBConnector
 
-from typing import TypeVar, Generic, Optional, Type
-from db.connector import MongoDBConnector
-from db.collections.document import Document
 
-T = TypeVar("T", bound=Document)
-
-class BaseManager(Generic[T]):
-    def __init__(self, collection_name: str, model_cls: Type[T]):
+class BaseManager:
+    def __init__(self, collection_name: str, model_cls: Type[BaseModel]):
+        self.model_cls = model_cls
         db = MongoDBConnector.get_db()
         if db is None:
             raise RuntimeError("Datenbank ist nicht initialisiert")
-        self._collection = db[collection_name]
-        self.model_cls = model_cls
+        self.collection = db[collection_name]
 
-    def _create(self, obj: T) -> bool:
-        result = self._collection.insert_one(obj.attributes())
-        return result.acknowledged
+    def create(self, obj: BaseModel) -> ObjectId:
+        result = self.collection.insert_one(obj.to_dict())
+        return result.inserted_id
 
-    def _get(self, query: dict) -> Optional[dict]:
-        doc = self._collection.find_one(query)
-        if not doc:
-            return None
-        return doc
+    def get_by_object_id(self, obj_id: Any) -> Optional[BaseModel]:
+        data = self.collection.find_one({"_id": obj_id})
+        return self.model_cls.from_dict(data) if data else None
 
-    def _update(self, query: dict, obj: T) -> bool:
-        result = self._collection.update_one(query, {"$set": obj.attributes()})
-        return result.acknowledged
+    def get_by_dict(self, dict: Dict[str, Any]) -> Optional[BaseModel]:
+        data = self.collection.find_one(dict)
+        return self.model_cls.from_dict(data) if data else None
 
-    def _delete(self, query: dict) -> bool:
-        result = self._collection.delete_one(query)
-        return result.acknowledged
+    def get_all(self) -> List[BaseModel]:
+        cursor = self.collection.find()
+        return [self.model_cls.from_dict(doc) for doc in cursor]
+    
+    def get_all_by_dict(self, dict: Dict[str, Any]) -> List[BaseModel]:
+        cursor = self.collection.find(dict)
+        return [self.model_cls.from_dict(doc) for doc in cursor]
+
+    def update(self, obj_id: ObjectId, **updates) -> bool:
+        result = self.collection.update_one({"_id": obj_id}, {"$set": updates})
+        return result.modified_count > 0
+
+    def delete(self, obj_id: ObjectId) -> bool:
+        result = self.collection.delete_one({"_id": obj_id})
+        return result.deleted_count > 0
