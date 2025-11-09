@@ -2,15 +2,15 @@ version: "3.8"
 
 services:
   # 1. Python-Backend
-  app:
+  server:
     build: ./server
     volumes:
-      - ./server:/app
+      - ./server:/server
     command: sleep infinity
     depends_on:
       - mongo
     environment:
-      - MONGO_URI=mongodb://mongo:27017/mydatabase
+      - MONGO_URI=mongodb://mongo:27017/
     networks:
       - backend-net
 

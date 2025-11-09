@@ -12,7 +12,7 @@ class MongoDBConnector:
     def _initDB(cls):
         """Liefert die Datenbank zurück"""
         try:
-            mongo_uri = os.getenv("MONGO_URI", "mongodb://mongo:27017/")
+            mongo_uri = os.getenv("MONGO_URI")
             client = pymongo.MongoClient(mongo_uri)
             return client['db']
         except:

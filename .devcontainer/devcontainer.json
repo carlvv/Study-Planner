@@ -1,10 +1,10 @@
 {
-  "name": "Python Backend",
+  "name": "StudyPlanner Backend",
   "dockerComposeFile": [
     "../docker-compose.yml"
   ],
-  "service": "app",
-  "workspaceFolder": "/app",
+  "service": "server",
+  "workspaceFolder": "/server",
   "shutdownAction": "none",
   "extensions": [
     "ms-python.python",
