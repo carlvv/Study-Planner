@@ -29,3 +29,27 @@ class BaseModel:
                     pass
         data["id"] = data.pop("_id", None)
         return cls(**data)
+    
+T = TypeVar("T", bound="BaseModel")
+
+@dataclass(kw_only=True)
+class MultiBaseModel(BaseModel):
+    collection_name: str
+
+    def to_dict(self) -> Dict[str, Any]:
+        data = super().to_dict()
+        data.pop("collection_name")
+        return data 
+    
+    @classmethod
+    def from_dict(cls: Type[T], data: Dict[str, Any]) -> T:
+        """Erstellt eine Instanz des Models aus einem MongoDB-Dokument."""
+        for k, v in data.items():
+            if isinstance(v, str):
+                try:
+                    data[k] = datetime.fromisoformat(v).date()
+                except ValueError:
+                    pass
+        data["id"] = data.pop("_id", None)
+        data.pop("collection_name")
+        return cls(**data)
