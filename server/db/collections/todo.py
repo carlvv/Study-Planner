@@ -4,6 +4,7 @@ from typing import List
 
 from db.collections.base_model import BaseModel
 
+@dataclass
 class Task:
     title: str
     done: bool = False
@@ -12,14 +13,14 @@ class Task:
         self.done = True
 
 @dataclass(kw_only=True)
-class ToDo(BaseModel):
+class Todo(BaseModel):
     title: str
     description: str
     owner_id: str
     
     tasks: List[Task] = field(default_factory=list)
     last_time_edited: datetime = field(default_factory=datetime.now)
-    created_at: datetime = field(default_factory=datetime.now, init=False)
+    created_at: datetime = field(default_factory=datetime.now)
   
     def set_title(self, title: str):
         self.title = title

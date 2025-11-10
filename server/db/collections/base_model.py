@@ -30,8 +30,6 @@ class BaseModel:
         data["id"] = data.pop("_id", None)
         return cls(**data)
     
-T = TypeVar("T", bound="BaseModel")
-
 @dataclass(kw_only=True)
 class MultiBaseModel(BaseModel):
     collection_name: str

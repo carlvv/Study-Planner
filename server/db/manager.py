@@ -1,75 +1,77 @@
-from typing import Any, Dict, List, Optional, Type
+from typing import Any, Dict, List, Optional, Type, TypeVar, Generic
 from bson import ObjectId
 from db.collections.base_model import BaseModel, MultiBaseModel
 from db.connector import MongoDBConnector
 
+TModel = TypeVar("TModel", bound=BaseModel)
+TMultiModel = TypeVar("TMultiModel", bound=MultiBaseModel)
 
-class BaseManager:
-    def __init__(self, collection_name: str, model_cls: Type[BaseModel], dbname: str = 'db'):
-        self.model_cls = model_cls
+class BaseManager(Generic[TModel]):
+    def __init__(self, collection_name: str, model_cls: Type[TModel], dbname: str = 'db'):
+        self.__model_cls = model_cls
         db = MongoDBConnector.get_db(dbname)
         if db is None:
             raise RuntimeError("Datenbank ist nicht initialisiert")
-        self.collection = db[collection_name]
+        self.__collection = db[collection_name]
 
-    def create(self, obj: BaseModel) -> ObjectId:
-        result = self.collection.insert_one(obj.to_dict())
+    def create(self, obj: TModel) -> ObjectId:
+        result = self.__collection.insert_one(obj.to_dict())
         return result.inserted_id
 
-    def get_by_object_id(self, obj_id: Any) -> Optional[BaseModel]:
-        data = self.collection.find_one({"_id": obj_id})
-        return self.model_cls.from_dict(data) if data else None
+    def get_by_object_id(self, obj_id: Any) -> Optional[TModel]:
+        data = self.__collection.find_one({"_id": obj_id})
+        return self.__model_cls.from_dict(data) if data else None
 
-    def get_by_dict(self, dict: Dict[str, Any]) -> Optional[BaseModel]:
-        data = self.collection.find_one(dict)
-        return self.model_cls.from_dict(data) if data else None
+    def get_by_dict(self, dict: Dict[str, Any]) -> Optional[TModel]:
+        data = self.__collection.find_one(dict)
+        return self.__model_cls.from_dict(data) if data else None
 
-    def get_all(self) -> List[BaseModel]:
-        cursor = self.collection.find()
-        return [self.model_cls.from_dict(doc) for doc in cursor]
-    
-    def get_all_by_dict(self, dict: Dict[str, Any]) -> List[BaseModel]:
-        cursor = self.collection.find(dict)
-        return [self.model_cls.from_dict(doc) for doc in cursor]
+    def get_all(self) -> List[TModel]:
+        cursor = self.__collection.find()
+        return [self.__model_cls.from_dict(doc) for doc in cursor]
 
-    def update(self, obj_id: ObjectId, **updates) -> bool:
-        result = self.collection.update_one({"_id": obj_id}, {"$set": updates})
+    def get_all_by_dict(self, dict: Dict[str, Any]) -> List[TModel]:
+        cursor = self.__collection.find(dict)
+        return [self.__model_cls.from_dict(doc) for doc in cursor]
+
+    def update(self, obj: TModel) -> bool:
+        result = self.__collection.update_one({"_id": obj.id}, {'$set': obj.to_dict()})
         return result.modified_count > 0
 
     def delete(self, obj_id: ObjectId) -> bool:
-        result = self.collection.delete_one({"_id": obj_id})
+        result = self.__collection.delete_one({"_id": obj_id})
         return result.deleted_count > 0
 
 
-class MultiBaseManager:
-    def __init__(self, model_cls: Type[MultiBaseModel], dbname: str = 'db'):
-        self.model_cls = model_cls
-        self.db = MongoDBConnector.get_db(dbname)
-   
-    def create(self, obj: MultiBaseModel) -> ObjectId:
-        result = self.db[obj.collection_name].insert_one(obj.to_dict())
-        return result.inserted_id
-
-    def get_by_object(self, obj: MultiBaseModel) -> Optional[MultiBaseModel]:
-        data = self.db[obj.collection_name].find_one({"_id": obj.id})
-        return self.model_cls.from_dict(data) if data else None
-
-    def get_by_dict(self,obj: MultiBaseModel, dict: Dict[str, Any]) -> Optional[MultiBaseModel]:
-        data = self.db[obj.collection_name].find_one(dict)
-        return self.model_cls.from_dict(data) if data else None
-
-    def get_all(self, obj: MultiBaseModel) -> List[MultiBaseModel]:
-        cursor = self.db[obj.collection_name].find()
-        return [self.model_cls.from_dict(doc) for doc in cursor]
+class MultiBaseManager(Generic[TMultiModel]): 
+    def __init__(self, model_cls: Type[TMultiModel], dbname: str = 'db'):
+        self.model_cls = model_cls 
+        self.db = MongoDBConnector.get_db(dbname) 
     
-    def get_all_by_dict(self, obj: MultiBaseModel, dict: Dict[str, Any]) -> List[MultiBaseModel]:
-        cursor = self.db[obj.collection_name].find(dict)
-        return [self.model_cls.from_dict(doc) for doc in cursor]
-
-    def update(self, obj: MultiBaseModel, **updates) -> bool:
-        result = self.db[obj.collection_name].update_one({"_id": obj.id}, {"$set": updates})
-        return result.modified_count > 0
-
-    def delete(self, obj: MultiBaseModel) -> bool:
-        result = self.db[obj.collection_name].delete_one({"_id": obj.id})
-        return result.deleted_count > 0
+    def create(self, obj: TMultiModel) -> ObjectId:
+        result = self.db[obj.collection_name].insert_one(obj.to_dict()) 
+        return result.inserted_id 
+    
+    def get_by_object(self, obj: TMultiModel) -> Optional[TMultiModel]:
+        data = self.db[obj.collection_name].find_one({"_id": obj.id}) 
+        return self.model_cls.from_dict(data) if data else None 
+    
+    def get_by_dict(self,obj: TMultiModel, dict: Dict[str, Any]) -> Optional[TMultiModel]: 
+        data = self.db[obj.collection_name].find_one(dict) 
+        return self.model_cls.from_dict(data) if data else None 
+    
+    def get_all(self, obj: TMultiModel) -> List[TMultiModel]: 
+        cursor = self.db[obj.collection_name].find() 
+        return [self.model_cls.from_dict(doc) for doc in cursor] 
+    
+    def get_all_by_dict(self, obj: TMultiModel, dict: Dict[str, Any]) -> List[TMultiModel]: 
+        cursor = self.db[obj.collection_name].find(dict) 
+        return [self.model_cls.from_dict(doc) for doc in cursor] 
+    
+    def update(self, obj: TMultiModel, **updates) -> bool: 
+        result = self.db[obj.collection_name].update_one({"_id": obj.id}, {"$set": updates}) 
+        return result.modified_count > 0 
+    
+    def delete(self, obj: TMultiModel) -> bool: 
+        result = self.db[obj.collection_name].delete_one({"_id": obj.id}) 
+        return result.deleted_count > 0 
