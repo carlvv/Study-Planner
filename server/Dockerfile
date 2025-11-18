@@ -40,4 +40,6 @@ RUN pip install --upgrade pip && \
     pip install pymongo && \
     pip install flake8 && \
     pip install selenium && \
-    pip install debugpy
+    pip install debugpy && \
+    pip install requests && \
+    pip install bs4
