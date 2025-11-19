@@ -35,7 +35,6 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 COPY . .
-<<<<<<< HEAD
 
 RUN pip install --upgrade pip && \
     pip install pymongo && \
@@ -44,5 +43,3 @@ RUN pip install --upgrade pip && \
     pip install debugpy && \
     pip install requests && \
     pip install bs4
-=======
->>>>>>> 8d31e1e (now extracting links too)

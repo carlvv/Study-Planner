@@ -3,6 +3,8 @@ import json
 from bs4 import BeautifulSoup
 from typing import Dict
 
+import requests
+
 
 def normalize_program_name(name: str) -> str:
     """
@@ -48,14 +50,37 @@ def extract_curricula_from_html(html_content: str) -> Dict:
     """
     
     # Now parse the actual HTML
-    soup = BeautifulSoup(BeautifulSoup(html_content, 'html.parser').get_text(), 'html.parser')
+    soup = BeautifulSoup(html_content, 'html.parser')
     result = {"bachelor": {}}
 
     bachelor_div = soup.find('div', {'id': 'c12343'})
+    if not bachelor_div:
+        print("ERROR: No historical bachelor curricula section found.")
     table = bachelor_div.find('table', class_='contenttable') if bachelor_div else None
     if table:
         # Extract curricula data from the table
         extract_curricula_from_table(table, result["bachelor"])
+    else:
+        print("ERROR: No bachelor curricula table found in the historical section.")
+
+    bachelor_current_div = soup.find('div', {'id': 'c12328'})
+    table_current = bachelor_current_div.find('table', class_='contenttable') if bachelor_current_div else None
+    if table_current:
+        rows = table_current.find_all('tr')[1:]  # Skip header row
+        for row in rows:
+            cells = row.find_all('td')
+            if not cells:
+                continue
+            current_program_name = normalize_program_name(cells[0].get_text(strip=True))
+            if current_program_name not in result["bachelor"]:
+                result["bachelor"][current_program_name] = {"available": []}
+            curriculum_link = cells[6].find('a', class_='download').get('href') if cells[6].find('a', class_='download') else None
+            if curriculum_link:
+                result["bachelor"][current_program_name]["available"].insert(0, {"current": curriculum_link})
+    
+
+
+
     
     return result
 
@@ -137,12 +162,25 @@ def extract_curricula_from_file(filepath: str) -> Dict:
     return extract_curricula_from_html(html_content)
 
 
+def get_curriculae(url: str = "https://www.fh-wedel.de/studieren/pruefungscenter/pruefungsordnungen/") -> Dict:
+    """
+    Fetches and extracts bachelor curricula from a predefined HTML source.
+    
+    Returns:
+        A dictionary with bachelor programs and their available curricula versions
+    """
+
+    response = requests.get(url)
+    response.raise_for_status()
+    return extract_curricula_from_html(response.text)
+
+
 def main():
     """
     Example usage - extracts bachelor curricula from website.html and prints as JSON.
     """
-    result = extract_curricula_from_file('website.html')
 
+    result = get_curriculae()
     print(json.dumps(result, indent=2, ensure_ascii=False))
     
 
