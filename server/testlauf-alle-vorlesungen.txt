@@ -1,0 +1,4405 @@
+  8:00 - 9:15 9:30 - 10:45 11:00 - 12:15 12:30 - 13:45 14:00 - 15:15 15:30 - 16:45 17:00 - 18:15
+Mo
+Chemie, Chemietechnik (Aufbauphase)          
+                                                  HS04
+AuD (Übung.3) - - - - -
+- -   34 -
+- - - -  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+OL01
+AuD (Übung.1) - - 34 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+OL01
+AuD (Übung.6) - - - - -
+- -   - -
+- - - -  
+- - - 34 -
+- - - -  
+aan, avh, mhe, tti   - - - -
+OL01
+AuD (Übung.4) - - - - -
+- -   34 -
+- - - -  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+OL01
+AuD (Übung.2) - - 34 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+OL01
+AuD (Übung.5) - - - - -
+- -   - -
+- 3 - 3  
+- 34 - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+OL01
+Chemie, Chemietechnik (Aufbauphase)          
+         
+         
+         
+         
+         
+HS04
+AuD (Übung.3) - - - - -
+- -   34 -
+- - - -  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+OL01
+AuD (Übung.1) - - 34 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+OL01
+AuD (Übung.6) - - - - -
+- -   - -
+- - - -  
+- - - 34 -
+- - - -  
+aan, avh, mhe, tti   - - - -
+OL01
+AuD (Übung.4) - - - - -
+- -   34 -
+- - - -  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+OL01
+AuD (Übung.2) - - 34 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+OL01
+AuD (Übung.5) - - - - -
+- -   - -
+- 3 - 3  
+- 34 - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+OL01
+Datenbanken - Q1 - 34 34 - 3
+- -   234 3
+- 5 - 5  
+- 34 - 3 3
+- 34 3 -  
+mpa   - - 34 34
+HS07
+Bildbearbeitung - - - - 3
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ne   - - - -
+PC04
+Bildbearbeitung (Praktikum) - - - - 3
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ne   - - - -
+PC04
+Bildbearbeitung (Praktikum) - - - - 3
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ne   - - - -
+PC04
+Coding Skills (Übung) - Q2 - 12 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ahr   - - - -
+XPC4
+Datenbanken - Q1 - 34 34 - 3
+- -   234 3
+- 5 - 5  
+- 34 - 3 3
+- 34 3 -  
+mpa   - - 34 34
+HS07
+Bildbearbeitung - - - - 3
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ne   - - - -
+PC04
+Bildbearbeitung (Praktikum) - - - - 3
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ne   - - - -
+PC04
+Bildbearbeitung (Praktikum) - - - - 3
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ne   - - - -
+PC04
+Coding Skills (Übung) - Q2 - 12 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ahr   - - - -
+XPC4
+Digitaltechnik - Q2 (Grundl.d.techn.Informatik) - - - - 1
+- -   12 1
+- 1 1 1  
+- - - - 1
+- - - -  
+saw   - - - -
+HS01
+Chemie, Chemietechnik - 2 - - -
+- -   - -
+- 3 - -  
+- - - - -
+- - - -  
+smt   - - - -
+HS04
+Chemie, Chemietechnik (Abbauphase) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+  - - - -
+HS04
+  Datenbanktechnologie (+ Übung) - - - - -
+12 12   - -
+- - - -  
+12 - 12 - -
+- - - -  
+dpr, uh   - - - -
+HS06
+Digitaltechnik - Q2 (Grundl.d.techn.Informatik) - - - - 1
+- -   12 1
+- 1 1 1  
+- - - - 1
+- - - -  
+saw   - - - -
+HS01
+Chemie, Chemietechnik - 2 - - -
+- -   - -
+- 3 - -  
+- - - - -
+- - - -  
+smt   - - - -
+HS04
+Chemie, Chemietechnik (Abbauphase) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+  - - - -
+HS04
+Datenbanktechnologie (+ Übung) - - - - -
+12 12   - -
+- - - -  
+12 - 12 - -
+- - - -  
+dpr, uh   - - - -
+HS06
+Manufacturing Automation 12 - - - -
+- -   - -
+12 - - -  
+12 - - - -
+- - - -  
+aha   - - - -
+HS06
+Commercial English - Q2 - 1 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ev   - - - -
+XS13
+Commercial English - Q2 - 1 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ev   - - - -
+XS13
+Digital Product Management - - 34 34 -
+- -   56 -
+- - 5 -  
+- 56 - - -
+- 34 3 -  
+gru   - - - -
+HS05
+Datenbanktechnologie (+ Übung) - - - - -
+12 12   - -
+- - - -  
+12 - 12 - -
+- - - -  
+dpr, uh   - - - -
+PC01
+Manufacturing Automation 12 - - - -
+- -   - -
+12 - - -  
+12 - - - -
+- - - -  
+aha   - - - -
+HS06
+Commercial English - Q2 - 1 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ev   - - - -
+XS13
+Commercial English - Q2 - 1 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ev   - - - -
+XS13
+Digital Product Management - - 34 34 -
+- -   56 -
+- - 5 -  
+- 56 - - -
+- 34 3 -  
+gru   - - - -
+HS05
+Datenbanktechnologie (+ Übung) - - - - -
+12 12   - -
+- - - -  
+12 - 12 - -
+- - - -  
+dpr, uh   - - - -
+PC01
+  Digital Transformation (+ Übung) 12 - - - -
+- -   - -
+- - - -  
+12 - 12 - -
+1 - - -  
+gre   12 12 - -
+HS06
+Einkauf und Supply Management - 34 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+gh   - - 34 -
+HS02
+  Einführung i.d. Konstruktion - 34 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ba   - - - -
+HS04
+Einführung i.d. Konstruktion - 34 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ba   - - - -
+HS04
+Digital Transformation (+ Übung) 12 - - - -
+- -   - -
+- - - -  
+12 - 12 - -
+1 - - -  
+gre   12 12 - -
+HS06
+Einkauf und Supply Management - 34 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+gh   - - 34 -
+HS02
+Einführung i.d. Konstruktion - 34 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ba   - - - -
+HS04
+Einführung i.d. Konstruktion - 34 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ba   - - - -
+HS04
+  Digitaltechnik - Q2 (Grundl.d.techn.Informatik) - - - - 1
+- -   12 1
+- 1 1 1  
+- - - - 1
+- - - -  
+saw   - - - -
+XHS1
+Farbenlehre, Farbsysteme und -räume - - - - 1
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+hi   - - - -
+HS02
+Geometrische Modellierung und Computeranimation - - 56 56 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+bo   - - - -
+HS06
+Geometrische Modellierung und Computeranimation (Praktikum) - - 56 56 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+mpg, pmu   - - - -
+PC05
+Digitaltechnik - Q2 (Grundl.d.techn.Informatik) - - - - 1
+- -   12 1
+- 1 1 1  
+- - - - 1
+- - - -  
+saw   - - - -
+XHS1
+Farbenlehre, Farbsysteme und -räume - - - - 1
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+hi   - - - -
+HS02
+Geometrische Modellierung und Computeranimation - - 56 56 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+bo   - - - -
+HS06
+Geometrische Modellierung und Computeranimation (Praktikum) - - 56 56 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+mpg, pmu   - - - -
+PC05
+  Fundamental Programming Structures - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+nvk   - - - -
+SR08
+Informationstechnik - 34 2 2 -
+- -   2 -
+- - 2 2  
+- 34 - 2 -
+- - - -  
+dsg   - - - -
+HS07
+Ingenieurmathematik - 34 - - -
+- -   - -
+- 3 - 3  
+- - - - -
+- - - -  
+dmi   - - - -
+HS06
+Großintegrierte Systeme - - - - -
+- -   - -
+- - - 5  
+- - - - -
+- - - -  
+dsg   - - - -
+HS02
+Mathematik (+ Übung) - Q2 - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+XHS7
+Fundamental Programming Structures - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+nvk   - - - -
+SR08
+Informationstechnik - 34 2 2 -
+- -   2 -
+- - 2 2  
+- 34 - 2 -
+- - - -  
+dsg   - - - -
+HS07
+Ingenieurmathematik - 34 - - -
+- -   - -
+- 3 - 3  
+- - - - -
+- - - -  
+dmi   - - - -
+HS06
+Großintegrierte Systeme - - - - -
+- -   - -
+- - - 5  
+- - - - -
+- - - -  
+dsg   - - - -
+HS02
+Mathematik (+ Übung) - Q2 - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+XHS7
+  Grundlagen Marketing- und Vertriebsmanagement - 34 - - -
+- -   - -
+- - - -  
+- 34 - 45 3
+- 34 - -  
+afi   - - 34 34
+HS05
+Grundlagen Servicemanagement - 34 - - -
+- -   - -
+- - - -  
+- 34 - 45 3
+- 34 - -  
+gi   - - 34 34
+HS05
+Organisationslehre 12 - - - -
+- -   - -
+- - - -  
+12 - - - -
+- - - -  
+fbo   - 12 - -
+HS03
+Integrierte Berichterstattung - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+web   - - 34 -
+XS05
+ 
+Grundlagen Marketing- und Vertriebsmanagement - 34 - - -
+- -   - -
+- - - -  
+- 34 - 45 3
+- 34 - -  
+afi   - - 34 34
+HS05
+Grundlagen Servicemanagement - 34 - - -
+- -   - -
+- - - -  
+- 34 - 45 3
+- 34 - -  
+gi   - - 34 34
+HS05
+Organisationslehre 12 - - - -
+- -   - -
+- - - -  
+12 - - - -
+- - - -  
+fbo   - 12 - -
+HS03
+Integrierte Berichterstattung - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+web   - - 34 -
+XS05
+    Logistikprozesse in ERP-Systemen - - - - -
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+PC01
+Regelungstechnik - - - - -
+- -   - -
+- 5 - 5  
+- - - - -
+- - - -  
+cbu   - - - -
+SR08
+Mathematik (+ Übung) - Q2 - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+XHS7
+Mathematik (+ Übung) - Q2 - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+XHS7
+ 
+Logistikprozesse in ERP-Systemen - - - - -
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+PC01
+Regelungstechnik - - - - -
+- -   - -
+- 5 - 5  
+- - - - -
+- - - -  
+cbu   - - - -
+SR08
+Mathematik (+ Übung) - Q2 - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+XHS7
+Mathematik (+ Übung) - Q2 - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+XHS7
+    Projekt intelligente Systeme - - - - -
+- -   - -
+- - 5 -  
+- - - - -
+- - - -  
+uh   - - - -
+SR06, LR04
+Regelungstechnik (Übung) - - - - -
+- -   - -
+- 5 - 5  
+- - - - -
+- - - -  
+cbu   - - - -
+PC01
+Programmstrukturen - Q1 - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+ahr   - - - -
+PC04
+Projekt intelligente Systeme - - - - -
+- -   - -
+- - 5 -  
+- - - - -
+- - - -  
+uh   - - - -
+SR06, LR04
+Regelungstechnik (Übung) - - - - -
+- -   - -
+- 5 - 5  
+- - - - -
+- - - -  
+cbu   - - - -
+PC01
+Programmstrukturen - Q1 - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+ahr   - - - -
+PC04
+  Rechnernetze (Praktikum) - - - - -
+- -   - 3
+- - - -  
+- - - - -
+- - - -  
+kal, kch   - - - -
+LR30
+  Regelungstechnik - - - - -
+- -   - -
+- 5 - 5  
+- - - - -
+- - - -  
+cbu   - - - -
+SR08
+   
+Rechnernetze (Praktikum) - - - - -
+- -   - 3
+- - - -  
+- - - - -
+- - - -  
+kal, kch   - - - -
+LR30
+Regelungstechnik - - - - -
+- -   - -
+- 5 - 5  
+- - - - -
+- - - -  
+cbu   - - - -
+SR08
+  SBC Beyond Data - Q1 - - - - -
+- -   1 -
+- - - -  
+- 1 - - -
+- - - -  
+fbo, mpa   - - - -
+HS03, PC03, PC02
+  Regelungstechnik (Übung) - - - - -
+- -   - -
+- 5 - 5  
+- - - - -
+- - - -  
+cbu   - - - -
+PC01
+   
+SBC Beyond Data - Q1 - - - - -
+- -   1 -
+- - - -  
+- 1 - - -
+- - - -  
+fbo, mpa   - - - -
+HS03, PC03, PC02
+Regelungstechnik (Übung) - - - - -
+- -   - -
+- 5 - 5  
+- - - - -
+- - - -  
+cbu   - - - -
+PC01
+  SBC Content & Creation - Q1 - - 12 12 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+bo   - - - -
+HS01, MPC
+  SBC Beyond Data - Q1 - - - - -
+- -   1 -
+- - - -  
+- 1 - - -
+- - - -  
+fbo, mpa   - - - -
+PC03, PC02
+ 
+SBC Content & Creation - Q1 - - 12 12 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+bo   - - - -
+HS01, MPC
+SBC Beyond Data - Q1 - - - - -
+- -   1 -
+- - - -  
+- 1 - - -
+- - - -  
+fbo, mpa   - - - -
+PC03, PC02
+SBC TechPioneers - Q1 - 1 - - -
+- -   - -
+- 1 1 1  
+- - - - -
+- - - -  
+dmi   - - - -
+PC05
+  SBC Content & Creation - Q1 - - 12 12 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+hi   - - - -
+LR34, MPC
+SBC TechPioneers - Q1 - 1 - - -
+- -   - -
+- 1 1 1  
+- - - - -
+- - - -  
+dmi   - - - -
+PC05
+SBC Content & Creation - Q1 - - 12 12 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+hi   - - - -
+LR34, MPC
+Visual Effects and Shader - - 56 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+jso   - - - -
+HS02
+SBC Value Vision - Q1 - - - - -
+- -   - -
+- - - -  
+- - - 12 -
+- 1 1 -  
+afi, fbo, fko, gh, gi, web   - - 12 12
+HS07, SR05, SR07, SR02, SR03, SR04, SR13
+  SBC TechPioneers - Q1 - 1 - - -
+- -   - -
+- 1 12 12  
+- - - - -
+- - - -  
+jg, uh   - - - -
+XHS1
+Visual Effects and Shader - - 56 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+jso   - - - -
+HS02
+SBC Value Vision - Q1 - - - - -
+- -   - -
+- - - -  
+- - - 12 -
+- 1 1 -  
+afi, fbo, fko, gh, gi, web   - - 12 12
+HS07, SR05, SR07, SR02, SR03, SR04, SR13
+SBC TechPioneers - Q1 - 1 - - -
+- -   - -
+- 1 12 12  
+- - - - -
+- - - -  
+jg, uh   - - - -
+XHS1
+  Visual Effects and Shader (Praktikum) - - 56 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+pmu   - - - -
+HS02
+    SBC Value Vision - Q1 - - - - -
+- -   - -
+- - - -  
+- - - 12 -
+- 1 1 -  
+afi, fbo, fko, gh, gi, web   - - 12 12
+HS07, SR05, SR07, SR02, SR03, SR04, SR13
+Visual Effects and Shader (Praktikum) - - 56 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+pmu   - - - -
+HS02
+SBC Value Vision - Q1 - - - - -
+- -   - -
+- - - -  
+- - - 12 -
+- 1 1 -  
+afi, fbo, fko, gh, gi, web   - - 12 12
+HS07, SR05, SR07, SR02, SR03, SR04, SR13
+        Strategisches Management 12 - - - -
+- -   - -
+- - - -  
+12 - - - -
+- - - -  
+fbo   - 12 - -
+HS03
+Softwarequalität - - - - -
+- -   45 -
+- - - -  
+- - - 45 -
+- - - -  
+jbn   - - - -
+HS05
+Strategisches Management 12 - - - -
+- -   - -
+- - - -  
+12 - - - -
+- - - -  
+fbo   - 12 - -
+HS03
+Softwarequalität - - - - -
+- -   45 -
+- - - -  
+- - - 45 -
+- - - -  
+jbn   - - - -
+HS05
+      Wirtschaftspsychologie - Q2 - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+afi, gi   - - 1234 12
+HS01
+Wirtschaftspsychologie - Q2 - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+afi, gi   - - 1234 12
+HS01
+Wirtschaftspsychologie - Q2 - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+afi, gi   - - 1234 12
+HS01
+Wirtschaftspsychologie - Q2 - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+afi, gi   - - 1234 12
+HS01
+          Workshop Steuerungstechnik 12 - - - -
+- -   - -
+12 - - -  
+12 - - - -
+- - - -  
+bos   - - - -
+HS03
+Workshop Steuerungstechnik 12 - - - -
+- -   - -
+12 - - -  
+12 - - - -
+- - - -  
+bos   - - - -
+HS03
+          Workshop Steuerungstechnik 12 - - - -
+- -   - -
+12 - - -  
+12 - - - -
+- - - -  
+bos   - - - -
+LR05, LR08, LR09
+Workshop Steuerungstechnik 12 - - - -
+- -   - -
+12 - - -  
+12 - - - -
+- - - -  
+bos   - - - -
+LR05, LR08, LR09
+Di
+Coding Skills - Q2 - 12 - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 - -  
+krg   - - 12 12
+XHS7
+AuD (Betreuung) - - 34 - -
+- -   34 -
+- 3 - 3  
+- 34 - 34 -
+- - - -  
+aan, avh, mhe, tti   - - - -
+HS06, PC05
+Digital-Marketing - - 34 - -
+- -   - -
+- - - -  
+- 45 - - -
+- 3 - -  
+mbi   - - - -
+HS06
+Aktuelle Entwicklungen in der Informatik - - - - -
+12 -   - -
+- - - -  
+- - - - -
+- - - -  
+uh   - - - -
+SR06
+ 
+Coding Skills - Q2 - 12 - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 - -  
+krg   - - 12 12
+XHS7
+AuD (Betreuung) - - 34 - -
+- -   34 -
+- 3 - 3  
+- 34 - 34 -
+- - - -  
+aan, avh, mhe, tti   - - - -
+HS06, PC05
+Digital-Marketing - - 34 - -
+- -   - -
+- - - -  
+- 45 - - -
+- 3 - -  
+mbi   - - - -
+HS06
+Aktuelle Entwicklungen in der Informatik - - - - -
+12 -   - -
+- - - -  
+- - - - -
+- - - -  
+uh   - - - -
+SR06
+Datenbanken - Q1 - 34 34 - 3
+- -   234 3
+- 5 - 5  
+- 34 - 3 3
+- 34 3 -  
+mpa   - - 34 34
+HS07
+Coding Skills - Q2 - 12 - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 - -  
+krg   - - 12 12
+XHS7
+    Allgemeine Betriebswirtschaftslehre - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+PC01
+ 
+Datenbanken - Q1 - 34 34 - 3
+- -   234 3
+- 5 - 5  
+- 34 - 3 3
+- 34 3 -  
+mpa   - - 34 34
+HS07
+Coding Skills - Q2 - 12 - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 - -  
+krg   - - 12 12
+XHS7
+Allgemeine Betriebswirtschaftslehre - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+PC01
+Diskrete Mathematik - Q2 - - 1 1 -
+- -   1 -
+- 1 1 1  
+- 1 - 1 -
+- - 1 -  
+iw   - - - -
+HS04
+Diskrete Mathematik - Q2 - - 1 1 -
+- -   1 -
+- 1 1 1  
+- 1 - 1 -
+- - 1 -  
+iw   - - - -
+HS04
+    Business Planning - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+gh, uhl   - - 34 -
+PC05
+Diskrete Mathematik - Q2 - - 1 1 -
+- -   1 -
+- 1 1 1  
+- 1 - 1 -
+- - 1 -  
+iw   - - - -
+HS04
+Diskrete Mathematik - Q2 - - 1 1 -
+- -   1 -
+- 1 1 1  
+- 1 - 1 -
+- - 1 -  
+iw   - - - -
+HS04
+Business Planning - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+gh, uhl   - - 34 -
+PC05
+Embedded Systems Workshop - - - - -
+- -   - -
+12 - - -  
+- - - - -
+- - - -  
+bos   - - - -
+HS02, LR08, LR09
+  Coding Skills (Übung) - Q2 - - - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 - -  
+ahr, krg, mpa, mpg   - - 12 12
+PC03, PC04, PC02
+Embedded Systems Workshop - - - - -
+- -   - -
+12 - - -  
+- - - - -
+- - - -  
+bos   - - - -
+HS02, LR08, LR09
+Coding Skills (Übung) - Q2 - - - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 - -  
+ahr, krg, mpa, mpg   - - 12 12
+PC03, PC04, PC02
+Multi Channel Retailing - - - - -
+- -   - -
+- - - -  
+- 56 - - -
+- 56 - -  
+dde   - - - -
+HS05
+Kognitive Psychologie (Start am 21. Oktober) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+acw   - - - 34
+HS05
+Digitale Kommunikationssysteme - - - - -
+12 -   - -
+12 - - -  
+- - - - -
+- - - -  
+saw   - - - -
+HS05
+Diskrete Mathematik (Übung) - Q2 - - 1 1 -
+- -   1 -
+- 1 1 1  
+- 1 - 1 -
+- - 1 -  
+cei   - - - -
+HS04
+Diskrete Mathematik (Übung) - Q2 - - 1 1 -
+- -   1 -
+- 1 1 1  
+- 1 - 1 -
+- - 1 -  
+cei   - - - -
+HS04
+Multi Channel Retailing - - - - -
+- -   - -
+- - - -  
+- 56 - - -
+- 56 - -  
+dde   - - - -
+HS05
+Kognitive Psychologie (Start am 21. Oktober) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+acw   - - - 34
+HS05
+Digitale Kommunikationssysteme - - - - -
+12 -   - -
+12 - - -  
+- - - - -
+- - - -  
+saw   - - - -
+HS05
+Diskrete Mathematik (Übung) - Q2 - - 1 1 -
+- -   1 -
+- 1 1 1  
+- 1 - 1 -
+- - 1 -  
+cei   - - - -
+HS04
+Diskrete Mathematik (Übung) - Q2 - - 1 1 -
+- -   1 -
+- 1 1 1  
+- 1 - 1 -
+- - 1 -  
+cei   - - - -
+HS04
+  Office-Software - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+bwa, ne   - - - -
+PC04
+Programmstrukturen 1 (Betreuung) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ne   - - - -
+PC02
+E-Commerce Geschäftsmodelle - - - - -
+- -   - -
+- - - -  
+12 - - - -
+12 - - -  
+awo   - - - -
+SR08
+Logistikprozesse in ERP-Systemen - - - - -
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+PC01
+Office-Software - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+bwa, ne   - - - -
+PC04
+Programmstrukturen 1 (Betreuung) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ne   - - - -
+PC02
+E-Commerce Geschäftsmodelle - - - - -
+- -   - -
+- - - -  
+12 - - - -
+12 - - -  
+awo   - - - -
+SR08
+Logistikprozesse in ERP-Systemen - - - - -
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+PC01
+  Produktionstechnisches Projekt (KickOff) - 56 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ba, jg   - - - -
+SR10
+Produktionsplanung und -steuerung - 34 - - -
+- -   - -
+- - - -  
+- - - 45 -
+- - - -  
+gh   - - 34 -
+HS04
+Programmstrukturen 2 (Betreuung) - Q2 - - 2 2 3
+- -   2 3
+- - 2 -  
+- - - 2 3
+- - - -  
+bwa, cei, klk, nvk   - - - -
+PC03
+Einführung i.d. Konstruktion (+ Übung) - 34 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ba, jg   - - - -
+HS04
+Programmstrukturen 2 - Q2 - - 2 2 3
+- -   2 3
+- - 2 -  
+- - - 2 3
+- - - -  
+dpr   - - - -
+XHS1
+Produktionstechnisches Projekt (KickOff) - 56 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ba, jg   - - - -
+SR10
+Produktionsplanung und -steuerung - 34 - - -
+- -   - -
+- - - -  
+- - - 45 -
+- - - -  
+gh   - - 34 -
+HS04
+Programmstrukturen 2 (Betreuung) - Q2 - - 2 2 3
+- -   2 3
+- - 2 -  
+- - - 2 3
+- - - -  
+bwa, cei, klk, nvk   - - - -
+PC03
+Einführung i.d. Konstruktion (+ Übung) - 34 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ba, jg   - - - -
+HS04
+Programmstrukturen 2 - Q2 - - 2 2 3
+- -   2 3
+- - 2 -  
+- - - 2 3
+- - - -  
+dpr   - - - -
+XHS1
+    Produktionstechnisches Projekt - 56 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ba, jg   - - - -
+SR10
+SBC Value Vision (ReStudy) - - - - -
+- -   - -
+- - - -  
+- - - 1 -
+- 1 1 -  
+fbo   - - 12 12
+SR05, SR07, SR13
+Fotorealismus und Simulation - - - - -
+12 -   - -
+- - - -  
+- - - - -
+- - - -  
+bo   - - - -
+HS02
+Reconfigurable Computing - - - - -
+12 -   - -
+12 - - -  
+- - - - -
+- - - -  
+saw   - - - -
+HS05
+Robotik - - - - -
+- -   - -
+- 5 5 5  
+- - - - -
+- - - -  
+uh   - - - -
+HS02
+Produktionstechnisches Projekt - 56 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ba, jg   - - - -
+SR10
+SBC Value Vision (ReStudy) - - - - -
+- -   - -
+- - - -  
+- - - 1 -
+- 1 1 -  
+fbo   - - 12 12
+SR05, SR07, SR13
+Fotorealismus und Simulation - - - - -
+12 -   - -
+- - - -  
+- - - - -
+- - - -  
+bo   - - - -
+HS02
+Reconfigurable Computing - - - - -
+12 -   - -
+12 - - -  
+- - - - -
+- - - -  
+saw   - - - -
+HS05
+Robotik - - - - -
+- -   - -
+- 5 5 5  
+- - - - -
+- - - -  
+uh   - - - -
+HS02
+  Programmstrukturen 2 - Q2 - - 2 2 3
+- -   2 3
+- - 2 -  
+- - - 2 3
+- - - -  
+dpr   - - - -
+XHS1
+SP (Übung.4) - - - - -
+- -   34 -
+- 3 - -  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+PC05
+Programmstrukturen 2 (Aufgabenvorstellung) - Q2 - - 2 2 3
+- -   2 3
+- - 2 -  
+- - - 2 3
+- - - -  
+bwa, cei, klk, nvk   - - - -
+XHS1
+   
+Programmstrukturen 2 - Q2 - - 2 2 3
+- -   2 3
+- - 2 -  
+- - - 2 3
+- - - -  
+dpr   - - - -
+XHS1
+SP (Übung.4) - - - - -
+- -   34 -
+- 3 - -  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+PC05
+Programmstrukturen 2 (Aufgabenvorstellung) - Q2 - - 2 2 3
+- -   2 3
+- - 2 -  
+- - - 2 3
+- - - -  
+bwa, cei, klk, nvk   - - - -
+XHS1
+  Projekt IT-Sicherheit - - - - -
+- 12   - -
+- - - -  
+- - - - -
+- - - -  
+gb   - - - -
+SR08
+  Rechnernetze - - 3 - -
+- -   3 -
+- 3 5 35  
+- - - 3 -
+- - - -  
+kal   - - - -
+HS06
+   
+Projekt IT-Sicherheit - - - - -
+- 12   - -
+- - - -  
+- - - - -
+- - - -  
+gb   - - - -
+SR08
+Rechnernetze - - 3 - -
+- -   3 -
+- 3 5 35  
+- - - 3 -
+- - - -  
+kal   - - - -
+HS06
+  SBC Beyond Data - Q1 - - - - -
+- -   1 -
+- - - -  
+- 1 - - -
+- - - -  
+fbo, mpa   - - - -
+HS03, PC03, PC02
+  SBC Beyond Data - Q1 - - - - -
+- -   1 -
+- - - -  
+- 1 - - -
+- - - -  
+fbo, mpa   - - - -
+XPC2, XPC3
+ 
+SBC Beyond Data - Q1 - - - - -
+- -   1 -
+- - - -  
+- 1 - - -
+- - - -  
+fbo, mpa   - - - -
+HS03, PC03, PC02
+SBC Beyond Data - Q1 - - - - -
+- -   1 -
+- - - -  
+- 1 - - -
+- - - -  
+fbo, mpa   - - - -
+XPC2, XPC3
+  SBC Content & Creation - Q1 - - 12 12 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+hi, mlo   - - - -
+MPC
+  SBC Content & Creation - Q1 - - 12 12 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+hi, mlo   - - - -
+MPC
+SBC Content & Creation - Q1 - - 12 12 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+hi, mlo   - - - -
+MPC
+SBC Content & Creation - Q1 - - 12 12 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+hi, mlo   - - - -
+MPC
+SBC TechPioneers - Q1 - 1 - - -
+- -   - -
+- 1 12 12  
+- - - - -
+- - - -  
+hoe, uh   - - - -
+HS01
+  SBC TechPioneers - Q1 - 12 - 3 -
+- -   - -
+- 1 12 12  
+- 34 - - -
+- - - -  
+aha, cbu   - - - -
+HS01, LR05
+SBC TechPioneers - Q1 - 1 - - -
+- -   - -
+- 1 12 12  
+- - - - -
+- - - -  
+hoe, uh   - - - -
+HS01
+SBC TechPioneers - Q1 - 12 - 3 -
+- -   - -
+- 1 12 12  
+- 34 - - -
+- - - -  
+aha, cbu   - - - -
+HS01, LR05
+  SBC Value Vision - Q1 - - - - -
+- -   - -
+- - - -  
+- - - 12 -
+- 1 1 -  
+afi, fbo, fko, gh, gi, web   - - 12 12
+HS07, SR05, SR07, SR02, SR03, SR04, SR13
+  SBC Value Vision - Q1 - - - - -
+- -   - -
+- - - -  
+- - - 12 -
+- 1 1 -  
+afi, fbo, fko, gh, gi, web   - - 12 12
+HS07, SR05, SR07, SR02, SR03, SR04, SR13
+  SBC TechPioneers - Q1 - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+cbu   - - - -
+SR08
+SBC Value Vision - Q1 - - - - -
+- -   - -
+- - - -  
+- - - 12 -
+- 1 1 -  
+afi, fbo, fko, gh, gi, web   - - 12 12
+HS07, SR05, SR07, SR02, SR03, SR04, SR13
+SBC Value Vision - Q1 - - - - -
+- -   - -
+- - - -  
+- - - 12 -
+- 1 1 -  
+afi, fbo, fko, gh, gi, web   - - 12 12
+HS07, SR05, SR07, SR02, SR03, SR04, SR13
+SBC TechPioneers - Q1 - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+cbu   - - - -
+SR08
+    Seminar (Computergrafik, VR, Games) - - 5 6 -
+12 -   56 -
+- - - -  
+- - - - -
+- - - -  
+bo   - - - -
+SR06
+  Security Management 12 - - - -
+- 12   - -
+12 - - -  
+- - 12 - -
+- - - -  
+gb   - 12 - -
+HS03
+Volkswirtschaftslehre - 34 - - -
+- -   - -
+- - - -  
+- - - 34 -
+- - 3 -  
+gi   - - - 34
+HS06
+Seminar (Computergrafik, VR, Games) - - 5 6 -
+12 -   56 -
+- - - -  
+- - - - -
+- - - -  
+bo   - - - -
+SR06
+Security Management 12 - - - -
+- 12   - -
+12 - - -  
+- - 12 - -
+- - - -  
+gb   - 12 - -
+HS03
+Volkswirtschaftslehre - 34 - - -
+- -   - -
+- - - -  
+- - - 34 -
+- - 3 -  
+gi   - - - 34
+HS06
+    SP (Übung.3) - - - - -
+- -   34 -
+- 3 - -  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+PC05
+    SP (Übung 1) - Q2 - - 34 4 -
+- -   - -
+- - - 3  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+XMPC
+ 
+SP (Übung.3) - - - - -
+- -   34 -
+- 3 - -  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+PC05
+SP (Übung 1) - Q2 - - 34 4 -
+- -   - -
+- - - 3  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+XMPC
+  Workshop Mikroprozessor / Mikrocontroller-Seminar - - - - -
+- -   - -
+- - - 5  
+- - - - -
+- - - -  
+voe   - - - -
+PC01
+    SP (Übung.1) - Q1 - - 34 4 -
+- -   - -
+- - - 3  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+XPC4
+ 
+Workshop Mikroprozessor / Mikrocontroller-Seminar - - - - -
+- -   - -
+- - - 5  
+- - - - -
+- - - -  
+voe   - - - -
+PC01
+SP (Übung.1) - Q1 - - 34 4 -
+- -   - -
+- - - 3  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+XPC4
+          Visualisierung - - - - -
+12 -   - -
+- - - -  
+- - - - -
+- - - -  
+bo   - - - -
+HS02
+ 
+Visualisierung - - - - -
+12 -   - -
+- - - -  
+- - - - -
+- - - -  
+bo   - - - -
+HS02
+          Volkswirtschaftslehre - 34 - - -
+- -   - -
+- - - -  
+- - - 34 -
+- - 3 -  
+gi   - - - 34
+HS06
+ 
+Volkswirtschaftslehre - 34 - - -
+- -   - -
+- - - -  
+- - - 34 -
+- - 3 -  
+gi   - - - 34
+HS06
+Mi
+Analysis - Q2 - 12 1 1 -
+- -   1 -
+- 1 12 1  
+- 1 - 1 -
+- - - -  
+fko   - - - -
+HS07
+Analysis - Q2 - 12 1 1 -
+- -   1 -
+- 1 12 1  
+- 1 - 1 -
+- - - -  
+fko   - - - -
+XHS7
+Computer-Games und interaktive Medien - Q2 - - 12 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+dko   - - - -
+XHS1
+Computer-Games und interaktive Medien - Q2 - - 12 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+dko   - - - -
+HS01
+Analysis - Q2 - 12 1 1 -
+- -   1 -
+- 1 12 1  
+- 1 - 1 -
+- - - -  
+fko   - - - -
+XHS7
+Analysis - Q2 - 12 1 1 -
+- -   1 -
+- 1 12 1  
+- 1 - 1 -
+- - - -  
+fko   - - - -
+HS07
+ 
+Analysis - Q2 - 12 1 1 -
+- -   1 -
+- 1 12 1  
+- 1 - 1 -
+- - - -  
+fko   - - - -
+HS07
+Analysis - Q2 - 12 1 1 -
+- -   1 -
+- 1 12 1  
+- 1 - 1 -
+- - - -  
+fko   - - - -
+XHS7
+Computer-Games und interaktive Medien - Q2 - - 12 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+dko   - - - -
+XHS1
+Computer-Games und interaktive Medien - Q2 - - 12 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+dko   - - - -
+HS01
+Analysis - Q2 - 12 1 1 -
+- -   1 -
+- 1 12 1  
+- 1 - 1 -
+- - - -  
+fko   - - - -
+XHS7
+Analysis - Q2 - 12 1 1 -
+- -   1 -
+- 1 12 1  
+- 1 - 1 -
+- - - -  
+fko   - - - -
+HS07
+Distributed Systems (Tutorial) - - - - -
+12 12   - -
+12 - - -  
+- - 2 - -
+- - - -  
+uh   - - - -
+PC05
+Distributed Systems - - - - -
+12 12   - -
+12 - - -  
+- - 2 - -
+- - - -  
+uh   - - - -
+SR06
+Fortgeschrittene Lineare Algebra - - 3 34 -
+- -   34 -
+- 3 - 3  
+- 3 - - -
+- - - -  
+aha   - - - -
+HS06
+Datenbanken (Übung 2) - 34 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+mpg, ne, pmu   - - 34 34
+PC03, PC02
+Coding Skills (Übung) - Q2 - - - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 - -  
+ahr, krg, mpa, mpg   - - 12 12
+PC03, PC04, PC02
+Distributed Systems (Tutorial) - - - - -
+12 12   - -
+12 - - -  
+- - 2 - -
+- - - -  
+uh   - - - -
+PC05
+Distributed Systems - - - - -
+12 12   - -
+12 - - -  
+- - 2 - -
+- - - -  
+uh   - - - -
+SR06
+Fortgeschrittene Lineare Algebra - - 3 34 -
+- -   34 -
+- 3 - 3  
+- 3 - - -
+- - - -  
+aha   - - - -
+HS06
+Datenbanken (Übung 2) - 34 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+mpg, ne, pmu   - - 34 34
+PC03, PC02
+Coding Skills (Übung) - Q2 - - - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 - -  
+ahr, krg, mpa, mpg   - - 12 12
+PC03, PC04, PC02
+Elektronik - - - - -
+- -   - -
+- 5 - 23  
+- - - - -
+- - - -  
+saw   - - - -
+HS02
+Elektronik - - - - -
+- -   - -
+- 5 - 23  
+- - - - -
+- - - -  
+saw   - - - -
+HS02
+  Fortgeschrittene Lineare Algebra - - 3 34 -
+- -   34 -
+- 3 - 3  
+- 3 - - -
+- - - -  
+aha   - - - -
+HS06
+Farbenlehre, Farbsysteme und -räume - - - - 1
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+hi   - - - -
+HS02, MPC
+Hochschullehrerkonferenz          
+                                        gi          
+SR08
+Geometrie - - - - 1
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ch   - - - -
+HS02
+Elektronik - - - - -
+- -   - -
+- 5 - 23  
+- - - - -
+- - - -  
+saw   - - - -
+HS02
+Elektronik - - - - -
+- -   - -
+- 5 - 23  
+- - - - -
+- - - -  
+saw   - - - -
+HS02
+Fortgeschrittene Lineare Algebra - - 3 34 -
+- -   34 -
+- 3 - 3  
+- 3 - - -
+- - - -  
+aha   - - - -
+HS06
+Farbenlehre, Farbsysteme und -räume - - - - 1
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+hi   - - - -
+HS02, MPC
+Hochschullehrerkonferenz          
+         
+         
+         
+         
+gi          
+SR08
+Geometrie - - - - 1
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ch   - - - -
+HS02
+Induktive Statistik - 34 34 - -
+- -   56 -
+- - - -  
+- 3 - 34 -
+- 34 - 5  
+fbo   - - 3 34
+HS04
+Induktive Statistik - 34 34 - -
+- -   56 -
+- - - -  
+- 3 - 34 -
+- 34 - 5  
+fbo   - - 3 34
+HS04
+Grammatik, Wortschatz und Referate (Englisch 1) - - - - 3
+- -   - 3
+- - - -  
+- - - - 3
+- - - -  
+hw   - - - -
+SR06
+Logistikprozesse in ERP-Systemen - - - - -
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+PC01
+  Kolloquium          
+                                        vma          
+HS03
+Induktive Statistik - 34 34 - -
+- -   56 -
+- - - -  
+- 3 - 34 -
+- 34 - 5  
+fbo   - - 3 34
+HS04
+Induktive Statistik - 34 34 - -
+- -   56 -
+- - - -  
+- 3 - 34 -
+- 34 - 5  
+fbo   - - 3 34
+HS04
+Grammatik, Wortschatz und Referate (Englisch 1) - - - - 3
+- -   - 3
+- - - -  
+- - - - 3
+- - - -  
+hw   - - - -
+SR06
+Logistikprozesse in ERP-Systemen - - - - -
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+PC01
+Kolloquium          
+         
+         
+         
+         
+vma          
+HS03
+  International Service Business Concepts & Cases 12 - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+gi   - 12 - -
+HS03
+Künstliche Intelligenz (Artificial Intelligence) - - 45 - -
+- -   56 -
+- 5 - 5  
+- 45 - 45 -
+- - - -  
+ann, dsg, iw   - - - -
+HS04
+Programming Qualifier - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+hoe, nvk   - - - -
+PC05
+International Service Business Concepts & Cases 12 - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+gi   - 12 - -
+HS03
+Künstliche Intelligenz (Artificial Intelligence) - - 45 - -
+- -   56 -
+- 5 - 5  
+- 45 - 45 -
+- - - -  
+ann, dsg, iw   - - - -
+HS04
+Programming Qualifier - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+hoe, nvk   - - - -
+PC05
+Lebenszyklus von IT-Systemen (+ Übung) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- 56 3 -  
+gre   - - - -
+HS05
+Künstliche Intelligenz (Artificial Intelligence) - - 45 - -
+- -   56 -
+- 5 - 5  
+- 45 - 45 -
+- - - -  
+ann, dsg, iw   - - - -
+HS04
+  Rechnernetze - - 3 - -
+- -   3 -
+- 3 5 35  
+- - - 3 -
+- - - -  
+kal   - - - -
+HS06
+   
+Lebenszyklus von IT-Systemen (+ Übung) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- 56 3 -  
+gre   - - - -
+HS05
+Künstliche Intelligenz (Artificial Intelligence) - - 45 - -
+- -   56 -
+- 5 - 5  
+- 45 - 45 -
+- - - -  
+ann, dsg, iw   - - - -
+HS04
+Rechnernetze - - 3 - -
+- -   3 -
+- 3 5 35  
+- - - 3 -
+- - - -  
+kal   - - - -
+HS06
+  Marktforschung 12 - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+afi   - 12 - -
+XS05
+  SBC Beyond Data - Q1 - - - - -
+- -   1 -
+- - - -  
+- 1 - - -
+- - - -  
+ann, mpa   - - - -
+XPC2, XPC3
+ 
+Marktforschung 12 - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+afi   - 12 - -
+XS05
+SBC Beyond Data - Q1 - - - - -
+- -   1 -
+- - - -  
+- 1 - - -
+- - - -  
+ann, mpa   - - - -
+XPC2, XPC3
+  Mathematik (+ Übung) - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+PC01
+Mathematik (+ Übung) - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+PC01
+       
+Mathematik (+ Übung) - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+PC01
+Mathematik (+ Übung) - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+PC01
+  Programmstrukturen 2 (Übung.1) - Q2 - - 2 2 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+bwa, cei, klk, nvk   - - - -
+PC04
+Online-Plattform (Konzeption & Aufbau) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- 45 - -  
+awo   - - - -
+XS08
+     
+Programmstrukturen 2 (Übung.1) - Q2 - - 2 2 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+bwa, cei, klk, nvk   - - - -
+PC04
+Online-Plattform (Konzeption & Aufbau) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- 45 - -  
+awo   - - - -
+XS08
+Prosa: Kurztexte und Romane (Deutsch 1) - - - - 3
+- -   - 3
+- - - -  
+- - - - 3
+- - - -  
+sed   - - - -
+SR08
+Programmstrukturen 2 (Übung.2) - Q2 - - - - -
+- -   - -
+- - - -  
+- - - 2 -
+- - - -  
+bwa, cei, klk, nvk   - - - -
+PC04
+       
+Prosa: Kurztexte und Romane (Deutsch 1) - - - - 3
+- -   - 3
+- - - -  
+- - - - 3
+- - - -  
+sed   - - - -
+SR08
+Programmstrukturen 2 (Übung.2) - Q2 - - - - -
+- -   - -
+- - - -  
+- - - 2 -
+- - - -  
+bwa, cei, klk, nvk   - - - -
+PC04
+    Projekt E-Commerce - - - - -
+- -   - -
+- - - -  
+- - - - -
+12 - - -  
+awo   - - - -
+YS08
+     
+Projekt E-Commerce - - - - -
+- -   - -
+- - - -  
+- - - - -
+12 - - -  
+awo   - - - -
+YS08
+    Rechnungswesen - Q2 - 2 - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 1 -  
+web   - - 12 12
+XHS7
+Rechnungswesen - Q2 - 2 - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 1 -  
+web   - - 12 12
+HS07
+     
+Rechnungswesen - Q2 - 2 - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 1 -  
+web   - - 12 12
+XHS7
+Rechnungswesen - Q2 - 2 - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 1 -  
+web   - - 12 12
+HS07
+  SBC Beyond Data - Q1 - - - - -
+- -   1 -
+- - - -  
+- 1 - - -
+- - - -  
+ann, mpa   - - - -
+HS01, PC03, PC02
+SBC Beyond Data (ReStudy) - - - - -
+- -   1 -
+- - - -  
+- 1 - - -
+- - - -  
+fbo   - - - -
+SR05, SR07
+     
+SBC Beyond Data - Q1 - - - - -
+- -   1 -
+- - - -  
+- 1 - - -
+- - - -  
+ann, mpa   - - - -
+HS01, PC03, PC02
+SBC Beyond Data (ReStudy) - - - - -
+- -   1 -
+- - - -  
+- 1 - - -
+- - - -  
+fbo   - - - -
+SR05, SR07
+SBC TechPioneers - Q1 - 12 - - -
+- -   - -
+- 1 1 1  
+- - - - -
+- - - -  
+jg   - - - -
+LR05
+SBC TechPioneers - Q1 - 12 - - -
+- -   - -
+- 1 1 1  
+- - - - -
+- - - -  
+jg   - - - -
+LR05
+SBC TechPioneers - Q1 - 12 - - -
+- -   - -
+- 1 1 1  
+- - - - -
+- - - -  
+jg   - - - -
+LR05
+SBC TechPioneers - Q1 - 12 - - -
+- -   - -
+- 1 1 1  
+- - - - -
+- - - -  
+jg   - - - -
+LR05
+  SBC Value Vision - Q1 - - - - -
+- -   - -
+- - - -  
+- - - 12 -
+- 1 1 -  
+afi, fbo, fko, gh, gi, web   - - 12 12
+HS07, SR05, SR07, SR02, SR03, SR04, SR13
+  SBC Value Vision - Q1 - - - - -
+- -   - -
+- - - -  
+- - - 12 -
+- 1 1 -  
+afi, fbo, fko, gh, gi, web   - - 12 12
+HS07, SR05, SR07, SR02, SR03, SR04, SR13
+SP (Übung.2) - - 34 34 3
+- -   - -
+- - - 3  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+PC01
+SP (Betreuung) - - 34 34 3
+- -   34 3
+- 3 - 3  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+PC01
+SBC Value Vision - Q1 - - - - -
+- -   - -
+- - - -  
+- - - 12 -
+- 1 1 -  
+afi, fbo, fko, gh, gi, web   - - 12 12
+HS07, SR05, SR07, SR02, SR03, SR04, SR13
+SBC Value Vision - Q1 - - - - -
+- -   - -
+- - - -  
+- - - 12 -
+- 1 1 -  
+afi, fbo, fko, gh, gi, web   - - 12 12
+HS07, SR05, SR07, SR02, SR03, SR04, SR13
+SP (Übung.2) - - 34 34 3
+- -   - -
+- - - 3  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+PC01
+SP (Betreuung) - - 34 34 3
+- -   34 3
+- 3 - 3  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+PC01
+Sustainable Technologies & Climate Change 12 - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+dmi   12 - - -
+HS06
+Seminar (E-Commerce) - - - - -
+- -   - -
+- - - -  
+- - - - -
+12 56 - -  
+awo   - - - -
+SR08
+SP (Tutorium) - - - - 3
+- -   - 3
+- - - -  
+- - - - -
+- - - -  
+bos   - - - -
+SR08
+   
+Sustainable Technologies & Climate Change 12 - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+dmi   12 - - -
+HS06
+Seminar (E-Commerce) - - - - -
+- -   - -
+- - - -  
+- - - - -
+12 56 - -  
+awo   - - - -
+SR08
+SP (Tutorium) - - - - 3
+- -   - 3
+- - - -  
+- - - - -
+- - - -  
+bos   - - - -
+SR08
+Visual Effects and Shader (Praktikum) - - 56 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+aan, avh, mpg, pmu   - - - -
+MPC
+Seminar (IT Security) - - - - -
+- 12   - -
+- - - -  
+12 - - - -
+- - - -  
+gb   - - - -
+HS02
+  Sustainable & Digital Consumer Behavior - - - - -
+- -   - -
+- - - -  
+- - - - -
+12 - - -  
+afi   12 - - -
+HS03
+ 
+Visual Effects and Shader (Praktikum) - - 56 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+aan, avh, mpg, pmu   - - - -
+MPC
+Seminar (IT Security) - - - - -
+- 12   - -
+- - - -  
+12 - - - -
+- - - -  
+gb   - - - -
+HS02
+Sustainable & Digital Consumer Behavior - - - - -
+- -   - -
+- - - -  
+- - - - -
+12 - - -  
+afi   12 - - -
+HS03
+        Systemanalyse - 34 - - -
+- -   45 -
+- - - -  
+- 5 - 5 -
+- - - 5  
+dpr, uhl   - - - -
+HS04
+ 
+Systemanalyse - 34 - - -
+- -   45 -
+- - - -  
+- 5 - 5 -
+- - - 5  
+dpr, uhl   - - - -
+HS04
+        Virtual Reality - - 56 56 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+bo   - - - -
+HS01
+Verfassungen im Vergleich - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+ch   - - - -
+HS02
+ 
+Virtual Reality - - 56 56 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+bo   - - - -
+HS01
+Verfassungen im Vergleich - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+ch   - - - -
+HS02
+Do
+Algorithmen und Datenstrukturen (AuD) - - 34 - -
+- -   34 -
+- 3 - 3  
+- 34 - 34 -
+- - - -  
+uhl   - - - -
+HS04
+Algorithmen und Datenstrukturen (AuD) - - 34 - -
+- -   34 -
+- 3 - 3  
+- 34 - 34 -
+- - - -  
+uhl   - - - -
+HS04
+    Berechenbarkeit und Komplexität (BuK) - - - - -
+12 12   - -
+- - - -  
+- - - - -
+- - - -  
+iw   - - - -
+HS04
+BuK / FSuV (Übung) - - - - -
+12 12   - -
+- - - -  
+- - - - -
+- - - -  
+iw, uh   - - - -
+HS04
+ 
+Algorithmen und Datenstrukturen (AuD) - - 34 - -
+- -   34 -
+- 3 - 3  
+- 34 - 34 -
+- - - -  
+uhl   - - - -
+HS04
+Algorithmen und Datenstrukturen (AuD) - - 34 - -
+- -   34 -
+- 3 - 3  
+- 34 - 34 -
+- - - -  
+uhl   - - - -
+HS04
+Berechenbarkeit und Komplexität (BuK) - - - - -
+12 12   - -
+- - - -  
+- - - - -
+- - - -  
+iw   - - - -
+HS04
+BuK / FSuV (Übung) - - - - -
+12 12   - -
+- - - -  
+- - - - -
+- - - -  
+iw, uh   - - - -
+HS04
+Digitale Schaltungen und Prozessoren - - - - -
+- -   - -
+- - 2 2  
+- - - - -
+- - - -  
+saw   - - - -
+SR08
+Beratungskompetenz (nur nach Bekanntgabe) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - 3 5  
+rpo   - - - -
+HS05
+  Coding Skills (Übung) - Q2 - 12 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ahr   - - - -
+XPC4
+Digitale Schaltungen und Prozessoren - - - - -
+- -   - -
+- - 2 2  
+- - - - -
+- - - -  
+saw   - - - -
+SR08
+Beratungskompetenz (nur nach Bekanntgabe) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - 3 5  
+rpo   - - - -
+HS05
+Coding Skills (Übung) - Q2 - 12 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ahr   - - - -
+XPC4
+Diskrete Mathematik - Q2 - - 1 1 -
+- -   1 -
+- 1 1 1  
+- 1 - 1 -
+- - 1 -  
+iw   - - - -
+HS07
+Digitale Schaltungen und Prozessoren - - - - -
+- -   - -
+- - 2 2  
+- - - - -
+- - - -  
+dsg   - - - -
+SR08
+Betriebsrat          
+                                                  SR01
+  Digitaltechnik (Praktikum) - Q2 - - - - -
+- -   - -
+- 1 1 1  
+- - - - -
+- - - -  
+tfs   - - - -
+LR05
+Diskrete Mathematik - Q2 - - 1 1 -
+- -   1 -
+- 1 1 1  
+- 1 - 1 -
+- - 1 -  
+iw   - - - -
+HS07
+Digitale Schaltungen und Prozessoren - - - - -
+- -   - -
+- - 2 2  
+- - - - -
+- - - -  
+dsg   - - - -
+SR08
+Betriebsrat          
+         
+         
+         
+         
+         
+SR01
+Digitaltechnik (Praktikum) - Q2 - - - - -
+- -   - -
+- 1 1 1  
+- - - - -
+- - - -  
+tfs   - - - -
+LR05
+Introduction to Industrial AI Data-driven Ind.4.0 Concepts 12 - - - -
+- -   - -
+12 - - -  
+- - - - -
+- - - -  
+ann, cbu   - - - -
+HS02
+Diskrete Mathematik - Q2 - - 1 1 -
+- -   1 -
+- 1 1 1  
+- 1 - 1 -
+- - 1 -  
+iw   - - - -
+XHS7
+Einführung in die Robotik (Praktikum) - - - - -
+- -   - -
+- 5 5 5  
+- - - - -
+- - - -  
+hoe   - - - -
+LR27
+E-Commerce Datenmanagement - - - - -
+- -   - -
+- - - -  
+- - - - -
+- 56 - -  
+sba   - - - -
+PC05
+Introduction to Industrial AI Data-driven Ind.4.0 Concepts 12 - - - -
+- -   - -
+12 - - -  
+- - - - -
+- - - -  
+ann, cbu   - - - -
+HS02
+Diskrete Mathematik - Q2 - - 1 1 -
+- -   1 -
+- 1 1 1  
+- 1 - 1 -
+- - 1 -  
+iw   - - - -
+XHS7
+Einführung in die Robotik (Praktikum) - - - - -
+- -   - -
+- 5 5 5  
+- - - - -
+- - - -  
+hoe   - - - -
+LR27
+E-Commerce Datenmanagement - - - - -
+- -   - -
+- - - -  
+- - - - -
+- 56 - -  
+sba   - - - -
+PC05
+  Einkauf und Supply Management - 34 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+gh   - - 34 -
+HS06
+Industrial Internet of Things Project - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+cbu   - - - -
+LR
+Informationstechnik - 34 2 2 -
+- -   2 -
+- - 2 2  
+- 34 - 2 -
+- - - -  
+dsg   - - - -
+HS06
+Energietechnik 12 - - - -
+- -   - -
+- 5 - -  
+- - - - -
+- - - -  
+smt   12 - - -
+HS03
+Formale Spezifikation und Verifikation (FSuK) - - - - -
+12 12   - -
+- - - -  
+- - - - -
+- - - -  
+uh   - - - -
+HS04
+Einkauf und Supply Management - 34 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+gh   - - 34 -
+HS06
+Industrial Internet of Things Project - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+cbu   - - - -
+LR
+Informationstechnik - 34 2 2 -
+- -   2 -
+- - 2 2  
+- 34 - 2 -
+- - - -  
+dsg   - - - -
+HS06
+Energietechnik 12 - - - -
+- -   - -
+- 5 - -  
+- - - - -
+- - - -  
+smt   12 - - -
+HS03
+Formale Spezifikation und Verifikation (FSuK) - - - - -
+12 12   - -
+- - - -  
+- - - - -
+- - - -  
+uh   - - - -
+HS04
+  Predictive Maintenance Lab 12 - - - -
+- -   - -
+12 - - -  
+- - - - -
+- - - -  
+ann, cbu   - - - -
+PC01
+Physik für Computer Games - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+bo   - - - -
+SR06
+Rechnungswesen - Q2 - 2 - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 1 -  
+web   - - 12 12
+HS07
+GenAI für Studium und Beruf - Q2 - - - 12 -
+- -   - -
+- - - -  
+- 1 - 12 -
+- 1 1 -  
+gre   - - - -
+XHS1
+GenAI für Studium und Beruf - Q2 - - - 12 -
+- -   - -
+- - - -  
+- 1 - 12 -
+- 1 1 -  
+gre   - - - -
+XHS1
+ 
+Predictive Maintenance Lab 12 - - - -
+- -   - -
+12 - - -  
+- - - - -
+- - - -  
+ann, cbu   - - - -
+PC01
+Physik für Computer Games - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+bo   - - - -
+SR06
+Rechnungswesen - Q2 - 2 - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 1 -  
+web   - - 12 12
+HS07
+GenAI für Studium und Beruf - Q2 - - - 12 -
+- -   - -
+- - - -  
+- 1 - 12 -
+- 1 1 -  
+gre   - - - -
+XHS1
+GenAI für Studium und Beruf - Q2 - - - 12 -
+- -   - -
+- - - -  
+- 1 - 12 -
+- 1 1 -  
+gre   - - - -
+XHS1
+  Programmstrukturen 2 (Übung.4) - Q2 - - - - -
+- -   - 3
+- - - -  
+- - - - -
+- - - -  
+bwa, cei, klk, nvk   - - - -
+PC02
+Produktionsplanung und -steuerung - 34 - - -
+- -   - -
+- - - -  
+- - - 45 -
+- - - -  
+gh   - - 34 -
+HS06
+  Ingenieurmathematik - 34 - - -
+- -   - -
+- 3 - 3  
+- - - - -
+- - - -  
+dmi   - - - -
+HS06
+   
+Programmstrukturen 2 (Übung.4) - Q2 - - - - -
+- -   - 3
+- - - -  
+- - - - -
+- - - -  
+bwa, cei, klk, nvk   - - - -
+PC02
+Produktionsplanung und -steuerung - 34 - - -
+- -   - -
+- - - -  
+- - - 45 -
+- - - -  
+gh   - - 34 -
+HS06
+Ingenieurmathematik - 34 - - -
+- -   - -
+- 3 - 3  
+- - - - -
+- - - -  
+dmi   - - - -
+HS06
+    Programmstrukturen 2 (Übung.3) - Q2 - - - - -
+- -   2 -
+- - 2 -  
+- - - - -
+- - - -  
+bwa, cei, klk, nvk   - - - -
+PC02
+  IT-Steuerung und IT-gestütztes BPM (nur nach Bekanntgabe) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - 56  
+rpo   - - - -
+HS05
+Programmstrukturen 2 (Übung.3) - Q2 - - - - -
+- -   2 -
+- - 2 -  
+- - - - -
+- - - -  
+bwa, cei, klk, nvk   - - - -
+PC02
+IT-Steuerung und IT-gestütztes BPM (nur nach Bekanntgabe) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - 56  
+rpo   - - - -
+HS05
+    Rechnungswesen - Q2 - 2 - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 1 -  
+web   - - 12 12
+XHS7
+  Mathematik (+ Übung) - Q2 - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+XHS7
+Konzepte der Funktionalen Programmierung - - - - -
+- -   2 5
+- - - -  
+- - - - -
+- - - -  
+tti   - - - -
+HS06
+Konzepte der Funktionalen Programmierung (Übung) - - - - -
+- -   2 5
+- - - -  
+- - - - -
+- - - -  
+mhe, tti   - - - -
+PC03
+Rechnungswesen - Q2 - 2 - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 1 -  
+web   - - 12 12
+XHS7
+Mathematik (+ Übung) - Q2 - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+XHS7
+Konzepte der Funktionalen Programmierung - - - - -
+- -   2 5
+- - - -  
+- - - - -
+- - - -  
+tti   - - - -
+HS06
+Konzepte der Funktionalen Programmierung (Übung) - - - - -
+- -   2 5
+- - - -  
+- - - - -
+- - - -  
+mhe, tti   - - - -
+PC03
+  SBC Beyond Data - Q1 - - - - -
+- -   1 -
+- - - -  
+- 1 - - -
+- - - -  
+ann, mpa   - - - -
+HS01
+    Mathematik (+ Übung) - Q2 - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+XHS7
+Mathematik (+ Übung) - Q2 - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+XHS7
+SBC Beyond Data - Q1 - - - - -
+- -   1 -
+- - - -  
+- 1 - - -
+- - - -  
+ann, mpa   - - - -
+HS01
+Mathematik (+ Übung) - Q2 - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+XHS7
+Mathematik (+ Übung) - Q2 - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+XHS7
+  SBC Content & Creation - Q1 - - 12 12 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+hi, mlo   - - - -
+LR34, MPC
+    Medical Engineering - - - - -
+- -   - -
+12 - - -  
+- - - - -
+- - - -  
+dsg   - - - -
+SR06
+SBC Content & Creation - Q1 - - 12 12 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+hi, mlo   - - - -
+LR34, MPC
+Medical Engineering - - - - -
+- -   - -
+12 - - -  
+- - - - -
+- - - -  
+dsg   - - - -
+SR06
+SBC TechPioneers - Q1 - 1 - - -
+- -   - -
+- 1 1 1  
+- - - - -
+- - - -  
+dmi, uh   - - - -
+PC05, LR35
+    Medical Engineering - - - - -
+- -   - -
+12 - - -  
+- - - - -
+- - - -  
+dsg   - - - -
+PC01
+SBC TechPioneers - Q1 - 1 - - -
+- -   - -
+- 1 1 1  
+- - - - -
+- - - -  
+dmi, uh   - - - -
+PC05, LR35
+Medical Engineering - - - - -
+- -   - -
+12 - - -  
+- - - - -
+- - - -  
+dsg   - - - -
+PC01
+  SBC Value Vision - Q1 - - - - -
+- -   - -
+- - - -  
+- - - 12 -
+- 1 1 -  
+afi, fbo, fko, gh, gi, web   - - 12 12
+HS07, SR05, SR07, SR02, SR03, SR04, SR13
+  Programmstrukturen - Q1 - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+ahr   - - - -
+PC04
+SBC Value Vision - Q1 - - - - -
+- -   - -
+- - - -  
+- - - 12 -
+- 1 1 -  
+afi, fbo, fko, gh, gi, web   - - 12 12
+HS07, SR05, SR07, SR02, SR03, SR04, SR13
+Programmstrukturen - Q1 - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+ahr   - - - -
+PC04
+Sustainable Corporate Governance - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+web   12 12 - -
+HS03
+Sustainability Economics & Digital Platforms 12 - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+gi   12 12 - -
+HS03
+Programmstrukturen 1 (Abnahmen) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ne   - - - -
+OL01
+ 
+Sustainable Corporate Governance - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+web   12 12 - -
+HS03
+Sustainability Economics & Digital Platforms 12 - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+gi   12 12 - -
+HS03
+Programmstrukturen 1 (Abnahmen) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ne   - - - -
+OL01
+  Symbolische KI - - - - -
+12 -   - -
+- - - -  
+12 - 2 - -
+- - - -  
+gb   - - - -
+HS02
+Systemnahe Programmierung (SP) - - 34 34 3
+- -   34 3
+- 3 - 3  
+- - - - -
+- - - -  
+uhl   - - - -
+HS04
+Programmstrukturen 2 (Übung.5) - Q2 - - - - 3
+- -   - -
+- - - -  
+- - - - 3
+- - - -  
+bwa, cei, klk, nvk   - - - -
+PC02
+Rechnernetze (Praktikum) - - - - 3
+- -   - -
+- - - -  
+- - - - 3
+- - - -  
+kal, kch   - - - -
+LR30
+Symbolische KI - - - - -
+12 -   - -
+- - - -  
+12 - 2 - -
+- - - -  
+gb   - - - -
+HS02
+Systemnahe Programmierung (SP) - - 34 34 3
+- -   34 3
+- 3 - 3  
+- - - - -
+- - - -  
+uhl   - - - -
+HS04
+Programmstrukturen 2 (Übung.5) - Q2 - - - - 3
+- -   - -
+- - - -  
+- - - - 3
+- - - -  
+bwa, cei, klk, nvk   - - - -
+PC02
+Rechnernetze (Praktikum) - - - - 3
+- -   - -
+- - - -  
+- - - - 3
+- - - -  
+kal, kch   - - - -
+LR30
+    Systemnahe Programmierung (SP) - - 34 34 3
+- -   34 3
+- 3 - 3  
+- - - - -
+- - - -  
+uhl   - - - -
+HS04
+  SBC Beyond Data - Q1 - - - - -
+- -   1 -
+- - - -  
+- 1 - - -
+- - - -  
+ann, mpa   - - - -
+HS01
+ 
+Systemnahe Programmierung (SP) - - 34 34 3
+- -   34 3
+- 3 - 3  
+- - - - -
+- - - -  
+uhl   - - - -
+HS04
+SBC Beyond Data - Q1 - - - - -
+- -   1 -
+- - - -  
+- 1 - - -
+- - - -  
+ann, mpa   - - - -
+HS01
+    Workshop Data Engineering - - - - -
+- -   - -
+- - - -  
+- 56 - - -
+- - - -  
+ann, mpa   - - - -
+SR08
+SBC Content & Creation - Q1 - - 12 12 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+hi, mlo   - - - -
+LR34, MPC
+Workshop Data Engineering - - - - -
+- -   - -
+- - - -  
+- 56 - - -
+- - - -  
+ann, mpa   - - - -
+SR08
+SBC Content & Creation - Q1 - - 12 12 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+hi, mlo   - - - -
+LR34, MPC
+        SBC TechPioneers - Q1 - 12 - 3 -
+- -   - -
+- 1 12 12  
+- 34 - - -
+- - - -  
+aha, cbu   - - - -
+HS02, SR08
+SBC TechPioneers - Q1 - 12 - 3 -
+- -   - -
+- 1 12 12  
+- 34 - - -
+- - - -  
+aha, cbu   - - - -
+HS02, SR08
+        SBC Value Vision - Q1 - - - - -
+- -   - -
+- - - -  
+- - - 12 -
+- 1 1 -  
+afi, fbo, fko, gh, gi, web   - - 12 12
+HS07, SR05, SR07, SR02, SR03, SR04, SR13
+SBC Value Vision - Q1 - - - - -
+- -   - -
+- - - -  
+- - - 12 -
+- 1 1 -  
+afi, fbo, fko, gh, gi, web   - - 12 12
+HS07, SR05, SR07, SR02, SR03, SR04, SR13
+        SP (Übung.5) - - - - -
+- -   - 3
+- - - -  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+PC03
+   
+SP (Übung.5) - - - - -
+- -   - 3
+- - - -  
+- - - - -
+- - - -  
+aan, avh, mhe, tti   - - - -
+PC03
+        Virtual Reality (Praktikum) - - 56 56 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+dko, mpg   - - - -
+LR35
+Virtual Reality (Praktikum) - - 56 56 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+dko, mpg   - - - -
+LR35
+Fr    
+Analysis (Übung) - Q2 - 12 1 1 -
+- -   1 -
+- 1 12 1  
+- 1 - 1 -
+- - - -  
+fko   - - - -
+HS07
+Analysis (Übung) - Q2 - 12 1 1 -
+- -   1 -
+- 1 12 1  
+- 1 - 1 -
+- - - -  
+fko   - - - -
+HS07
+Betriebswirtschaftslehre - 2 3 - -
+- -   3 -
+- - - 5  
+- - - - -
+- - - -  
+fko   - - - -
+HS07
+Betriebswirtschaftslehre - 2 3 - -
+- -   3 -
+- - - 5  
+- - - - -
+- - - -  
+fko   - - - -
+HS07
+ 
+Analysis (Übung) - Q2 - 12 1 1 -
+- -   1 -
+- 1 12 1  
+- 1 - 1 -
+- - - -  
+fko   - - - -
+HS07
+Analysis (Übung) - Q2 - 12 1 1 -
+- -   1 -
+- 1 12 1  
+- 1 - 1 -
+- - - -  
+fko   - - - -
+HS07
+Betriebswirtschaftslehre - 2 3 - -
+- -   3 -
+- - - 5  
+- - - - -
+- - - -  
+fko   - - - -
+HS07
+Betriebswirtschaftslehre - 2 3 - -
+- -   3 -
+- - - 5  
+- - - - -
+- - - -  
+fko   - - - -
+HS07
+Anwendungsentwicklung in ERP-Systemen (+ Übung) - - - - -
+- -   56 5
+- - - -  
+- - - 56 -
+- - - 56  
+kil, wol   - - - -
+PC01
+       
+Anwendungsentwicklung in ERP-Systemen (+ Übung) - - - - -
+- -   56 5
+- - - -  
+- - - 56 -
+- - - 56  
+kil, wol   - - - -
+PC01
+Coding Skills - Q2 - 12 - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 - -  
+krg   - - 12 12
+HS07
+Change Management (nur nach Bekanntgabe) 12 - - - -
+- -   - -
+- - - -  
+12 - 12 - -
+12 - - -  
+aah   12 12 - -
+XHS3
+Coding Skills - Q2 - 12 - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 - -  
+krg   - - 12 12
+HS07
+Change Management (nur nach Bekanntgabe) 12 - - - -
+- -   - -
+- - - -  
+12 - 12 - -
+12 - - -  
+aah   12 12 - -
+XHS3
+  Coding Skills - Q2 - 12 - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 - -  
+krg   - - 12 12
+HS07
+         
+Coding Skills - Q2 - 12 - - -
+- -   - -
+- - - -  
+- - - - -
+- 1 - -  
+krg   - - 12 12
+HS07
+Communication Skills (Gruppen und Termine über Moodle) - - 4 6 -
+- -   - -
+- 5 - -  
+- 6 - 56 -
+- 6 - 6  
+amk, pgo   - - 4 -
+SR08
+ 
+Communication Skills (Gruppen und Termine über Moodle) - - 4 6 -
+- -   - -
+- 5 - -  
+- 6 - 56 -
+- 6 - 6  
+amk, pgo   - - 4 -
+SR08
+  Computer Vision - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+dsg, mpa   - - - -
+HS06
+Datenbanken (Übung 4) - - - - -
+- -   - -
+- 5 - 5  
+- - - 3 -
+- 34 3 -  
+mpg, ne, pmu   - - - -
+PC03, PC02
+Computer-Games und interaktive Medien - Q2 - - 12 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+dko   - - - -
+XHS1
+Computer-Games und interaktive Medien - Q2 - - 12 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+dko   - - - -
+XHS1
+ 
+Computer Vision - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+dsg, mpa   - - - -
+HS06
+Datenbanken (Übung 4) - - - - -
+- -   - -
+- 5 - 5  
+- - - 3 -
+- 34 3 -  
+mpg, ne, pmu   - - - -
+PC03, PC02
+Computer-Games und interaktive Medien - Q2 - - 12 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+dko   - - - -
+XHS1
+Computer-Games und interaktive Medien - Q2 - - 12 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+dko   - - - -
+XHS1
+    Datenbanken (Übung 3) - - 34 - -
+- -   234 -
+- - - -  
+- 34 - - -
+- - - -  
+mpg, ne, pmu   - - - -
+PC03, PC02
+  Datenbanken (Übung 1) - - - - 3
+- -   - 3
+- - - -  
+- - - - 3
+- - - -  
+mpg, ne, pmu   - - - -
+PC03, PC02
+   
+Datenbanken (Übung 3) - - 34 - -
+- -   234 -
+- - - -  
+- 34 - - -
+- - - -  
+mpg, ne, pmu   - - - -
+PC03, PC02
+Datenbanken (Übung 1) - - - - 3
+- -   - 3
+- - - -  
+- - - - 3
+- - - -  
+mpg, ne, pmu   - - - -
+PC03, PC02
+Discrete Mathematics - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+iw   - - - -
+HS04
+  Datenvisualisierung / Feature Engineering - - - - -
+- -   - -
+- - - -  
+- 34 - - -
+- - - -  
+ann   - - - -
+HS04
+ 
+Discrete Mathematics - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+iw   - - - -
+HS04
+Datenvisualisierung / Feature Engineering - - - - -
+- -   - -
+- - - -  
+- 34 - - -
+- - - -  
+ann   - - - -
+HS04
+  Künstliche Intelligenz und Recht - - - - -
+- -   - -
+- - - -  
+12 - 1 - -
+- - - -  
+bra   - - - -
+HS03
+Digitale Medien (Start am 07.11 , weitere Infos im Moodle-Kurs) 12 - - - -
+- -   - -
+- - - -  
+12 - - - -
+- - - -  
+bau   - 12 - -
+HS03
+Künstliche Intelligenz und Recht - - - - -
+- -   - -
+- - - -  
+12 - 1 - -
+- - - -  
+bra   - - - -
+HS03
+Digitale Medien (Start am 07.11 , weitere Infos im Moodle-Kurs) 12 - - - -
+- -   - -
+- - - -  
+12 - - - -
+- - - -  
+bau   - 12 - -
+HS03
+  Merger & Acquisitions 12 - - - -
+- -   - -
+- - - -  
+- - 2 - -
+- - - -  
+cen, ysi   - 12 - -
+SR05
+  Digitaltechnik (Praktikum) - Q2 - - - - -
+- -   12 -
+- - - -  
+- - - - -
+- - - -  
+tfs   - - - -
+LR05
+Merger & Acquisitions 12 - - - -
+- -   - -
+- - - -  
+- - 2 - -
+- - - -  
+cen, ysi   - 12 - -
+SR05
+Digitaltechnik (Praktikum) - Q2 - - - - -
+- -   12 -
+- - - -  
+- - - - -
+- - - -  
+tfs   - - - -
+LR05
+Mobile Commerce / App Marketing (nur nach Bekanntgabe) - - - 3 -
+- -   - -
+- - - -  
+- - - - -
+- 34 - -  
+awo   - - - -
+HS02
+E-Commerce Plattform-Architektur - - - - -
+- -   - -
+- - - -  
+- - - - -
+2 - - -  
+awo   - - - -
+SR05
+   
+Mobile Commerce / App Marketing (nur nach Bekanntgabe) - - - 3 -
+- -   - -
+- - - -  
+- - - - -
+- 34 - -  
+awo   - - - -
+HS02
+E-Commerce Plattform-Architektur - - - - -
+- -   - -
+- - - -  
+- - - - -
+2 - - -  
+awo   - - - -
+SR05
+Programmstrukturen - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+ahr   - - - -
+PC04
+  Fundamental Programming Structures (Lab Course) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+nvk   - - - -
+PC05
+ 
+Programmstrukturen - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+ahr   - - - -
+PC04
+Fundamental Programming Structures (Lab Course) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+nvk   - - - -
+PC05
+Rechnernetze (Praktikum) - - 4 - -
+- -   2 -
+- 5 - -  
+- - - - -
+- - - -  
+kal, kch   - - - -
+LR30
+    GenAI für Studium und Beruf - Q2 - - - 12 -
+- -   - -
+- - - -  
+- 1 - 12 -
+- 1 1 -  
+gre   - - - -
+HS02
+GenAI für Studium und Beruf - Q2 - - - 12 -
+- -   - -
+- - - -  
+- 1 - 12 -
+- 1 1 -  
+gre   - - - -
+HS02
+ 
+Rechnernetze (Praktikum) - - 4 - -
+- -   2 -
+- 5 - -  
+- - - - -
+- - - -  
+kal, kch   - - - -
+LR30
+GenAI für Studium und Beruf - Q2 - - - 12 -
+- -   - -
+- - - -  
+- 1 - 12 -
+- 1 1 -  
+gre   - - - -
+HS02
+GenAI für Studium und Beruf - Q2 - - - 12 -
+- -   - -
+- - - -  
+- 1 - 12 -
+- 1 1 -  
+gre   - - - -
+HS02
+  SBC Content & Creation - Q1 - - 12 12 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ann, hi   - - - -
+LR34, MPC
+  Mathematik (+ Übung) - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+PC01
+Mathematik (+ Übung) - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+PC01
+ 
+SBC Content & Creation - Q1 - - 12 12 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ann, hi   - - - -
+LR34, MPC
+Mathematik (+ Übung) - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+PC01
+Mathematik (+ Übung) - - - - 1
+- -   - 1
+- - - -  
+- - - - 1
+- - - -  
+wol   - - - -
+PC01
+SBC TechPioneers - Q1 - 1 - - -
+- -   - -
+- 1 12 12  
+- - - - -
+- - - -  
+bos, dmi, hoe, jg, uh   - - - -
+HS01
+  Prozessmodellierung (+ Übung) - 34 - - -
+- -   45 -
+- - - -  
+- 5 - 5 -
+- - - 5  
+fko, kil   - - - -
+PC04
+SBC TechPioneers - Q1 - 1 - - -
+- -   - -
+- 1 12 12  
+- - - - -
+- - - -  
+bos, dmi, hoe, jg, uh   - - - -
+HS01
+Prozessmodellierung (+ Übung) - 34 - - -
+- -   45 -
+- - - -  
+- 5 - 5 -
+- - - 5  
+fko, kil   - - - -
+PC04
+User Experience (nur nach Bekanntgabe) - - - 3 -
+- -   - -
+- - - -  
+- - - - -
+- 34 - -  
+kzo, ols   - - - -
+SR02, SR04, XHS2
+  Prozessmodellierung (+ Übung) - 34 - - -
+- -   45 -
+- - - -  
+- 5 - 5 -
+- - - 5  
+kil   - - - -
+HS05
+User Experience (nur nach Bekanntgabe) - - - 3 -
+- -   - -
+- - - -  
+- - - - -
+- 34 - -  
+kzo, ols   - - - -
+SR02, SR04, XHS2
+Prozessmodellierung (+ Übung) - 34 - - -
+- -   45 -
+- - - -  
+- 5 - 5 -
+- - - 5  
+kil   - - - -
+HS05
+        SBC Content & Creation - Q1 - - 12 12 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+hi   - - - -
+LR34, MPC
+SBC Content & Creation - Q1 - - 12 12 -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+hi   - - - -
+LR34, MPC
+      SBC TechPioneers - Q1 - 1 - - -
+- -   - -
+- 1 12 12  
+- - - - -
+- - - -  
+aha, bos, cbu, dmi, hoe, jg, uh   - - - -
+HS01
+SBC TechPioneers - Q1 - 1 - - -
+- -   - -
+- 1 12 12  
+- - - - -
+- - - -  
+aha, bos, cbu, dmi, hoe, jg, uh   - - - -
+HS01
+        Technical English - Q2 - 1 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ev   - - - -
+SR13
+Technical English - Q2 - 1 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ev   - - - -
+SR13
+ 
+Technical English - Q2 - 1 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ev   - - - -
+SR13
+Technical English - Q2 - 1 - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+ev   - - - -
+SR13
+        Technologie Mediengestaltung und GUI-Programmierung - - - 56 -
+- -   - -
+- - 5 -  
+- - - - -
+- - - -  
+ona   - - - -
+HS06
+Technologie Mediengestaltung und GUI-Programmierung - - - 56 -
+- -   - -
+- - 5 -  
+- - - - -
+- - - -  
+ona   - - - -
+HS06
+          Unternehmensbesteuerung 1 (nur nach Bekanntgabe) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+fre   - - 34 -
+SR07
+Unternehmensbesteuerung 1 (nur nach Bekanntgabe) - - - - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+fre   - - 34 -
+SR07
+          Wirtschaftsethik - - - - 3
+- -   - 3
+- - - -  
+- - - - 3
+- - - -  
+ch   - - - -
+SR05
+Wirtschaftsethik - - - - 3
+- -   - 3
+- - - -  
+- - - - 3
+- - - -  
+ch   - - - -
+SR05
+Sa
+Agiles Projektmanagement (nur nach Bekanntgabe) 12 - - - -
+- -   - -
+- - - -  
+12 - 12 - -
+12 - - -  
+sla   12 12 - -
+SR13, XS08
+Agiles Projektmanagement (nur nach Bekanntgabe) 12 - - - -
+- -   - -
+- - - -  
+12 - 12 - -
+12 - - -  
+sla   12 12 - -
+SR13, XS08
+Communication Skills (Gruppen und Termine über Moodle) - - 4 6 -
+- -   - -
+- 5 - -  
+- 6 - 56 -
+- 6 - 6  
+amk, pgo   - - 4 -
+HS03, SR08
+Communication Skills (Gruppen und Termine über Moodle) - - 4 6 -
+- -   - -
+- 5 - -  
+- 6 - 56 -
+- 6 - 6  
+amk, pgo   - - 4 -
+HS03, SR08
+Prakt. Fortgeschrittene Interaktive Modellierung (ab 15.11 und 9:00 Uhr, Anmeldung bis 15.10) - - 3 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+swa   - - - -
+XMPC
+ 
+Prakt. Fortgeschrittene Interaktive Modellierung (ab 15.11 und 9:00 Uhr, Anmeldung bis 15.10) - - 3 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+swa   - - - -
+XMPC
+Prakt. Interaktive Geometrische Modellierung (ab 18.10 und 9:00 Uhr, Anmeldung bis 15.10) - - 3 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+swa   - - - -
+MPC
+ 
+Prakt. Interaktive Geometrische Modellierung (ab 18.10 und 9:00 Uhr, Anmeldung bis 15.10) - - 3 - -
+- -   - -
+- - - -  
+- - - - -
+- - - -  
+swa   - - - -
+MPC
+  SBC Beyond Data - Q1 - 34 - 3 -
+- -   12 -
+- - - -  
+- 1 - - -
+- - 3 -  
+kil   - - 34 34
+HS06, PC03, PC02
+  SBC Beyond Data - Q1 - 34 - 3 -
+- -   12 -
+- - - -  
+- 1 - - -
+- - 3 -  
+kil   - - 34 34
+HS06, PC03, PC02
+SBC Beyond Data - Q1 - 34 - 3 -
+- -   12 -
+- - - -  
+- 1 - - -
+- - 3 -  
+kil   - - 34 34
+HS06, PC03, PC02
+SBC Beyond Data - Q1 - 34 - 3 -
+- -   12 -
+- - - -  
+- 1 - - -
+- - 3 -  
+kil   - - 34 34
+HS06, PC03, PC02
+So              
+Advanced Digital Marketing  
+        jpl B_ECom: 5, 6  
+AG Smart Technology  
+        uh B_STec: 1, 2, 5  
+App- und Web-Developement (Projekt)  
+        mpg B_Minf: 5  
+App- und Web-Developement (Projekt)  
+        bo B_Minf: 5  
+Advanced Digital Marketing  
+ 
+ 
+ 
+ 
+jpl B_ECom: 5, 6  
+AG Smart Technology  
+ 
+ 
+ 
+ 
+uh B_STec: 1, 2, 5  
+App- und Web-Developement (Projekt)  
+ 
+ 
+ 
+ 
+mpg B_Minf: 5  
+App- und Web-Developement (Projekt)  
+ 
+ 
+ 
+ 
+bo B_Minf: 5  
+Compositing Projekt  
+        hi, jso B_Minf: 3, 4  
+Diskrete Regelungstechnik  
+        cbu B_Tinf: 7  
+E-Commerce Plattform-Architektur (Workshop)  
+        awo M_ECom: 2  
+Exploratory Data Analysis (Übung)  
+        mpa B_DSAI: 3, 4  
+Compositing Projekt  
+ 
+ 
+ 
+ 
+hi, jso B_Minf: 3, 4  
+Diskrete Regelungstechnik  
+ 
+ 
+ 
+ 
+cbu B_Tinf: 7  
+E-Commerce Plattform-Architektur (Workshop)  
+ 
+ 
+ 
+ 
+awo M_ECom: 2  
+Exploratory Data Analysis (Übung)  
+ 
+ 
+ 
+ 
+mpa B_DSAI: 3, 4  
+Grundlagen des E-Commerce  
+        awo B_DSAI: 3, 4  
+IMCA-Projekt  
+        B_IMCA: 6  
+ITAx-Seminar  
+        ahr, wol ITAM: 5; ITAS: 5  
+Laborprojekt  
+         
+Grundlagen des E-Commerce  
+ 
+ 
+ 
+ 
+awo B_DSAI: 3, 4  
+IMCA-Projekt  
+ 
+ 
+ 
+ 
+B_IMCA: 6  
+ITAx-Seminar  
+ 
+ 
+ 
+ 
+ahr, wol ITAM: 5; ITAS: 5  
+Laborprojekt  
+ 
+ 
+ 
+ 
+ 
+Planspiel (Unternehmensplanspiel)  
+        wol ITAW: 3  
+Problemlösungs- und Kreativitätstechniken  
+        akr  
+Programmierpraktikum  
+        ne ITAM: 3; ITAS: 3; ITAW: 3  
+Programmierpraktikum  
+        bwa, cei, klk, nvk B_IMCA: 5  
+Planspiel (Unternehmensplanspiel)  
+ 
+ 
+ 
+ 
+wol ITAW: 3  
+Problemlösungs- und Kreativitätstechniken  
+ 
+ 
+ 
+ 
+akr  
+Programmierpraktikum  
+ 
+ 
+ 
+ 
+ne ITAM: 3; ITAS: 3; ITAW: 3  
+Programmierpraktikum  
+ 
+ 
+ 
+ 
+bwa, cei, klk, nvk B_IMCA: 5  
+Programmierpraktikum  
+        bwa, cei, klk, nvk B_Winf: 3, 4  
+Programming Structures Project  
+        nvk MuITE: 2  
+Project IT  
+        M_ITE: 1, 2; MuITE: 1, 2  
+Project Smart Manufacturing  
+        M_ITE: 1, 2; MuITE: 1, 2  
+Programmierpraktikum  
+ 
+ 
+ 
+ 
+bwa, cei, klk, nvk B_Winf: 3, 4  
+Programming Structures Project  
+ 
+ 
+ 
+ 
+nvk MuITE: 2  
+Project IT  
+ 
+ 
+ 
+ 
+M_ITE: 1, 2; MuITE: 1, 2  
+Project Smart Manufacturing  
+ 
+ 
+ 
+ 
+M_ITE: 1, 2; MuITE: 1, 2  
+Projekt Data Science  
+        ann, mpa B_DSAI: 6  
+Projekt Deep Learning  
+        ann, mpa  
+Projekt Game-Design  
+        dko B_CGT: 5, 6  
+Projekt Industrie 4.0  
+        aha, cbu, dmi  
+Projekt Data Science  
+ 
+ 
+ 
+ 
+ann, mpa B_DSAI: 6  
+Projekt Deep Learning  
+ 
+ 
+ 
+ 
+ann, mpa  
+Projekt Game-Design  
+ 
+ 
+ 
+ 
+dko B_CGT: 5, 6  
+Projekt Industrie 4.0  
+ 
+ 
+ 
+ 
+aha, cbu, dmi  
+Projekt Informatik  
+        M_Inf: 1, 2  
+Projekt IT-Consulting  
+        gre M_WIM: 1, 2  
+Seminar - Bachelor (Marketing)  
+        afi  
+Seminar - Master (Marketing)  
+        afi  
+Projekt Informatik  
+ 
+ 
+ 
+ 
+M_Inf: 1, 2  
+Projekt IT-Consulting  
+ 
+ 
+ 
+ 
+gre M_WIM: 1, 2  
+Seminar - Bachelor (Marketing)  
+ 
+ 
+ 
+ 
+afi  
+Seminar - Master (Marketing)  
+ 
+ 
+ 
+ 
+afi  
+Seminar (Accounting, Auditing, Taxation)  
+        web  
+Seminar (Explainable AI)  
+        ann, mpa B_DSAI: 5, 6  
+Seminar (Finance & Services)  
+        gi  
+Seminar (Informatik & Smart Technology)  
+        uh  
+Seminar (Accounting, Auditing, Taxation)  
+ 
+ 
+ 
+ 
+web  
+Seminar (Explainable AI)  
+ 
+ 
+ 
+ 
+ann, mpa B_DSAI: 5, 6  
+Seminar (Finance & Services)  
+ 
+ 
+ 
+ 
+gi  
+Seminar (Informatik & Smart Technology)  
+ 
+ 
+ 
+ 
+uh  
+Seminar (KI, Mathematik)  
+        iw  
+Seminar (Quantitative BWL und angewandte Wirtschaftspsychologie)  
+        fbo  
+Seminar (SDBM)  
+        afi, web  
+Seminar (Servicemanagement)  
+        gi  
+Seminar (KI, Mathematik)  
+ 
+ 
+ 
+ 
+iw  
+Seminar (Quantitative BWL und angewandte Wirtschaftspsychologie)  
+ 
+ 
+ 
+ 
+fbo  
+Seminar (SDBM)  
+ 
+ 
+ 
+ 
+afi, web  
+Seminar (Servicemanagement)  
+ 
+ 
+ 
+ 
+gi  
+Seminar (Software Startups)  
+        dpr  
+Seminar (Supply Chain & Operations Management)  
+        gh  
+Seminar (Web Technologies & Applications)  
+        mpg  
+Seminar Technik - Bachelor  
+        dmi, smt  
+Seminar (Software Startups)  
+ 
+ 
+ 
+ 
+dpr  
+Seminar (Supply Chain & Operations Management)  
+ 
+ 
+ 
+ 
+gh  
+Seminar (Web Technologies & Applications)  
+ 
+ 
+ 
+ 
+mpg  
+Seminar Technik - Bachelor  
+ 
+ 
+ 
+ 
+dmi, smt  
+Seminar Technik - Master  
+        dmi, smt M_Wing: 1, 2  
+Simulationssoftware (Übung)  
+        cbu B_ITE: 5  
+Simulationssoftware (Übung)  
+        cbu B_Tinf: 5  
+Softwareprojekt  
+        bo, dpr B_Inf: 6; B_Winf: 6  
+Seminar Technik - Master  
+ 
+ 
+ 
+ 
+dmi, smt M_Wing: 1, 2  
+Simulationssoftware (Übung)  
+ 
+ 
+ 
+ 
+cbu B_ITE: 5  
+Simulationssoftware (Übung)  
+ 
+ 
+ 
+ 
+cbu B_Tinf: 5  
+Softwareprojekt  
+ 
+ 
+ 
+ 
+bo, dpr B_Inf: 6; B_Winf: 6  
+Startup Strategy & Business Plan - A Simulation Game  
+        fko M_BWL: 1, 2; M_Wing: 1, 2  
+Verfahrenstechnik (Praktikum)  
+        krg B_ITE: 5; B_Wing: 4, 5  
+Virtual Production  
+        ann B_Minf: 5  
+Virtuelle Realität und Simulation (Praktikum)  
+        dko, mpg M_Inf: 1, 2  
+Startup Strategy & Business Plan - A Simulation Game  
+ 
+ 
+ 
+ 
+fko M_BWL: 1, 2; M_Wing: 1, 2  
+Verfahrenstechnik (Praktikum)  
+ 
+ 
+ 
+ 
+krg B_ITE: 5; B_Wing: 4, 5  
+Virtual Production  
+ 
+ 
+ 
+ 
+ann B_Minf: 5  
+Virtuelle Realität und Simulation (Praktikum)  
+ 
+ 
+ 
+ 
+dko, mpg M_Inf: 1, 2  
+Workshop CNC  
+        jg M_DSAI: 1, 2; M_Wing: 1, 2  
+Workshop CNC  
+        jg M_ITE: 1, 2; MuITE: 1, 2  
+Workshop Messtechnik  
+        cbu B_Tinf: 5  
+Workshop Netzwerksicherheit  
+        kal M_ITS: 1, 2  
+Workshop CNC  
+ 
+ 
+ 
+ 
+jg M_DSAI: 1, 2; M_Wing: 1, 2  
+Workshop CNC  
+ 
+ 
+ 
+ 
+jg M_ITE: 1, 2; MuITE: 1, 2  
+Workshop Messtechnik  
+ 
+ 
+ 
+ 
+cbu B_Tinf: 5  
+Workshop Netzwerksicherheit  
+ 
+ 
+ 
+ 
+kal M_ITS: 1, 2  
+Workshop Rechnernetze  
+        kal B_Tinf: 5  
+Workshop Special Effects and Movies  
+        B_Minf: 3  
+Workshop SPS  
+        aha M_ITE: 1, 2; MuITE: 1, 2  
+Workshop SPS  
+        aha M_DSAI: 1, 2; M_Wing: 1, 2  
+Workshop Rechnernetze  
+ 
+ 
+ 
+ 
+kal B_Tinf: 5  
+Workshop Special Effects and Movies  
+ 
+ 
+ 
+ 
+B_Minf: 3  
+Workshop SPS  
+ 
+ 
+ 
+ 
+aha M_ITE: 1, 2; MuITE: 1, 2  
+Workshop SPS  
+ 
+ 
+ 
+ 
+aha M_DSAI: 1, 2; M_Wing: 1, 2  

@@ -1,4 +1,5 @@
 FROM python:3.11-slim-bullseye
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN apt update && \
     apt install -y \
@@ -20,23 +21,23 @@ RUN apt update && \
     libatk-bridge2.0-0 \
     libgtk-3-0 \
     libgbm1 \
-    libdbus-glib-1-2
+    libdbus-glib-1-2 && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN wget -O /tmp/geckodriver.tar.gz "https://github.com/mozilla/geckodriver/releases/download/v0.34.0/geckodriver-v0.34.0-linux64.tar.gz" && \
+RUN wget -O /tmp/geckodriver.tar.gz "https://github.com/mozilla/geckodriver/releases/download/v0.36.0/geckodriver-v0.36.0-linux64.tar.gz" && \
     tar -xzf /tmp/geckodriver.tar.gz -C /usr/local/bin/ && \
     chmod +x /usr/local/bin/geckodriver && \
     rm /tmp/geckodriver.tar.gz
 
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    DISPLAY=:0
 
 WORKDIR /app
 COPY . .
 
 RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt && \
+    pip install pymongo && \
+    pip install flake8 && \
+    pip install selenium && \
     pip install debugpy
-
-ENV DISPLAY=:0
-
-
