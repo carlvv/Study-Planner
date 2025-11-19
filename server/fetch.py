@@ -93,72 +93,33 @@ def extract_curricula_from_table(table, result_dict: Dict):
             # Continuation row in historical table (no program name in first cell)
             # Row structure: [Date, Modulübersicht, Curriculum, SPO, Modulhandbuch]
             curriculum_cell_index = 2
-        else:
-            # Current table format: each row has program name in first cell
-            program_name = first_cell.get_text(strip=True)
-            
-            # Skip if it's a header row or empty
-            if not program_name or program_name in ['Studiengang', '']:
-                continue
-            
-            current_program_name = normalize_program_name(program_name)
-            
-            # The curriculum link is in the 7th cell (index 6) for current tables
-            curriculum_cell_index = 6
         
         # Skip if no current program
         if not current_program_name or current_program_name in ['Studiengang', '']:
             continue
         
-        # Find curriculum files from Studienverlaufsplan column
-        # Note: Some cells have multiple curriculum links (e.g., E-Commerce with (W) and (I) variants)
-        curriculum_links = []
+        curriculums = [] 
+
         if len(cells) > curriculum_cell_index:
             curriculum_cell = cells[curriculum_cell_index]
-            links = curriculum_cell.find_all('a', class_='download')
-            for link in links:
-                if link.get('href'):
-                    curriculum_links.append(link.get('href'))
-        
-        # Extract versions from all curriculum links
-        for curriculum_link in curriculum_links:
-            if 'Curriculum_B_' not in curriculum_link:
+            names = curriculum_cell.find_all('a', class_='download')
+            for name in names:
+                curriculums.append(name)
+            
+
+        for curriculum in curriculums:
+            if curriculum is None:
                 continue
-                
-            # Extract version from filename pattern:
-            # - Curriculum_B_XXX25.1.pdf
-            # - Curriculum_B_EComW25.1.pdf (with variant like W or I between lowercase letter and digit)
-            # - Curriculum_B_WInf23.0a.pdf (with suffix)
-            # Pattern 1: lowercase letter + W/I + digit (captures variant)
-            # Pattern 2: any word chars + digit (no variant)
-            version_match = re.search(r'Curriculum_B_\w*[a-z]([WI])(\d+)\.(\d+)([a-z]?)\.pdf|Curriculum_B_\w+?(\d+)\.(\d+)([a-z]?)\.pdf', curriculum_link)
-            if version_match:
-                # Check which pattern matched
-                if version_match.group(1):  # First pattern with W/I variant
-                    variant = version_match.group(1)  # 'W' or 'I'
-                    major = version_match.group(2)
-                    minor = version_match.group(3)
-                    suffix = version_match.group(4)  # e.g., 'a' in 23.0a
-                else:  # Second pattern without variant
-                    variant = None
-                    major = version_match.group(5)
-                    minor = version_match.group(6)
-                    suffix = version_match.group(7)  # e.g., 'a' in 23.0a
-                
-                # Build version label
-                version_label = f"{major}.{minor}"
-                if suffix:
-                    version_label += suffix
-                if variant:
-                    version_label += f" ({variant})"
-                
-                # Initialize program in result if not exists
+            text = curriculum.get_text(strip=True)
+            m = re.search(r'\d', text)
+            name = text[m.start():].strip() if m else text
+
+            link = curriculum.get('href')
+            if link and 'Curriculum_B_' in link:
                 if current_program_name not in result_dict:
-                    result_dict[current_program_name] = {"available": []}
-                
-                # Add version if not already present
-                if version_label not in result_dict[current_program_name]["available"]:
-                    result_dict[current_program_name]["available"].append(version_label)
+                     result_dict[current_program_name] = {"available": []}
+                result_dict[current_program_name]["available"].append({name: link})
+
 
 
 def extract_curricula_from_file(filepath: str) -> Dict:
@@ -181,36 +142,9 @@ def main():
     Example usage - extracts bachelor curricula from website.html and prints as JSON.
     """
     result = extract_curricula_from_file('website.html')
-    
-    # Process versions for each program
-    for program in result["bachelor"]:
-        versions = result["bachelor"][program]["available"]
-        
-        # Parse versions into tuples for comparison
-        parsed_versions = []
-        for v in versions:
-            # Handle versions with suffix like "23.0a"
-            match = re.match(r'(\d+)\.(\d+)([a-z]?)', v)
-            if match:
-                major = int(match.group(1))
-                minor = int(match.group(2))
-                suffix = match.group(3) or ''
-                parsed_versions.append((major, minor, suffix, v))
-        
-        # Sort by version number descending (major, minor, then by suffix alphabetically)
-        parsed_versions.sort(key=lambda x: (x[0], x[1], x[2]), reverse=True)
-        
-        # Mark the latest version as "current"
-        if parsed_versions:
-            sorted_versions = ["current"]
-            
-            # Add all versions (including the latest with its version number)
-            for major, minor, suffix, version_str in parsed_versions:
-                sorted_versions.append(version_str)
-            
-            result["bachelor"][program]["available"] = sorted_versions
-    
+
     print(json.dumps(result, indent=2, ensure_ascii=False))
+    
 
 
 if __name__ == "__main__":
