@@ -1,0 +1,15 @@
+FROM node:22-alpine
+
+WORKDIR /app
+
+# Installiere Dependencies
+RUN apk add --no-cache git
+
+# Kopiere package.json und installiere Dependencies
+COPY package.json package-lock.json* ./
+RUN npm install
+
+# Exponiere Vite Dev Server Port
+EXPOSE 5173
+
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

@@ -2,11 +2,11 @@ version: "3.8"
 
 services:
   # 1. Python-Backend
-  server:
+  app:
     build: ./server
     platform: linux/amd64
     volumes:
-      - ./server:/server
+      - ./:/app
     command: sleep infinity
     depends_on:
       - mongo
@@ -15,7 +15,22 @@ services:
     networks:
       - backend-net
 
-  # 2. MongoDB-Datenbank
+  # 2. React-Frontend
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    platform: linux/amd64
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    command: sleep infinity
+    ports:
+      - "5173:5173"
+    networks:
+      - backend-net
+
+  # 3. MongoDB-Datenbank
   mongo:
     image: mongo:6
     restart: unless-stopped
