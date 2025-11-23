@@ -2,11 +2,11 @@ version: "3.8"
 
 services:
   # 1. Python-Backend
-  app:
+  server:
     build: ./server
     platform: linux/amd64
     volumes:
-      - ./:/app
+      - ./server:/server
     command: sleep infinity
     depends_on:
       - mongo
@@ -22,8 +22,8 @@ services:
       dockerfile: Dockerfile.dev
     platform: linux/amd64
     volumes:
-      - ./client:/app
-      - /app/node_modules
+      - ./client:/client
+      - /client/node_modules
     command: sleep infinity
     ports:
       - "5173:5173"

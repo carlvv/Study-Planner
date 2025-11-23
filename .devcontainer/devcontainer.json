@@ -1,31 +1,24 @@
 {
-  "name": "StudyPlanner Frontend",
+  "name": "StudyPlanner Backend",
   "dockerComposeFile": [
     "../docker-compose.yml"
   ],
-  "service": "client",
-  "workspaceFolder": "/app",
+  "service": "server",
+  "workspaceFolder": "/server",
   "shutdownAction": "none",
   "extensions": [
-    "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode",
-    "bradlc.vscode-tailwindcss"
+    "ms-python.python",
+    "ms-python.vscode-pylance"
   ],
   "settings": {
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "typescript.enablePromptUseWorkspaceTsdk": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "python.defaultInterpreterPath": "/usr/local/bin/python",
+    "python.linting.enabled": true
   },
-  "forwardPorts": [5173],
+  "forwardPorts": [5000],
   "portsAttributes": {
-    "5173": {
-      "label": "Vite Dev Server",
+    "5000": {
+      "label": "Flask Backend",
       "onAutoForward": "notify"
     }
-  },
-  "postCreateCommand": "npm install",
-  "postStartCommand": "npm run dev -- --host 0.0.0.0",
-  "remoteUser": "root"
+  }
 }
-
