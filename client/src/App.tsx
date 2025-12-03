@@ -9,7 +9,7 @@ const router = createBrowserRouter([
 function App1() {
   return (
     <>
-      Seite 1<Link to={"/about"}>Link</Link>
+      <Select_Study />
     </>
   );
 }
@@ -23,6 +23,7 @@ function App2() {
 }
 
 import "./App.css";
+import { Select_Study } from "./componenten/Select_Study";
 
 export default function App() {
   return <RouterProvider router={router} />;
