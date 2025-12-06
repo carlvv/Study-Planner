@@ -33,7 +33,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     DISPLAY=:0
 
-WORKDIR /app
+WORKDIR /server
 COPY . .
 
 RUN pip install --upgrade pip && \
