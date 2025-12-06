@@ -7,6 +7,11 @@ const router = createBrowserRouter([
 ]);
 
 function App1() {
+  fetch("http://localhost:5000/").then((response) => {
+    console.log(response);
+  });
+
+
   return (
     <>
       <Select_Study />

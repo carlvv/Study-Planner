@@ -1,5 +1,6 @@
 flask
 Flask-JWT-Extended
+flask-cors
 pymongo
 flake8
 selenium
