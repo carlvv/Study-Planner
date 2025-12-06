@@ -1,5 +1,8 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Select_Study } from "./componenten/Select_Study";
+import { fetch_backend } from "./helper";
+import "./App.css";
 
 const router = createBrowserRouter([
   { path: "/", element: <App1 /> },
@@ -7,14 +10,13 @@ const router = createBrowserRouter([
 ]);
 
 function App1() {
-  fetch("http://localhost:5000/").then((response) => {
-    console.log(response);
-  });
-
+  fetch_backend("/protected")
+    .then((res) => res.json())
+    .then((data) => console.log(data))
 
   return (
     <>
-      <Select_Study />
+      <Select_Study /> 2
     </>
   );
 }
@@ -27,8 +29,7 @@ function App2() {
   );
 }
 
-import "./App.css";
-import { Select_Study } from "./componenten/Select_Study";
+
 
 export default function App() {
   return <RouterProvider router={router} />;
