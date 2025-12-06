@@ -3,6 +3,7 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 from dotenv import load_dotenv
 import secrets
 from routes.auth.routes import auth_bp
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = secrets.token_hex(32) 
