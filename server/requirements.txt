@@ -1,4 +1,5 @@
 flask
+Flask-JWT-Extended
 pymongo
 flake8
 selenium
