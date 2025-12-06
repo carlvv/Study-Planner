@@ -14,9 +14,9 @@
     "python.defaultInterpreterPath": "/usr/local/bin/python",
     "python.linting.enabled": true
   },
-  "forwardPorts": [5000],
+  "forwardPorts": [5001],
   "portsAttributes": {
-    "5000": {
+    "5001": {
       "label": "Flask Backend",
       "onAutoForward": "notify"
     }

@@ -31,16 +31,11 @@ RUN wget -O /tmp/geckodriver.tar.gz "https://github.com/mozilla/geckodriver/rele
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    DISPLAY=:0
+    DISPLAY=:0  \
+    JWT_SECRET_KEY=meingeheimerschluessel123456 
 
 WORKDIR /server
 COPY . .
 
 RUN pip install --upgrade pip && \
-    pip install pymongo && \
-    pip install flake8 && \
-    pip install selenium && \
-    pip install debugpy && \
-    pip install requests && \
-    pip install bs4 && \
-    pip install flask
+    pip install -r requirements.txt

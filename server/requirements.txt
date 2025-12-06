@@ -1,0 +1,8 @@
+flask
+pymongo
+flake8
+selenium
+debugpy
+requests
+bs4
+dotenv
