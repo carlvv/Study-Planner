@@ -42,4 +42,5 @@ RUN pip install --upgrade pip && \
     pip install selenium && \
     pip install debugpy && \
     pip install requests && \
-    pip install bs4
+    pip install bs4 && \
+    pip install flask
