@@ -1,33 +1,11 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { Select_Study } from "./componenten/Select_Study";
-import { fetch_backend } from "./helper";
+
 import "./App.css";
+import Login  from "./pages/Login";
 
 const router = createBrowserRouter([
-  { path: "/", element: <App1 /> },
-  { path: "/about", element: <App2 /> },
+  { path: "/login", element: <Login /> },
 ]);
-
-function App1() {
-  fetch_backend("/protected")
-    .then((res) => res.json())
-    .then((data) => console.log(data))
-
-  return (
-    <>
-      <Select_Study /> 2
-    </>
-  );
-}
-
-function App2() {
-  return (
-    <>
-      Seite 2<Link to={"/"}>Link</Link>
-    </>
-  );
-}
 
 
 
