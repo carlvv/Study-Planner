@@ -9,11 +9,28 @@ function Button_Primary({
 }) {
   return (
     <Link to={to}>
-      <button className="min-w-64 bg-primary dark:bg-primary-dark text-white text-lg text-bold py-4 rounded-xl hover:bg-secondary transition-colors">
+      <button className=" bg-primary dark:bg-primary-dark text-white text-lg text-bold p-4 rounded-xl hover:bg-secondary transition-colors">
         {children}
       </button>
     </Link>
   );
 }
 
-export { Button_Primary };
+function Button_Primary_Action({
+  children,
+  onClick,
+}: {
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className=" bg-primary dark:bg-primary-dark text-white text-lg text-bold p-4 rounded-xl hover:bg-secondary transition-colors"
+    >
+      {children}
+    </button>
+  );
+}
+
+export { Button_Primary, Button_Primary_Action };
