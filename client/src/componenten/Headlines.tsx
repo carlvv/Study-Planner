@@ -5,12 +5,20 @@ type HeadlinesProps = {
 
 function H1({ children, classname }: HeadlinesProps) {
   if (!classname) classname = "";
-  return <h1 className="lg:text-4xl text-3xl font-bold">{children}</h1>;
+  return (
+    <h1 className={"lg:text-4xl text-3xl font-bold " + classname}>
+      {children}
+    </h1>
+  );
 }
 
 function H2({ children, classname }: HeadlinesProps) {
   if (!classname) classname = "";
-  return <h2 className="lg:text-3xl text-2xl font-semibold">{children}</h2>;
+  return (
+    <h2 className={"lg:text-3xl text-2xl font-semibold " + classname}>
+      {children}
+    </h2>
+  );
 }
 
 function H3({ children, classname }: HeadlinesProps) {

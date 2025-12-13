@@ -2,8 +2,11 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import type { Todo } from "../types";
 import { dummyTodos } from "../data/todos";
-import { Button_Primary_Action, Button_Primary } from "../componenten/Buttons";
 import { Link } from "react-router-dom";
+import Layout from "../componenten/layout/Layout";
+import { H2 } from "../componenten/Headlines";
+import { IconButton } from "../componenten/Buttons";
+import { Plus } from "lucide-react";
 
 export default function Todos() {
   const [todos /*, setTodos*/] = useState<Todo[]>(dummyTodos); //TODO: richtige Datenbank ansteuern
@@ -20,42 +23,26 @@ export default function Todos() {
   );
 
   return (
-    <div>
-      <Button_Primary to="/">&larr;</Button_Primary>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <h1>Meine Todos</h1>
-        <Button_Primary_Action onClick={newTodo}>+</Button_Primary_Action>
+    <Layout backURL={"/"}>
+      <div className="flex justify-between items-center mb-8">
+        <H2 classname="py-6">{"Todos"}</H2>
+        <IconButton outerClassName="bg-primary p-3 rounded-xl" Icon={Plus} />
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {userTodos.length === 0 ? (
-          <p>Keine Todos gefunden</p>
-        ) : (
-          <ul>
-            {userTodos.map((todo) => (
-              <li key={todo.id}>
-                <Link to={`/todo/${todo.id}`}>
-                  <h2>{todo.titel}</h2>
-                  <p>{todo.text}</p>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </div>
+
+      {userTodos.length === 0 ? (
+        <p>Keine Todos gefunden</p>
+      ) : (
+        <ul>
+          {userTodos.map((todo) => (
+            <li key={todo.id}>
+              <Link to={`/todo/${todo.id}`}>
+                <h2>{todo.titel}</h2>
+                <p>{todo.text}</p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </Layout>
   );
 }
-
-function newTodo() {}

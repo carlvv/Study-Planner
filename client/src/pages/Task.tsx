@@ -2,8 +2,11 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import type { Todo } from "../types";
 import { dummyTodos } from "../data/todos";
-import { Button_Primary_Action, Button_Primary } from "../componenten/Buttons";
+import { IconButton } from "../componenten/Buttons";
 import { useParams } from "react-router-dom";
+import Layout from "../componenten/layout/Layout";
+import { H2 } from "../componenten/Headlines";
+import { Plus } from "lucide-react";
 
 export default function Tasks() {
   const [todos, setTodos] = useState<Todo[]>(dummyTodos); //TODO: richtige Datenbank ansteuern
@@ -41,60 +44,46 @@ export default function Tasks() {
           : todo
       )
     );
-
     //TODO: Daten speichern
   };
 
-  //richtige Tasks holen
-  const userTasks = todos.find((todo) => todo.id === todoId)?.aufgaben;
+  const todo = todos.find((todo) => todo.id === todoId)!;
 
   console.log(todoId);
   return (
-    <div>
-      <Button_Primary to="/todo">&larr;</Button_Primary>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <h1>Meine Tasks</h1>
-        <Button_Primary_Action onClick={newTask}>+</Button_Primary_Action>
+    <Layout backURL={"/todo"}>
+      <div className="flex justify-between items-center mb-8">
+        <div>
+          <H2 classname="py-2">{todo.titel}</H2>
+          <p>{todo.text}</p>
+        </div>
+        <IconButton
+          outerClassName="bg-primary p-3 rounded-xl"
+          Icon={Plus}
+          onClick={newTask}
+        />
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {!userTasks || userTasks.length === 0 ? (
-          <p>Keine Tasks gefunden</p>
-        ) : (
-          <ul>
-            {userTasks.map((task) => (
-              <li key={task.id}>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={task.erledigt}
-                    onChange={() => toggleTaskErledigt(task.id)}
-                  />
-                  <span
-                    style={{
-                      textDecoration: task.erledigt ? "line-through" : "none",
-                    }}
-                  >
-                    {task.titel}
-                  </span>
-                </label>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </div>
+      {!todo.aufgaben || todo.aufgaben.length === 0 ? (
+        <p>Keine Tasks gefunden</p>
+      ) : (
+        <ul>
+          {todo.aufgaben.map((task) => (
+            <li key={task.id}>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={task.erledigt}
+                  onChange={() => toggleTaskErledigt(task.id)}
+                />
+                <span className={task.erledigt ? "line-through" : ""}>
+                  {task.titel}
+                </span>
+              </label>
+            </li>
+          ))}
+        </ul>
+      )}
+    </Layout>
   );
 }
 

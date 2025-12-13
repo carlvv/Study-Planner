@@ -1,4 +1,4 @@
-import { H2, H4 } from "./Headlines";
+import { H2, H4 } from "../Headlines";
 
 function LoginLayout({
   subtext,
