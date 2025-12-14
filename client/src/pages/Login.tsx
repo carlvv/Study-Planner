@@ -7,7 +7,7 @@ function Login() {
     <Layout subtext="Willkommen zum Study-Planner!">
       <ButtonPrimary to="1">Login</ButtonPrimary>
       <H3 classname="text-gray-300"> Oder </H3>
-      <ButtonPrimary to="2">Registrieren</ButtonPrimary>
+      <ButtonPrimary to="/registration">Registrieren</ButtonPrimary>
     </Layout>
   );
 }

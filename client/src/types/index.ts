@@ -11,3 +11,18 @@ export type Task = {
   titel: string;
   erledigt: boolean;
 };
+
+export type Curricula = {
+  program_name: string;
+  program_version: string;
+  isBachelor: boolean;
+};
+
+export type Student = {
+  student_id: string;
+  name: string;
+  pw_hash: string;
+  salt: string;
+  study_id: string;
+  start_semester: string;
+};

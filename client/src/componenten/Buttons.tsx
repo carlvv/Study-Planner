@@ -1,25 +1,27 @@
 import { type LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 
-function ButtonPrimary({
-  to,
-  onClick = undefined,
-  children,
-}: {
-  to: string;
+interface ButtonPrimaryParams {
+  to?: string;
   onClick?: () => void;
   children: React.ReactNode;
-}) {
-  return (
-    <Link to={to}>
-      <button
-        className="min-w-64 bg-primary dark:bg-primary-dark text-white text-lg text-bold p-4 rounded-xl hover:bg-secondary transition-colors"
-        onClick={onClick}
-      >
-        {children}
-      </button>
-    </Link>
+}
+
+function ButtonPrimary({ to, onClick, children }: ButtonPrimaryParams) {
+  const button = (
+    <button
+      className="min-w-64 bg-primary dark:bg-primary-dark text-white text-lg font-bold p-4 rounded-xl hover:bg-secondary transition-colors"
+      onClick={onClick}
+    >
+      {children}
+    </button>
   );
+
+  if (to) {
+    return <Link to={to}>{button}</Link>;
+  }
+
+  return button;
 }
 
 function IconButton({
@@ -68,6 +70,5 @@ function IconLink({
     </Link>
   );
 }
-
 
 export { ButtonPrimary, IconButton, IconLink };
