@@ -48,3 +48,7 @@ body {
   --color-primary-dark: #4c4e79;
   --color-secondary: #535bf2;
 }
+
+.error {
+  color: red;
+}
