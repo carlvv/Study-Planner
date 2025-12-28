@@ -1,10 +1,10 @@
 import { useState } from "react";
-import TextInput from "../componenten/Input";
-import LoginLayout from "../componenten/layout/Login_Layout";
-import { ButtonPrimary } from "../componenten/Buttons";
+import TextInput from "../components/Input";
+import { ButtonPrimary } from "../components/Buttons";
 import { fetch_backend } from "../helper";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { LoginLayout } from "../components/layout/Login_Layout";
 
 function Login() {
   const [studyId, setStudyId] = useState("");

@@ -6,9 +6,9 @@ import { useParams } from "react-router-dom";
 import { Plus } from "lucide-react";
 import type { Todo } from "../../types";
 import { dummyTodos } from "../../data/todos";
-import Layout from "../../componenten/layout/Layout";
-import { H2 } from "../../componenten/Headlines";
-import { IconButton } from "../../componenten/Buttons";
+import Layout from "../../components/layout/Layout";
+import { H2 } from "../../components/Headlines";
+import { IconButton } from "../../components/Buttons";
 
 export default function Tasks() {
   const [todos, setTodos] = useState<Todo[]>(dummyTodos); //TODO: richtige Datenbank ansteuern

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { type Student, type Curricula } from "../types";
-import { ButtonPrimary, IconButton, IconLink } from "../componenten/Buttons";
+import { ButtonPrimary, IconButton, IconLink } from "../components/Buttons";
 import { program_version, program_name } from "../data/Curricula";
 import { ArrowLeft } from "lucide-react";
 
