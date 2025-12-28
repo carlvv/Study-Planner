@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
-import type { Todo } from "../types";
-import { dummyTodos } from "../data/todos";
-import { IconButton } from "../componenten/Buttons";
+
 import { useParams } from "react-router-dom";
-import Layout from "../componenten/layout/Layout";
-import { H2 } from "../componenten/Headlines";
+
 import { Plus } from "lucide-react";
+import type { Todo } from "../../types";
+import { dummyTodos } from "../../data/todos";
+import Layout from "../../componenten/layout/Layout";
+import { H2 } from "../../componenten/Headlines";
+import { IconButton } from "../../componenten/Buttons";
 
 export default function Tasks() {
   const [todos, setTodos] = useState<Todo[]>(dummyTodos); //TODO: richtige Datenbank ansteuern

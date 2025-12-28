@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
-import type { Todo } from "../types";
-import { dummyTodos } from "../data/todos";
+import type { Todo } from "../../types";
+import { dummyTodos } from "../../data/todos";
 import { Link } from "react-router-dom";
-import Layout from "../componenten/layout/Layout";
-import { H2 } from "../componenten/Headlines";
-import { IconButton } from "../componenten/Buttons";
+import Layout from "../../componenten/layout/Layout";
+import { H2 } from "../../componenten/Headlines";
+import { IconButton } from "../../componenten/Buttons";
 import { Plus } from "lucide-react";
 
 export default function Todos() {

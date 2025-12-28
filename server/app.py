@@ -11,8 +11,7 @@ jwt = JWTManager(app)
 
 app.register_blueprint(auth_bp)
 
-CORS(app)
-CORS(app, origins=["http://localhost:5173"])
+CORS(app, origins=["http://localhost:5173","http://localhost:5174" ])
 
 # test für eine Session
 @app.route("/protected", methods=["GET"])
