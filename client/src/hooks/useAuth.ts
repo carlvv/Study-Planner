@@ -28,7 +28,7 @@ const useAuth = (cookieName = "access_token") => {
           navigate("/welcome");
           return;
         }
-
+        
         const json = await res.json();
         setUser(json);
       } catch {

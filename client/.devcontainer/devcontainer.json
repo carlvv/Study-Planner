@@ -1,7 +1,7 @@
 {
   "name": "StudyPlanner Frontend",
   "dockerComposeFile": [
-    "../docker-compose.yml"
+    "../../docker-compose.yml"
   ],
   "service": "client",
   "workspaceFolder": "/client",

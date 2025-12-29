@@ -1,12 +1,16 @@
 from flask import Blueprint, jsonify
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import get_jwt_identity, jwt_required
+
+from db.managers import StudentManager
 
 main_bp = Blueprint('main', __name__, url_prefix='/')
+
+user_manager =  StudentManager()
 
 @main_bp.route("/dashboard", methods=["GET"])
 @jwt_required()
 def protected():
-    # student = StudentManager.get_student_by_id(identity) 
+    identity = get_jwt_identity()
     student = None
     data = {
         "time": f"{student.hours_last_week}h last week" if student else "0h last week",
