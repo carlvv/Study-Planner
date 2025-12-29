@@ -12,11 +12,14 @@ class StudentManager(BaseManager[Student]):
     def __init__(self):
         super().__init__("users", Student)
 
-    def verify_user(self, student_id: str, password: str) -> bool:
+    def verify_user(self, student_id: str, password: str):
         user = self.get_by_dict({"student_id": student_id})
-        if user:
-            return user.verify_password(password)
-        return False
+        if user and user.verify_password(password):
+            return user
+        return None
+    
+    def get_student_by_id(self,student_id: str):
+        return self.get_by_dict({"student_id": student_id})
 
     def user_exists(self, student_id: str) -> bool:
         return self.get_by_dict({"student_id": student_id}) is not None

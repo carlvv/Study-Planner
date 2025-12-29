@@ -19,10 +19,8 @@ export type Curricula = {
 };
 
 export type Student = {
-  student_id: string;
+  identity: string;
   name: string;
-  pw_hash: string;
-  salt: string;
   study_id: string;
   start_semester: string;
 };
