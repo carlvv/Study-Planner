@@ -1,37 +1,20 @@
 import { useState } from "react";
 import TextInput from "../components/Input";
 import { ButtonPrimary } from "../components/Buttons";
-import { fetch_backend } from "../helper";
-import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
 import { LoginLayout } from "../components/layout/Login_Layout";
+import useAuth from "../context/useAuth";
 
 function Login() {
   const [studyId, setStudyId] = useState("");
   const [pw, setPw] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const { login } = useAuth();
 
   async function handleClick() {
     try {
       setError("");
-      const res = await fetch_backend("/auth/login", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify({ student_id: studyId, password: pw }),
-      });
-
-      const json = await res.json();
-
-      if (res.ok && json.access_token) {
-        Cookies.set("access_token", json.access_token, { expires: 1 });
-        navigate("/");
-      } else {
-        setError(json.msg || "Login fehlgeschlagen");
-        console.error("Login fehlgeschlagen:", json);
-      }
+      const res = await login(studyId, pw);
+      setError(res);
     } catch (err) {
       console.error(err);
       setError("Ein unerwarteter Fehler ist aufgetreten");

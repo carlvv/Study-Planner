@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { FHLogo, MyCampusLogo } from "../../components/FHLogo";
-import useAuth from "../../hooks/useAuth";
+import { FHLogo, MyCampusLogo } from "../../components/Logos";
+import useAuth from "../../context/useAuth";
 import { useEffect, useState, type ReactNode } from "react";
 import { Calendar, Clock, LayoutGrid, List, Map } from "lucide-react";
 import { fetch_backend_auth } from "../../helper";

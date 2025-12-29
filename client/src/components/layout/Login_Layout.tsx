@@ -1,5 +1,5 @@
 import { H2, H4 } from "../Headlines";
-import { FHLogo } from "../FHLogo";
+import { FHLogo } from "../Logos";
 
 function LoginLayout({
   subtext,
