@@ -14,10 +14,14 @@ interface TileProps {
 }
 
 function Header({ name }: { name: string | undefined }) {
+  const { logout } = useAuth();
   return (
     <header className="flex w-full justify-between">
       <div className="flex flex-col gap-1 h-fit">
         <p>{name}</p>
+        <Link className=" text-red-600" to="/welcome" onClick={() => logout()}>
+          Abmelden
+        </Link>
         <Link className="link" to="/profile">
           Profile
         </Link>

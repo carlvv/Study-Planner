@@ -58,8 +58,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
     Cookies.remove("access_token");
+    await loadUser();
   };
 
   const refresh = async () => {
