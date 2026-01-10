@@ -6,15 +6,10 @@ from db.managers import StudentManager
 user_manager =  StudentManager()
 
 
-user_manager.create(
-    (
-        Student.Builder()
-        .student_id("10000")
-        .name("Max Mustermann")
-        .password("password123")
-        .study_id("foo")
-        .start_semester("WS2025")
-        .build()
-    )
+user_manager.create_user(
+        "10000",
+        "Max Mustermann",
+        "password123",
+        "foo",
+        "WS2025"
 )
-print("Test user created. You can now log in with username '10000' and password 'password123'.")

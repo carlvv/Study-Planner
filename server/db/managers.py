@@ -13,17 +13,19 @@ class StudentManager(BaseManager[Student]):
         super().__init__("users", Student)
 
     def verify_user(self, student_id: str, password: str):
-        user = self.get_by_dict({"student_id": student_id})
+        user = self._get_by_dict({"student_id": student_id})
         if user and user.verify_password(password):
             return user
         return None
     
-    def get_student_by_id(self,student_id: str):
-        return self.get_by_dict({"student_id": student_id})
-
     def user_exists(self, student_id: str) -> bool:
-        return self.get_by_dict({"student_id": student_id}) is not None
+        return self._get_by_dict({"student_id": student_id}) is not None
+   
     def create_user(self, student_id: str, password: str, name: str, study_id: str, start_semester: str) -> None:
+        exists = self.user_exists(student_id)
+        if exists:
+            return None
+
         user = ( Student.Builder()
         .student_id(student_id)
         .name(name)
@@ -31,7 +33,8 @@ class StudentManager(BaseManager[Student]):
         .study_id(study_id)
         .start_semester(start_semester)
         .build())
-        self.create(user)
+
+        self._create(user)
 
 class TodoManager(BaseManager[Todo]):
     def __init__(self):
