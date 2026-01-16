@@ -2,13 +2,13 @@ from typing import Optional
 from bson import ObjectId
 from pymongo import MongoClient
 from pymongo.collection import Collection
-
+from db.collections.events import Event
 from db.collections.student import Student
 
 class StudentManager():
     def __init__(self, db: MongoClient):
         self.__collection: Collection = db.users
-
+    
     def _get_by_dict(self, query: dict) -> Optional[Student]:
         data = self.__collection.find_one(query)
         if data:
