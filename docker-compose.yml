@@ -1,37 +1,6 @@
 
 services:
-  # 1. Python-Backend
-  server:
-    build: ./server
-    platform: linux/amd64
-    volumes:
-      - ./server:/server
-    command: python app.py
-    ports:
-      - "5000:5000"
-    depends_on:
-      - mongo
-    env_file:
-      - .env
-    networks:
-      - backend-net
-
-  # 2. React-Frontend
-  client:
-    build:
-      context: ./client
-      dockerfile: Dockerfile.dev
-    platform: linux/amd64
-    volumes:
-      - ./client:/client
-      - /client/node_modules
-    command: npm run dev
-    ports:
-      - "5173:5173"
-    networks:
-      - backend-net
-
-  # 3. MongoDB-Datenbank
+  # MongoDB-Datenbank
   mongo:
     image: mongo:6
     restart: unless-stopped
@@ -39,12 +8,7 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
-    networks:
-      - backend-net
+
 
 volumes:
   mongo_data:
-
-networks:
-  backend-net:
-    driver: bridge
