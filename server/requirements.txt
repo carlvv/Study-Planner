@@ -8,3 +8,4 @@ debugpy
 requests
 bs4
 dotenv
+Flask-PyMongo

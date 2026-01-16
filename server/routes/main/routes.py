@@ -1,15 +1,13 @@
 from flask import Blueprint, jsonify
 from flask_jwt_extended import get_jwt_identity, jwt_required
 
-from db.managers import StudentManager
 
 main_bp = Blueprint('main', __name__, url_prefix='/')
-
-user_manager =  StudentManager()
 
 @main_bp.route("/dashboard", methods=["GET"])
 @jwt_required()
 def protected():
+    
     identity = get_jwt_identity()
     student = None
     data = {
