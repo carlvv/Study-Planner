@@ -109,8 +109,6 @@ function Home() {
 
   useEffect(() => {
     const loadData = async () => {
-      console.log("11");
-      
       const res = await fetch_backend_auth("/dashboard");
       const json = await res.json();
       setData(json);

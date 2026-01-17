@@ -11,7 +11,7 @@ import Task from "./pages/protected/Task";
 import { GuestOnlyRoute } from "./routes/GuestOnlyRoute";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
-import { Statistics } from "./pages/protected/Dashboard";
+import { Statistics } from "./pages/protected/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
   // Nur Gäste
