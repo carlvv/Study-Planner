@@ -1,11 +1,12 @@
 
 from dataclasses import dataclass, field
 from typing import List
-from db.collections.base_model import MultiBaseModel
+from db.collections.base_model import BaseModel
 
 
 @dataclass(kw_only=True)
-class TimeTable(MultiBaseModel):
+class TimeTable(BaseModel):
+    semester: str
     owner_id: str
     event_ids: List[str] = field(default_factory=list)  
 
