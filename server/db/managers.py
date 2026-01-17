@@ -42,13 +42,7 @@ class StudentManager(BaseManager[Student]):
         if self.user_exists(student_id):
             return None
 
-        user = Student(
-            student_id=student_id,
-            name=name,
-            password=password,
-            study_id=study_id,
-            start_semester=start_semester
-        )
+        user = Student.Builder().name(name).password(password).start_semester(start_semester).student_id(student_id).study_id(study_id).build()
 
         return self._create(user)
 
