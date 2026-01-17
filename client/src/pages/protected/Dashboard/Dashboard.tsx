@@ -1,5 +1,5 @@
 import { Card, CardWrapper } from "../../../components/Card/Card";
-import { H1, H2, H3, H4 } from "../../../components/Headlines";
+import { H1, H2, H3 } from "../../../components/Headlines";
 import { FlexibleColumnWrapper } from "../../../components/layout/FlexibleColumnWrapper";
 import Layout from "../../../components/layout/Layout";
 import { TwoColumnWrapper } from "../../../components/layout/TwoColumnWrapper";
@@ -90,7 +90,7 @@ export function Statistics() {
       <FlexibleColumnWrapper>
         {statistics.map((a) => (
           <CardWrapper>
-            <h1 className="font-semibold text-xl min-w-55 max-w-90">
+            <h1 className="font-semibold text-xl w-50 text-wrap">
               {displayTitle(a.title)}
             </h1>
             <div className="flex justify-between w-full">
