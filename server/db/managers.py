@@ -11,6 +11,7 @@ class StudentManager():
     
     def _get_by_dict(self, query: dict) -> Optional[Student]:
         data = self.__collection.find_one(query)
+
         if data:
             return Student.from_dict(data)
         return None

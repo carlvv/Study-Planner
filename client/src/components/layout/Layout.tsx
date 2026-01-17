@@ -12,11 +12,9 @@ function Layout({
     <div className="h-screen p-8">
       <main className="flex flex-col w-full m-auto  md:max-w-[760px]">
         <IconLink to={to} Icon={ArrowLeft} />
+        <br />
         {children}
       </main>
-      <footer className="p-4 bg-white dark:bg-gray-800 text-center">
-        &copy; {new Date().getFullYear()} Study Planner
-      </footer>
     </div>
   );
 }

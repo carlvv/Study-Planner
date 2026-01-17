@@ -4,6 +4,7 @@ import useAuth from "../../context/useAuth";
 import { useEffect, useState, type ReactNode } from "react";
 import { Calendar, Clock, LayoutGrid, List, Map } from "lucide-react";
 import { fetch_backend_auth } from "../../helper";
+import { TwoColumnWrapper } from "../../components/layout/TwoColumnWrapper";
 
 interface TileProps {
   icon: ReactNode;
@@ -31,10 +32,6 @@ function Header({ name }: { name: string | undefined }) {
       </div>
     </header>
   );
-}
-
-function NavigationTile({ children }: { children: React.ReactNode }) {
-  return <nav className="grid grid-cols-2 gap-4 mt-8 w-full">{children}</nav>;
 }
 
 function Tile({ icon, to, title, subtitle, color }: TileProps) {
@@ -112,6 +109,8 @@ function Home() {
 
   useEffect(() => {
     const loadData = async () => {
+      console.log("11");
+      
       const res = await fetch_backend_auth("/dashboard");
       const json = await res.json();
       setData(json);
@@ -127,7 +126,7 @@ function Home() {
         <div className="w-full">
           <Header name={user?.name} />
         </div>
-        <NavigationTile>
+        <TwoColumnWrapper>
           {TILE_CONFIG.map((tile) => (
             <Tile
               key={tile.key}
@@ -138,7 +137,7 @@ function Home() {
               color={tile.color}
             />
           ))}
-        </NavigationTile>
+        </TwoColumnWrapper>
       </main>
     </div>
   );

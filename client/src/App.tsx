@@ -11,6 +11,7 @@ import Task from "./pages/protected/Task";
 import { GuestOnlyRoute } from "./routes/GuestOnlyRoute";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
+import { Statistics } from "./pages/protected/Dashboard";
 
 const router = createBrowserRouter([
   // Nur Gäste
@@ -30,10 +31,11 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/todo", element: <Todos /> },
       { path: "/todo/:todoId", element: <Task /> },
-      { path: "/dashboard", element: <></> },
+      { path: "/dashboard", element: <Statistics /> },
       { path: "/schedule", element: <></> },
       { path: "/curricula", element: <></> },
       { path: "/time", element: <></> },
+      { path: "/hallo", element: <h1>Hallo</h1>}
     ],
   },
 ]);
