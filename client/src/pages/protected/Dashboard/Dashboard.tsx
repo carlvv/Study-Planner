@@ -64,9 +64,9 @@ export function Statistics() {
     <Layout backURL={"/"}>
       <H1>Study Statistik</H1>
       <TwoColumnWrapper>
-        <Card title="1h 45min" text="Heute gelernt" />
-        <Card title="6h 45min" text="Diese Woche gelernt" />
-        <Card title="48min" text="Durchschnitt Tag" />
+        <Card title={displayTotalTime(104)} text="Heute gelernt" />
+        <Card title={displayTotalTime(355)} text="Diese Woche gelernt" />
+        <Card title={displayTotalTime(45)} text="Durchschnitt Tag" />
         <Card title="25 ECTS" text="Gewählte Module" />
       </TwoColumnWrapper>
       <br />
@@ -79,7 +79,7 @@ export function Statistics() {
             Montag: 110,
             Dienstag: 120,
             Mittwoch: 110,
-            Donnerstag: 240,
+            Donnerstag: 150,
             Freitag: 180,
             Samstag: 75,
             Sonntag: 15,
@@ -95,23 +95,23 @@ export function Statistics() {
             </h1>
             <div className="flex justify-between w-full">
               <p className="text-gray-500 text-sm">Gesamtzeit</p>
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-800 text-sm">
                 {displayTotalTime(a.totalTime)}
               </p>
             </div>
             <div className="flex justify-between w-full">
               <p className="text-gray-500 text-sm">Anzahl Session</p>
-              <p className="text-gray-500 text-sm">{a.sessionCount}</p>
+              <p className="text-gray-800 text-sm">{a.sessionCount}</p>
             </div>
             <div className="flex justify-between w-full">
               <p className="text-gray-500 text-sm">Dauer pro Session</p>
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-800 text-sm">
                 {displayTotalTime(a.totalTime / a.sessionCount)}
               </p>
             </div>
             <div className="flex justify-between w-full">
               <p className="text-gray-500 text-sm">Gesamtzeit</p>
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-800 text-sm">
                 {a.last_session.toLocaleDateString()}
               </p>
             </div>

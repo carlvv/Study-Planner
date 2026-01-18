@@ -8,7 +8,7 @@ interface WeeklyData {
   Sonntag: number;
 }
 
-function displayValue(value: number) {
+function displayValue(value: number, short: boolean = true) {
   if (value == 0) {
     return "0";
   }
@@ -16,7 +16,7 @@ function displayValue(value: number) {
     return "1h";
   }
   if (value < 90) {
-    return value + "min";
+    return value + (short ? "m" : "min");
   }
 
   if (value % 60 == 0) {
@@ -43,8 +43,8 @@ function Line({
       className="absolute left-[3%] z-0 w-[93%]"
       style={{ bottom: `${relativeHeight}px` }}
     >
-      <p className="h-[8px] text-xs text-gray-400">{displayValue(value)}</p>
-      <div className="ml-[7%] w-[93%] h-px bg-gray-400"></div>
+      <p className="h-2.5 text-sm text-gray-400 font-semibold">{displayValue(value)}</p>
+      <div className="md:ml-[6%] ml-[10%] w-[90%] md:w-[97%] h-px bg-gray-400"></div>
     </div>
   );
 }
@@ -62,7 +62,7 @@ export function WeeklyDiagramm({ data }: { data: WeeklyData }) {
   });
 
   const HEIGHT = 120;
-  const OFFSET = 24;
+  const OFFSET = 23.5;
   const bgColors = {
     0: "bg-green-300", // sehr wenig
     100: "bg-green-400",
@@ -80,9 +80,9 @@ export function WeeklyDiagramm({ data }: { data: WeeklyData }) {
   return (
     <>
       {/* Spalten und Label */}
-      <div className={`grid grid-cols-16 z-10 h-[${HEIGHT + OFFSET}px] `}>
+      <div className={`grid grid-cols-11 z-10 h-[${HEIGHT + OFFSET}px] `}>
         <div className="col-span-1 " />
-        <div className={`col-span-15 grid grid-cols-7 relative `}>
+        <div className={`col-span-10 grid grid-cols-7 relative `}>
           {extendedData.map((a) => (
             <div
               key={a.label}
@@ -90,7 +90,7 @@ export function WeeklyDiagramm({ data }: { data: WeeklyData }) {
             >
               <p className="hidden md:block">{displayValue(a.value)}</p>
               <div
-                className={`${bgColors[Math.round(a.percent * 10) * 100]} w-5/8`}
+                className={`${(bgColors[Math.round(a.percent * 10) * 100])} w-6/8`}
                 style={{
                   height: `${(a.percent * HEIGHT).toFixed(0)}px`,
                 }}

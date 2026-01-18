@@ -1,4 +1,4 @@
-import { H2, H3, H4 } from "../Headlines";
+import { H2, H3 } from "../Headlines";
 import { FHLogo } from "../Logos";
 
 function LoginLayout({
@@ -13,7 +13,7 @@ function LoginLayout({
       <main className="flex flex-col w-full m-auto items-center gap-18">
         <Header />
         <H3 classname="flex gap-8">{subtext}</H3>
-        <div className="flex flex-col items-center gap-8 w-full p-1 max-w-[350px]">
+        <div className="flex flex-col items-center gap-8 w-full p-1 max-w-87.5">
           {children}
         </div>
       </main>

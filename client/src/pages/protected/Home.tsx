@@ -40,7 +40,7 @@ function Tile({ icon, to, title, subtitle, color }: TileProps) {
     <Link
       to={to}
       className={`flex flex-col justify-between rounded-2xl p-4 ${color}
-        w-full h-[120px] hover:opacity-90 transition`}
+        w-full h-30 hover:opacity-90 transition`}
     >
       <div className="text-3xl">{icon}</div>
 
