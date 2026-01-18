@@ -1,5 +1,5 @@
 import { type LucideIcon } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface ButtonPrimaryParams {
   to?: string;
@@ -56,11 +56,21 @@ function IconLink({
   size = 30,
   className = "",
 }: {
-  to: string;
+  to: string | (() => void);
   Icon: LucideIcon;
   size?: number;
   className?: string;
 }) {
+  if (typeof to !== "string") {
+    return (
+      <Icon
+        className={"hover:text-black hover:text-blue " + className}
+        size={size}
+        onClick={to}
+      />
+    );
+  }
+
   return (
     <Link to={to}>
       <Icon

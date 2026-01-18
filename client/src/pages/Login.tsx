@@ -1,8 +1,9 @@
 import { useState } from "react";
 import TextInput from "../components/Input";
-import { ButtonPrimary } from "../components/Buttons";
+import { ButtonPrimary, IconLink } from "../components/Buttons";
 import { LoginLayout } from "../components/layout/Login_Layout";
 import useAuth from "../context/useAuth";
+import { ArrowLeft } from "lucide-react";
 
 function Login() {
   const [studyId, setStudyId] = useState("");
@@ -22,7 +23,13 @@ function Login() {
   }
 
   return (
-    <LoginLayout subtext="Willkommen zum Study-Planner!">
+    <LoginLayout
+      subtext={
+        <>
+          <IconLink to={"/welcome"} Icon={ArrowLeft} />
+          <p>Geben sie ihre Login Daten ein</p>
+        </>
+      }>
       <TextInput
         label="Deine Matrikelnummer:"
         placeholder="Bsp: 105421"

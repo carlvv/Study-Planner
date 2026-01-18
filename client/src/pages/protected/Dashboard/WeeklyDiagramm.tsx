@@ -9,10 +9,20 @@ interface WeeklyData {
 }
 
 function displayValue(value: number) {
-  if (value >= 90) {
-    return (value/60).toFixed(1) + "h"
+  if (value == 0) {
+    return "0";
   }
-  return value + "min"
+  if (value == 60) {
+    return "1h";
+  }
+  if (value < 90) {
+    return value + "min";
+  }
+
+  if (value % 60 == 0) {
+    return (value / 60).toFixed(0) + "h";
+  }
+  return (value / 60).toFixed(1) + "h";
 }
 
 function Line({
@@ -33,7 +43,7 @@ function Line({
       className="absolute left-[3%] z-0 w-[93%]"
       style={{ bottom: `${relativeHeight}px` }}
     >
-      <p className="h-[8px] text-xs text-gray-400">{value > 0 ? value.toFixed(1) : 0}h</p>
+      <p className="h-[8px] text-xs text-gray-400">{displayValue(value)}</p>
       <div className="ml-[7%] w-[93%] h-px bg-gray-400"></div>
     </div>
   );
@@ -54,30 +64,30 @@ export function WeeklyDiagramm({ data }: { data: WeeklyData }) {
   const HEIGHT = 120;
   const OFFSET = 24;
   const bgColors = {
-    0: "bg-blue-300",
-    100: "bg-blue-400",
-    200: "bg-blue-500",
-    300: "bg-blue-500",
-    400: "bg-blue-600",
-    500: "bg-blue-600",
-    600: "bg-blue-700",
-    700: "bg-blue-700",
-    800: "bg-blue-800",
-    900: "bg-blue-900",
-    1000: "bg-blue-900",
+    0: "bg-green-300", // sehr wenig
+    100: "bg-green-400",
+    200: "bg-green-500",
+    300: "bg-lime-500",
+    400: "bg-yellow-400",
+    500: "bg-yellow-500",
+    600: "bg-orange-400",
+    700: "bg-orange-500",
+    800: "bg-red-500",
+    900: "bg-red-600",
+    1000: "bg-red-700", // sehr viel
   };
+
   return (
     <>
       {/* Spalten und Label */}
       <div className={`grid grid-cols-16 z-10 h-[${HEIGHT + OFFSET}px] `}>
         <div className="col-span-1 " />
         <div className={`col-span-15 grid grid-cols-7 relative `}>
-
           {extendedData.map((a) => (
             <div
               key={a.label}
               className="flex flex-col justify-end items-center w-full"
-            > 
+            >
               <p className="hidden md:block">{displayValue(a.value)}</p>
               <div
                 className={`${bgColors[Math.round(a.percent * 10) * 100]} w-5/8`}
@@ -97,10 +107,10 @@ export function WeeklyDiagramm({ data }: { data: WeeklyData }) {
       </div>
       {/* Background */}
       <Line y={0} height={HEIGHT} offset={OFFSET} value={0} />
-      <Line y={25} height={HEIGHT} offset={OFFSET} value={max / 60 * 1/4} />
-      <Line y={50} height={HEIGHT} offset={OFFSET} value={max / 60 * 2/4} />
-      <Line y={75} height={HEIGHT} offset={OFFSET} value={max / 60 * 3/4} />
-      <Line y={100} height={HEIGHT} offset={OFFSET} value={max / 60} />
+      <Line y={25} height={HEIGHT} offset={OFFSET} value={(max * 1) / 4} />
+      <Line y={50} height={HEIGHT} offset={OFFSET} value={(max * 2) / 4} />
+      <Line y={75} height={HEIGHT} offset={OFFSET} value={(max * 3) / 4} />
+      <Line y={100} height={HEIGHT} offset={OFFSET} value={max} />
     </>
   );
 }

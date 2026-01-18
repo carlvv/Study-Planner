@@ -3,7 +3,7 @@ import "./App.css";
 
 import Welcome from "./pages/Welcome";
 import Login from "./pages/Login";
-import Registration from "./pages/Registration";
+import Registration from "./pages/Registration/Registration";
 
 import Home from "./pages/protected/Home";
 import Todos from "./pages/protected/Todos";

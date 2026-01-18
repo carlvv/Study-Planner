@@ -5,13 +5,14 @@ import { useEffect, useState, type ReactNode } from "react";
 import { Calendar, Clock, LayoutGrid, List, Map } from "lucide-react";
 import { fetch_backend_auth } from "../../helper";
 import { TwoColumnWrapper } from "../../components/layout/TwoColumnWrapper";
+import Layout from "../../components/layout/Layout";
 
 interface TileProps {
   icon: ReactNode;
   to: string;
   title: string;
   subtitle?: string;
-  color: string; // Tailwind bg color
+  color: string;
 }
 
 function Header({ name }: { name: string | undefined }) {
@@ -119,25 +120,23 @@ function Home() {
   if (loading) return <></>;
 
   return (
-    <div className="h-screen p-8">
-      <main className="flex flex-col w-full m-auto items-center md:max-w-[760px]">
-        <div className="w-full">
-          <Header name={user?.name} />
-        </div>
-        <TwoColumnWrapper>
-          {TILE_CONFIG.map((tile) => (
-            <Tile
-              key={tile.key}
-              icon={tile.icon}
-              to={tile.to}
-              title={tile.title}
-              subtitle={data[tile.key]}
-              color={tile.color}
-            />
-          ))}
-        </TwoColumnWrapper>
-      </main>
-    </div>
+    <Layout backURL="/">
+      <div className="w-full">
+        <Header name={user?.name} />
+      </div>
+      <TwoColumnWrapper>
+        {TILE_CONFIG.map((tile) => (
+          <Tile
+            key={tile.key}
+            icon={tile.icon}
+            to={tile.to}
+            title={tile.title}
+            subtitle={data[tile.key]}
+            color={tile.color}
+          />
+        ))}
+      </TwoColumnWrapper>
+    </Layout>
   );
 }
 

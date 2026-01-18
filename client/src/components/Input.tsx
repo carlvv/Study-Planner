@@ -3,7 +3,8 @@ type TextInputProps = {
   value: string;
   onChange: (e: string) => void;
   placeholder?: string;
-  type?: string;
+  type?: string | null;
+  error?: string;
   name?: string;
 };
 
@@ -13,15 +14,18 @@ function TextInput({
   onChange,
   placeholder,
   name,
+  type = null,
+  error = "",
 }: TextInputProps) {
   return (
     <div className="flex flex-col gap-1 w-full">
-      <label className="text-sm font-medium text-gray-900 w-full">
-        {label}
+      <label className="text-sm font-medium text-gray-900 w-full flex justify-between">
+        <span>{label}</span>
+        <span className="text-red-500">{error !== "" ? `[${error}]` : ``}</span>
       </label>
 
       <input
-        type="text"
+        type={!type ? "text" : type}
         name={name}
         value={value}
         onChange={(e) => onChange(e.currentTarget.value)}

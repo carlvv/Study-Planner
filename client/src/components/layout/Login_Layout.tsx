@@ -1,19 +1,19 @@
-import { H2, H4 } from "../Headlines";
+import { H2, H3, H4 } from "../Headlines";
 import { FHLogo } from "../Logos";
 
 function LoginLayout({
   subtext,
   children,
 }: {
-  subtext: string;
+  subtext: string | React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
-    <div className="h-screen py-8">
-      <main className="flex flex-col w-full m-auto items-center gap-18 ">
+    <div className="flex justify-center items-center mb-32">
+      <main className="flex flex-col w-full m-auto items-center gap-18">
         <Header />
-        <H4>{subtext}</H4>
-        <div className="flex flex-col items-center gap-8 w-full p-1 max-w-[300px]">
+        <H3 classname="flex gap-8">{subtext}</H3>
+        <div className="flex flex-col items-center gap-8 w-full p-1 max-w-[350px]">
           {children}
         </div>
       </main>

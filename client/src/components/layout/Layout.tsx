@@ -10,7 +10,7 @@ function Layout({
 }) {
   return (
     <div className="h-screen p-8">
-      <main className="flex flex-col w-full m-auto  md:max-w-[760px]">
+      <main className="flex flex-col w-full m-auto  md:max-w-[960px] ">
         <IconLink to={to} Icon={ArrowLeft} />
         <br />
         {children}
