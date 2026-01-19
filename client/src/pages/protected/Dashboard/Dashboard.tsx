@@ -1,5 +1,5 @@
 import { Card, CardWrapper } from "../../../components/Card/Card";
-import { H1, H2, H3 } from "../../../components/Headlines";
+import { H1, H2, H3, P } from "../../../components/Text";
 import { FlexibleColumnWrapper } from "../../../components/layout/FlexibleColumnWrapper";
 import Layout from "../../../components/layout/Layout";
 import { TwoColumnWrapper } from "../../../components/layout/TwoColumnWrapper";
@@ -52,9 +52,9 @@ function displayTitle(name: string) {
         if (v.length < 4) {
           return acc + v + " ";
         }
-        return acc + v.substring(0,5) + ". ";
+        return acc + v.substring(0, 5) + ". ";
       }, "")
-      .trim(); 
+      .trim();
   }
   return name;
 }
@@ -69,24 +69,22 @@ export function Statistics() {
         <Card title={displayTotalTime(45)} text="Durchschnitt Tag" />
         <Card title="25 ECTS" text="Gewählte Module" />
       </TwoColumnWrapper>
-      <br />
+      <div className="p-4"></div>
       <CardWrapper>
-        <H3 classname="mb-8 text-gray-700">
-          Dein Lernfortschritt im Wochenverlauf
-        </H3>
+        <H3 className="mb-8">Dein Lernfortschritt im Wochenverlauf</H3>
         <WeeklyDiagramm
           data={{
             Montag: 110,
-            Dienstag: 120,
+            Dienstag: 150,
             Mittwoch: 110,
-            Donnerstag: 150,
+            Donnerstag: 24,
             Freitag: 180,
             Samstag: 75,
             Sonntag: 15,
           }}
         />
       </CardWrapper>
-      <H2 classname="mt-8">Modul Statistiken</H2>
+      <H2 className="mt-8">Modul Statistiken</H2>
       <FlexibleColumnWrapper>
         {statistics.map((a) => (
           <CardWrapper>
@@ -95,25 +93,19 @@ export function Statistics() {
             </h1>
             <div className="flex justify-between w-full">
               <p className="text-gray-500 text-sm">Gesamtzeit</p>
-              <p className="text-gray-800 text-sm">
-                {displayTotalTime(a.totalTime)}
-              </p>
+              <P>{displayTotalTime(a.totalTime)}</P>
             </div>
             <div className="flex justify-between w-full">
               <p className="text-gray-500 text-sm">Anzahl Session</p>
-              <p className="text-gray-800 text-sm">{a.sessionCount}</p>
+              <P>{a.sessionCount}</P>
             </div>
             <div className="flex justify-between w-full">
               <p className="text-gray-500 text-sm">Dauer pro Session</p>
-              <p className="text-gray-800 text-sm">
-                {displayTotalTime(a.totalTime / a.sessionCount)}
-              </p>
+              <P>{displayTotalTime(a.totalTime / a.sessionCount)}</P>
             </div>
             <div className="flex justify-between w-full">
               <p className="text-gray-500 text-sm">Gesamtzeit</p>
-              <p className="text-gray-800 text-sm">
-                {a.last_session.toLocaleDateString()}
-              </p>
+              <P>{a.last_session.toLocaleDateString()}</P>
             </div>
           </CardWrapper>
         ))}

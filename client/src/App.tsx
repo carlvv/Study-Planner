@@ -12,6 +12,7 @@ import { GuestOnlyRoute } from "./routes/GuestOnlyRoute";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
 import { Statistics } from "./pages/protected/Dashboard/Dashboard";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const router = createBrowserRouter([
   // Nur Gäste
@@ -35,15 +36,19 @@ const router = createBrowserRouter([
       { path: "/schedule", element: <></> },
       { path: "/curricula", element: <></> },
       { path: "/time", element: <></> },
-      { path: "/hallo", element: <h1>Hallo</h1>}
+      { path: "/hallo", element: <h1>Hallo</h1> },
     ],
   },
 ]);
 
+const queryClient = new QueryClient();
+
 export default function App() {
   return (
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }

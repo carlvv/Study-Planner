@@ -1,4 +1,4 @@
-import { H3, SubHeadline } from "../Headlines";
+import { H3, SubHeadline } from "../Text";
 
 export function Card({ title, text }: { title: string; text: string }) {
   return (

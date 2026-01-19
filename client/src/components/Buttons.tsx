@@ -1,17 +1,19 @@
 import { type LucideIcon } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface ButtonPrimaryParams {
   to?: string;
   onClick?: () => void;
   children: React.ReactNode;
+  disable? : boolean
 }
 
-function ButtonPrimary({ to, onClick, children }: ButtonPrimaryParams) {
+function ButtonPrimary({ to, onClick, children, disable = false }: ButtonPrimaryParams) {
   const button = (
     <button
-      className="min-w-64 bg-primary dark:bg-primary-dark text-white text-lg font-bold p-4 rounded-xl hover:bg-secondary transition-colors"
+      className="min-w-64 bg-primary  text-white text-lg font-bold p-4 rounded-xl hover:bg-secondary transition-colors disabled:bg-gray-600"
       onClick={onClick}
+      disabled={disable}
     >
       {children}
     </button>

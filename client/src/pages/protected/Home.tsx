@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { FHLogo, MyCampusLogo } from "../../components/Logos";
 import useAuth from "../../context/useAuth";
-import { useEffect, useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { Calendar, Clock, LayoutGrid, List, Map } from "lucide-react";
 import { fetch_backend_auth } from "../../helper";
 import { TwoColumnWrapper } from "../../components/layout/TwoColumnWrapper";
 import Layout from "../../components/layout/Layout";
+import { useQuery } from "@tanstack/react-query";
 
 interface TileProps {
   icon: ReactNode;
@@ -15,17 +16,16 @@ interface TileProps {
   color: string;
 }
 
-function Header({ name }: { name: string | undefined }) {
-  const { logout } = useAuth();
+function Header({ name, logout }: { name?: string; logout: () => void }) {
   return (
     <header className="flex w-full justify-between">
       <div className="flex flex-col gap-1 h-fit">
         <p>{name}</p>
-        <Link className=" text-red-600" to="/welcome" onClick={() => logout()}>
-          Abmelden
-        </Link>
         <Link className="link" to="/profile">
           Profile
+        </Link>
+        <Link className=" text-red-600" to="/welcome" onClick={logout}>
+          Abmelden
         </Link>
       </div>
       <div>
@@ -105,24 +105,29 @@ const TILE_CONFIG = [
 ];
 
 function Home() {
-  const { user, loading } = useAuth();
-  const [data, setData] = useState<Record<string, string>>({});
+  const { user, loading, logout } = useAuth();
 
-  useEffect(() => {
-    const loadData = async () => {
+  const {
+    data = {}, // TODO data verwenden
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["home-data"],
+    queryFn: async () => {
       const res = await fetch_backend_auth("/dashboard");
-      const json = await res.json();
-      setData(json);
-    };
-    loadData();
-  }, []);
+      return res.json();
+    },
+    staleTime: Infinity,
+    refetchOnMount: "always",
+  });
 
-  if (loading) return <></>;
+  if (loading || isLoading) return <></>;
+  if (error) return <p>Fehler beim Laden</p>;
 
   return (
-    <Layout backURL="/">
+    <Layout>
       <div className="w-full">
-        <Header name={user?.name} />
+        <Header name={user?.name} logout={logout} />
       </div>
       <TwoColumnWrapper>
         {TILE_CONFIG.map((tile) => (

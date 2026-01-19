@@ -4,7 +4,7 @@ import type { Todo } from "../../types";
 import { dummyTodos } from "../../data/todos";
 import { Link } from "react-router-dom";
 import Layout from "../../components/layout/Layout";
-import { H2 } from "../../components/Headlines";
+import { H2 } from "../../components/Text";
 import { IconButton } from "../../components/Buttons";
 import { Plus } from "lucide-react";
 
@@ -25,7 +25,7 @@ export default function Todos() {
   return (
     <Layout backURL={"/"}>
       <div className="flex justify-between items-center mb-8">
-        <H2 classname="py-6">{"Todos"}</H2>
+        <H2 className="py-6">{"Todos"}</H2>
         <IconButton outerClassName="bg-primary p-3 rounded-xl" Icon={Plus} />
       </div>
 

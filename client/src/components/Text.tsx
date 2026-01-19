@@ -1,9 +1,9 @@
 type HeadlinesProps = {
   children: React.ReactNode;
-  classname?: string;
+  className?: string;
 };
 
-function H1({ children, classname }: HeadlinesProps) {
+function H1({ children, className: classname }: HeadlinesProps) {
   if (!classname) classname = "";
   return (
     <h1 className={"lg:text-4xl text-3xl  " + classname}>
@@ -12,7 +12,7 @@ function H1({ children, classname }: HeadlinesProps) {
   );
 }
 
-function H2({ children, classname }: HeadlinesProps) {
+function H2({ children, className: classname }: HeadlinesProps) {
   if (!classname) classname = "";
   return (
     <h2 className={"lg:text-3xl text-2xl " + classname}>
@@ -21,7 +21,7 @@ function H2({ children, classname }: HeadlinesProps) {
   );
 }
 
-function H3({ children, classname }: HeadlinesProps) {
+function H3({ children, className: classname }: HeadlinesProps) {
   if (!classname) classname = "";
   return (
     <h3 className={"lg:text-2xl text-xl " + classname}>
@@ -30,7 +30,7 @@ function H3({ children, classname }: HeadlinesProps) {
   );
 }
 
-function H4({ children, classname }: HeadlinesProps) {
+function H4({ children, className: classname }: HeadlinesProps) {
   if (!classname) classname = "";
   return (
     <h4 className={"lg:text-xl text-lg font-normal " + classname}>
@@ -39,7 +39,7 @@ function H4({ children, classname }: HeadlinesProps) {
   );
 }
 
-function SubHeadline({ children, classname }: HeadlinesProps) {
+function SubHeadline({ children, className: classname }: HeadlinesProps) {
   if (!classname) classname = "";
   return (
     <h4 className={"lg:text-xl text-sm text-gray-500" + classname}>
@@ -48,4 +48,13 @@ function SubHeadline({ children, classname }: HeadlinesProps) {
   );
 }
 
-export { H1, H2, H3, H4, SubHeadline };
+function P({ children, className: classname }: HeadlinesProps) {
+  if (!classname) classname = "";
+  return (
+    <p className={"text-gray-800 text-sm" + classname}>
+      {children}
+    </p>
+  );
+}
+
+export { P, H1, H2, H3, H4, SubHeadline };

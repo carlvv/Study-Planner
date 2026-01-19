@@ -7,7 +7,7 @@ import { Plus } from "lucide-react";
 import type { Todo } from "../../types";
 import { dummyTodos } from "../../data/todos";
 import Layout from "../../components/layout/Layout";
-import { H2 } from "../../components/Headlines";
+import { H2 } from "../../components/Text";
 import { IconButton } from "../../components/Buttons";
 
 export default function Tasks() {
@@ -56,7 +56,7 @@ export default function Tasks() {
     <Layout backURL={"/todo"}>
       <div className="flex justify-between items-center mb-8">
         <div>
-          <H2 classname="py-2">{todo.titel}</H2>
+          <H2 className="py-2">{todo.titel}</H2>
           <p>{todo.text}</p>
         </div>
         <IconButton

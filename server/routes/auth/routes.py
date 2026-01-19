@@ -33,10 +33,13 @@ def register():
     user_manager =  StudentManager(current_app.mongo.db)
 
     data = request.get_json()
+    print(data)
     student_id = data.get("student_id")
     password = data.get("password")
     name = data.get("name")
-    study_id = data.get("study_id")
+
+    # study_id = data.get("study_id")
+    study_id = "foo" # TODO 
     start_semester = data.get("start_semester")
 
     if user_manager.user_exists(student_id):

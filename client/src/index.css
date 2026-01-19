@@ -6,9 +6,7 @@
   line-height: 1.5;
   font-weight: 500;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: light;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -45,10 +43,38 @@ body {
 
 @theme {
   --color-primary: #1a1f40;
-  --color-primary-dark: #4c4e79;
   --color-secondary: #535bf2;
 }
 
 .error {
   color: red;
+}
+.boucing {
+  animation: strongBounce 0.6s infinite;
+}
+@keyframes strongBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px); /* Stärke des Bounces */
+  }
+}
+
+/* Punkte animieren */
+.loader span {
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: rgb(0, 0, 0);
+  border-radius: 50%;
+  animation: strongBounce 1s infinite;
+}
+
+/* Gestaffelte Verzögerung für flüssige Bewegung */
+.loader span:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.loader span:nth-child(3) {
+  animation-delay: 0.6s;
 }

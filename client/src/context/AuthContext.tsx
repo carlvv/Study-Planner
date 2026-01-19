@@ -1,84 +1,102 @@
-import { useEffect, useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { fetch_backend, fetch_backend_auth } from "../helper";
 import type { Student } from "../types";
 import { AuthContext } from "./useAuth";
 
+async function fetchUser(): Promise<Student | null> {
+  const token = Cookies.get("access_token");
+  if (!token) return null;
+
+  const res = await fetch_backend_auth("/auth/user");
+
+  if (!res.ok) {
+    Cookies.remove("access_token");
+    return null;
+  }
+
+  return res.json();
+}
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<Student | null>(null);
-  const [loading, setLoading] = useState(true);
+  const queryClient = useQueryClient();
 
-  const loadUser = async () => {
-    const token = Cookies.get("access_token");
+  const {
+    data: user,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["auth-user"],
+    queryFn: fetchUser,
+    retry: false,
+    staleTime: 1000 * 60 * 5,  // Kann veraltet sein
+  });
 
-    if (!token) {
-      setUser(null);
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const res = await fetch_backend_auth("/auth/user");
-
-      if (!res.ok) {
-        Cookies.remove("access_token");
-        setUser(null);
-        return;
-      }
-
-      const json = await res.json();
-      setUser(json);
-    } catch {
-      Cookies.remove("access_token");
-      setUser(null);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const login = async (studentId: string, password: string) => {
-    try {
+  // Login Funktion
+  const loginMutation = useMutation({
+    mutationFn: async ({
+      studentId,
+      password,
+    }: {
+      studentId: string;
+      password: string;
+    }) => {
       const res = await fetch_backend("/auth/login", {
         headers: { "Content-Type": "application/json" },
         method: "POST",
-        body: JSON.stringify({ student_id: studentId, password }),
+        body: JSON.stringify({
+          student_id: studentId,
+          password,
+        }),
       });
 
-      const json: { access_token?: string; msg?: string } = await res.json();
+      const json: { access_token?: string; msg?: string } =
+        await res.json();
 
-      if (res.ok && json.access_token) {
-        Cookies.set("access_token", json.access_token, { expires: 1 });
-        await loadUser();
-        return "";
-      } else {
-        return json.msg ?? "Fehler beim Senden";
+      if (!res.ok || !json.access_token) {
+        throw new Error(json.msg ?? "Fehler beim Senden");
       }
-    } catch {
-      return "Unerwarteter Fehler";
-    }
-  };
 
-  const logout = async () => {
-    Cookies.remove("access_token");
-    await loadUser();
-  };
+      Cookies.set("access_token", json.access_token, { expires: 1 });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["auth-user"] });
+    },
+  });
 
-  const refresh = async () => {
-    await loadUser();
-  };
-  useEffect(() => {
-    loadUser();
-  }, []);
+  // Logout Funktion
+  const logoutMutation = useMutation({
+    mutationFn: async () => {
+      Cookies.remove("access_token");
+    },
+    onSuccess: () => {
+      queryClient.setQueryData(["auth-user"], null);
+    },
+  });
 
   return (
     <AuthContext.Provider
       value={{
-        user,
-        loading,
+        user: user ?? null,
+        loading: isLoading,
         isAuthenticated: !!user,
-        login,
-        logout,
-        refresh,
+        login: async (studentId: string, password: string) => {
+          try {
+            await loginMutation.mutateAsync({
+              studentId,
+              password,
+            });
+            return "";
+          } catch (err: any) {
+            return err.message ?? "Unerwarteter Fehler";
+          }
+        },
+        logout: async () => {
+          await logoutMutation.mutateAsync();
+        },
+        refresh: async () => {
+          await refetch();
+        },
       }}
     >
       {children}
