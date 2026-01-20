@@ -7,8 +7,58 @@ export const dummyTodos: Todo[] = [
     titel: "React lernen",
     text: "Components, Props, State verstehen",
     aufgaben: [
-      { id: 1, titel: "useState verstehen", erledigt: false },
+      { id: 1, titel: "useState verstehen", erledigt: true },
       { id: 2, titel: "useEffect verstehen", erledigt: false },
+      { id: 3, titel: "useContext verstehen", erledigt: false },
+      { id: 4, titel: "Syntax lernen", erledigt: true },
+    ],
+  },
+  {
+    matrikelnummer: 12345,
+    id: 1,
+    titel: "React lernen",
+    text: "Components, Props, State verstehen",
+    aufgaben: [
+      { id: 1, titel: "useState verstehen", erledigt: true },
+      { id: 2, titel: "useEffect verstehen", erledigt: false },
+      { id: 3, titel: "useContext verstehen", erledigt: false },
+      { id: 4, titel: "Syntax lernen", erledigt: true },
+    ],
+  },
+  {
+    matrikelnummer: 12345,
+    id: 1,
+    titel: "React lernen",
+    text: "Components, Props, State verstehen",
+    aufgaben: [
+      { id: 1, titel: "useState verstehen", erledigt: true },
+      { id: 2, titel: "useEffect verstehen", erledigt: false },
+      { id: 3, titel: "useContext verstehen", erledigt: false },
+      { id: 4, titel: "Syntax lernen", erledigt: true },
+    ],
+  },
+  {
+    matrikelnummer: 12345,
+    id: 1,
+    titel: "React lernen",
+    text: "Components, Props, State verstehen",
+    aufgaben: [
+      { id: 1, titel: "useState verstehen", erledigt: true },
+      { id: 2, titel: "useEffect verstehen", erledigt: false },
+      { id: 3, titel: "useContext verstehen", erledigt: false },
+      { id: 4, titel: "Syntax lernen", erledigt: true },
+    ],
+  },
+  {
+    matrikelnummer: 12345,
+    id: 1,
+    titel: "React lernen",
+    text: "Components, Props, State verstehen",
+    aufgaben: [
+      { id: 1, titel: "useState verstehen", erledigt: true },
+      { id: 2, titel: "useEffect verstehen", erledigt: false },
+      { id: 3, titel: "useContext verstehen", erledigt: false },
+      { id: 4, titel: "Syntax lernen", erledigt: true },
     ],
   },
   {
@@ -18,7 +68,7 @@ export const dummyTodos: Todo[] = [
     text: "Website bauen",
     aufgaben: [
       { id: 1, titel: "Java-Script lernen", erledigt: false },
-      { id: 2, titel: "HTML/CSS verstehen", erledigt: false },
+      { id: 2, titel: "HTML/CSS verstehen", erledigt: true },
     ],
   },
   {
