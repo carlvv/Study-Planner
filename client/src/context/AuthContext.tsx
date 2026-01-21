@@ -29,7 +29,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     queryKey: ["auth-user"],
     queryFn: fetchUser,
     retry: false,
-    staleTime: 1000 * 60 * 5,  // Kann veraltet sein
+    staleTime: 1000 ,  // Kann veraltet sein
   });
 
   // Login Funktion

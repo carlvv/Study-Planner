@@ -62,7 +62,7 @@ function displayTitle(name: string) {
 export function Statistics() {
   return (
     <Layout backURL={"/"}>
-      <H1>Study Statistik</H1>
+      <H1 className="pt-4">Study Statistik</H1>
       <TwoColumnWrapper>
         <Card title={displayTotalTime(104)} text="Heute gelernt" />
         <Card title={displayTotalTime(355)} text="Diese Woche gelernt" />
