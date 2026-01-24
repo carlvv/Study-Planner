@@ -54,6 +54,9 @@ class CurriculaManager(BaseManager[Curricula]):
     def __init__(self, db: MongoClient):
         super().__init__(db.curricula, Curricula)
 
+    def create_curricula(self,name, version, isbachelor, ids):
+        self._create(Curricula(programm_name=name,programm_version=version, is_bachelor=isbachelor,modules_ids=ids))
+
 class EventManager(BaseManager[Event]):
     def __init__(self, db: MongoClient):
         super().__init__(db.event, Event)

@@ -1,9 +1,11 @@
+
 import re
-import json
+
 from bs4 import BeautifulSoup
 from typing import Dict
 
 import requests
+
 
 
 def normalize_program_name(name: str) -> str:
@@ -74,7 +76,7 @@ def extract_curricula_from_html(html_content: str) -> Dict:
             current_program_name = normalize_program_name(cells[0].get_text(strip=True))
             if current_program_name not in result["bachelor"]:
                 result["bachelor"][current_program_name] = {"available": []}
-            curriculum_link = cells[6].find('a', class_='download').get('href') if cells[6].find('a', class_='download') else None
+            curriculum_link = cells[5].find('a', class_='download').get('href') if cells[5].find('a', class_='download') else None
             if curriculum_link:
                 result["bachelor"][current_program_name]["available"].insert(0, {"current": curriculum_link})
     
@@ -174,16 +176,3 @@ def get_curriculae(url: str = "https://www.fh-wedel.de/studieren/pruefungscenter
     response.raise_for_status()
     return extract_curricula_from_html(response.text)
 
-
-def main():
-    """
-    Example usage - extracts bachelor curricula from website.html and prints as JSON.
-    """
-
-    result = get_curriculae()
-    print(json.dumps(result, indent=2, ensure_ascii=False))
-    
-
-
-if __name__ == "__main__":
-    main()
