@@ -119,7 +119,7 @@ def extract_curricula_from_table(table, result_dict: Dict):
         elif current_program_name:
             # Continuation row in historical table (no program name in first cell)
             # Row structure: [Date, Modulübersicht, Curriculum, SPO, Modulhandbuch]
-            curriculum_cell_index = 2
+            curriculum_cell_index = 4
         
         # Skip if no current program
         if not current_program_name or current_program_name in ['Studiengang', '']:
