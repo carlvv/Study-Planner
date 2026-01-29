@@ -9,3 +9,5 @@ requests
 bs4
 dotenv
 Flask-PyMongo
+pdfplumber
+pandas

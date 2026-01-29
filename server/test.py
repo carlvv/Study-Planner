@@ -25,5 +25,7 @@ for program, info in result.get("bachelor", {}).items():
         for key, url in entry.items():
             print(url)
             cur = CurriculaReader("https://fh-wedel.de"+ url)
+            print(cur.studiengang, cur.code, len(cur.module), cur.module)
             manager.create_curricula(cur.studiengang, cur.code, True, sorted([x.id for x in cur.module]))    
             print("FINISHED", cur.studiengang)
+            exit()

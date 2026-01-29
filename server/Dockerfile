@@ -35,7 +35,10 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     JWT_SECRET_KEY=meingeheimerschluessel123456 
 
 WORKDIR /server
-COPY . .
 
+COPY requirements.txt .
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
+
+COPY . .
+
