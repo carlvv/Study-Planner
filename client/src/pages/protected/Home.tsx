@@ -3,7 +3,7 @@ import { FHLogo, MyCampusLogo } from "../../components/Logos";
 import useAuth from "../../context/useAuth";
 import { type ReactNode } from "react";
 import { Calendar, Clock, LayoutGrid, List, Map } from "lucide-react";
-import { fetch_backend_auth } from "../../helper";
+import { fetch_backend_auth } from "../../utils/helper";
 import { TwoColumnWrapper } from "../../components/layout/TwoColumnWrapper";
 import Layout from "../../components/layout/Layout";
 import { useQuery } from "@tanstack/react-query";

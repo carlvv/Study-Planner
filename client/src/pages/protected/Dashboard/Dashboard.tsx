@@ -33,7 +33,7 @@ const statistics: ModuleStatistic[] = [
   },
 ];
 
-function displayTotalTime(value: number) {
+export function displayTotalTime(value: number) {
   value = Math.round(value);
   if (value < 60) {
     return value + "min";

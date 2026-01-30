@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Cookies from "js-cookie";
-import { fetch_backend, fetch_backend_auth } from "../helper";
+import { fetch_backend, fetch_backend_auth } from "../utils/helper";
 import type { Student } from "../types";
 import { AuthContext } from "./useAuth";
 

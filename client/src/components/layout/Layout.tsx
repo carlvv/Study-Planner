@@ -9,7 +9,7 @@ function Layout({
   backURL?: string;
 }) {
   return (
-    <div className="h-screen p-4">
+    <div className="h-screen p-4 px-6">
       <main className="flex flex-col w-full m-auto py-8 md:max-w-240 ">
         {backURL && <IconLink to={backURL} Icon={ArrowLeft} />}
         {children}

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import type { Curricula } from "../../types";
-import { fetch_backend } from "../../helper";
+import { fetch_backend } from "../../utils/helper";
 
 export type FormType = {
   student_id: string;
