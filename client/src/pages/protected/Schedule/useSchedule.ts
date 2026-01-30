@@ -50,7 +50,7 @@ const bsp: TimeTable = {
 
 
 export const useSchedule = (): TimeTable | null => {
-    const timetable: TimeTable | null = null
+    const timetable: TimeTable | null = bsp
 
     return timetable;
 };

@@ -127,9 +127,9 @@ export const Schedule = () => {
           {!isActive ? "Stundenplan" : "Stundenplan - " + isActive.semester}
         </H1>
         <IconButton
-          className="bg-black"
+          className="ml-auto bg-gray-800 rounded-xl p-2"
           to="/schedule/settings"
-          size={40}
+          size={50}
           Icon={Settings}
         />
       </div>
