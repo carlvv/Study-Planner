@@ -21,7 +21,7 @@ def create_app():
     app.register_blueprint(auth_bp)
     app.register_blueprint(main_bp)
 
-    CORS(app, origins=["http://localhost:5173"])
+    CORS(app, origins=["http://localhost:5173","http://192.168.0.153:5173" ])
 
     return app
 
