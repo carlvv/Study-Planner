@@ -4,6 +4,7 @@ from pymongo import MongoClient
 from db.collections.course import Course
 from db.collections.curricula import Curricula
 from db.collections.module import Module
+from db.collections.process import StudentProcess
 from db.collections.student import Student
 from db.collections.learntime import Learntime
 
@@ -45,6 +46,11 @@ class StudentManager(BaseManager[Student]):
         user = Student.Builder().name(name).password(password).start_semester(start_semester).student_id(student_id).study_id(study_id).build()
 
         return self._create(user)
+
+class StudentProcessManager(BaseManager[StudentProcess]):
+    # Manager für den Fortschritt eines Students
+    def __init__(self, db: MongoClient):
+        super().__init__(db.process, StudentProcess)
 
 class CourseManager(BaseManager[Course]):
     def __init__(self, db: MongoClient):
