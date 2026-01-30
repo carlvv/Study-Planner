@@ -127,7 +127,7 @@ export default function Tasks() {
         </div>
         {!isEditModus ?
           (<IconButton
-            outerClassName="bg-primary p-3 rounded-xl"
+            outerClassName="bg-primary p-3 rounded-xl  text-white"
             Icon={Pencil}
             onClick={() => setEditModus(true)}
           />) :

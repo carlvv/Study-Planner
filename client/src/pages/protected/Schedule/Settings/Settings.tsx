@@ -31,7 +31,8 @@ export const ScheduleSettings = () => {
         <IconButton
           Icon={Plus}
           size={50}
-          className="ml-auto bg-gray-800 rounded-xl p-2"
+          className="ml-auto bg-gray-800 rounded-xl p-2 text-white"
+          outerClassName=""
         />
       </div>
 

@@ -15,6 +15,7 @@ import { Statistics } from "./pages/protected/Dashboard/Dashboard";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Schedule } from "./pages/protected/Schedule";
 import { ScheduleSettings } from "./pages/protected/Schedule/Settings/Settings";
+import { Curricula } from "./pages/protected/Curricula/Curricula";
 
 const router = createBrowserRouter([
   // Nur Gäste
@@ -37,9 +38,8 @@ const router = createBrowserRouter([
       { path: "/dashboard", element: <Statistics /> },
       { path: "/schedule", element: <Schedule /> },
       { path: "/schedule/settings", element: <ScheduleSettings /> },
-      { path: "/curricula", element: <></> },
+      { path: "/curricula", element: <Curricula /> },
       { path: "/time", element: <></> },
-      { path: "/hallo", element: <h1>Hallo</h1> },
     ],
   },
 ]);

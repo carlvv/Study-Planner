@@ -44,7 +44,7 @@ function IconButton({
   return (
     <Link to={to} className={outerClassName}>
       <Icon
-        className={"text-white " + className}
+        className={className}
         size={size}
         onClick={onClick}
       />

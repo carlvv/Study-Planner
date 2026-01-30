@@ -42,7 +42,7 @@ function SubHeadline({ children, className: classname }: HeadlinesProps) {
 function P({ children, className: classname }: HeadlinesProps) {
   if (!classname) classname = "";
   return (
-    <p className={"text-gray-800 text-sm" + classname}>
+    <p className={"text-gray-800 text-sm " + classname}>
       {children}
     </p>
   );
