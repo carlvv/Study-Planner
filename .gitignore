@@ -9,6 +9,7 @@ __pycache__/
 *$py.class
 *.so
 .Python
+.pnpm-store/
 
 # Distribution / packaging
 build/
@@ -26,6 +27,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+.devcontainer/
 
 # Direnv
 .direnv/

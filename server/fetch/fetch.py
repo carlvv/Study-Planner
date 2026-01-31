@@ -98,6 +98,7 @@ def extract_curricula_from_table(table, result_dict: Dict):
     """
     rows = table.find_all('tr')
     current_program_name = None
+    curriculum_cell_index = 0
     
     for row in rows:
         cells = row.find_all('td')

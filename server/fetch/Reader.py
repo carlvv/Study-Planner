@@ -16,7 +16,7 @@ class ModulReader:
     
     def readCourses(self) -> list: 
         a = self.next()  
-        list = []
+        courses = []
         reading = True
         while reading:
             res: Course 
@@ -44,9 +44,9 @@ class ModulReader:
             j += 1
             lang = a.iloc[j]
 
-            list.append(Course(id, bez, recommended_semeseter, ects, which_semester, art, doz, lang))
+            courses.append(Course(id, bez, recommended_semeseter, ects, which_semester, art, doz, lang))
             if self.eof():
-                return list 
+                return courses 
             a = self.next()  
 
             value = a['Spalte_1']
@@ -56,7 +56,7 @@ class ModulReader:
                 reading = False
                 self.prev_line()
 
-        return list
+        return courses
 
     def readModule(self) -> Module: 
         module = self.next()
@@ -65,10 +65,7 @@ class ModulReader:
         return Module(id=module['id'],bez=module['bez'], teil=teil, vt=module['Spalte_23'])
     
     def eof(self):
-        if self.cursor < len(self.df): 
-            return False
-        else: 
-            return True
+        return self.cursor >= len(self.df)
 
     def next(self):
         self.next_line()
@@ -87,6 +84,9 @@ class CurriculaReader:
         response = requests.get(url)
         response.raise_for_status()  
         self.module = []
+        self.code = ""
+        self.studiengang = ""
+        self.abschluss = ""
 
         dfs = []
 
