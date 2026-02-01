@@ -75,6 +75,19 @@ class ModuleManager(BaseManager[Module]):
     def __init__(self, db: MongoClient):
         super().__init__(db.module, Module)
 
+    def module_exists(self, module: Module) -> bool:
+        return self.exists({"module_id": module.module_id})
+    
+    def get_by_module_id(self, module_id: str) -> Optional[Module]:
+        return self._get_by_dict({"module_id": module_id})
+    
+    def create_module(self, module: Module) -> Optional[ObjectId]:
+        if self.module_exists(module):
+            return None
+        return self._create(module)
+    
+    
+
 class TimeTableManager(BaseManager[TimeTable]):
     def __init__(self, db: MongoClient):
         super().__init__(db.tt, TimeTable)
