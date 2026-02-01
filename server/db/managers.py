@@ -56,6 +56,18 @@ class CourseManager(BaseManager[Course]):
     def __init__(self, db: MongoClient):
         super().__init__(db.course, Course)
 
+    def course_exists(self, course: Course) -> bool:
+        return self.exists({"course_id": course.course_id})
+    
+    def get_by_course_id(self, course_id: str) -> Optional[Course]:
+        return self._get_by_dict({"course_id": course_id})
+    
+    def create_course(self, course: Course) -> Optional[ObjectId]:
+        if self.course_exists(course):
+            return None
+        return self._create(course)
+    
+
 class CurriculaManager(BaseManager[Curricula]):
     def __init__(self, db: MongoClient):
         super().__init__(db.curricula, Curricula)
@@ -86,7 +98,7 @@ class ModuleManager(BaseManager[Module]):
             return None
         return self._create(module)
     
-    
+
 
 class TimeTableManager(BaseManager[TimeTable]):
     def __init__(self, db: MongoClient):

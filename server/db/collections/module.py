@@ -6,7 +6,6 @@ from db.collections.base_model import BaseModel
 @dataclass(kw_only=True)
 class Module(BaseModel):
     module_id: str
-    requirements : List[str] | None = field(default_factory=list)
     module_name: str
     course_ids: List[str] = field(default_factory=list)  
 
