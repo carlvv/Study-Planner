@@ -67,13 +67,33 @@ class CourseManager(BaseManager[Course]):
             return None
         return self._create(course)
     
+    def create_or_get_course(self, course: Course) -> Optional[ObjectId]:
+        existing = self.get_by_course_id(course.course_id)
+        if existing:
+            return existing.id
+        return self.create_course(course)
+    
 
 class CurriculaManager(BaseManager[Curricula]):
     def __init__(self, db: MongoClient):
         super().__init__(db.curricula, Curricula)
 
-    def create_curricula(self,name, version, isbachelor, ids):
-        self._create(Curricula(programm_name=name,programm_version=version, is_bachelor=isbachelor,modules_ids=ids))
+    def curricula_exists(self, curricula: Curricula) -> bool:
+        return self.exists({"programm_name": curricula.programm_name, "programm_version": curricula.programm_version})
+    
+    def get_by_name_version(self, name: str, version: str) -> Optional[Curricula]:
+        return self._get_by_dict({"programm_name": name, "programm_version": version})
+    
+    def create_curricula(self, curricula: Curricula) -> Optional[ObjectId]:
+        if self.curricula_exists(curricula):
+            return None
+        return self._create(curricula)
+    
+    def create_or_get_curricula(self, curricula: Curricula) -> Optional[ObjectId]:
+        existing = self.get_by_name_version(curricula.programm_name, curricula.programm_version)
+        if existing:
+            return existing.id
+        return self.create_curricula(curricula)
 
 class EventManager(BaseManager[Event]):
     def __init__(self, db: MongoClient):
@@ -97,6 +117,12 @@ class ModuleManager(BaseManager[Module]):
         if self.module_exists(module):
             return None
         return self._create(module)
+    
+    def create_or_get_module(self, module: Module) -> Optional[ObjectId]:
+        existing = self.get_by_module_id(module.module_id)
+        if existing:
+            return existing.id
+        return self.create_module(module)
     
 
 
