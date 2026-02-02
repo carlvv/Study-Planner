@@ -14,14 +14,22 @@ export function CourseSelect({
   onVersion: (str: string) => void;
   selectedProgramId?: string;
 }) {
-  const programs = usePrograms().filter((a) => a.isbachelor == isbachelor);
+  const { data, isLoading } = usePrograms()
+
+
+  if (isLoading) {
+    return <></>
+  }
+
+  const programs = isbachelor ? data!.true : data!.false
 
   if (step === 1) {
+    const unique = [...new Set(programs.map(item => item.name))]
     return (
       <div className="flex flex-col gap-4">
-        {programs.map((prog) => (
-          <ButtonPrimary key={prog.id} onClick={() => onCourse(prog.id)}>
-            {prog.name}
+        {unique.map((prog, i) => (
+          <ButtonPrimary key={prog + i} onClick={() => onCourse(prog)}>
+            {prog}
           </ButtonPrimary>
         ))}
       </div>
@@ -29,14 +37,14 @@ export function CourseSelect({
   }
 
   if (step === 2) {
-    const selectedProgram = programs.find((p) => p.id === selectedProgramId);
-    if (!selectedProgram) return <p>Kein Programm ausgewählt</p>;
+    const versions = programs.filter(a => a.name == selectedProgramId)
+
 
     return (
       <div className="flex flex-col gap-4">
-        {selectedProgram.versions.map((ver) => (
-          <ButtonPrimary key={ver} onClick={() => onVersion(ver)}>
-            {ver}
+        {versions.map((a) => (
+          <ButtonPrimary key={a.version} onClick={() => onVersion(a.version)}>
+            {a.version}
           </ButtonPrimary>
         ))}
       </div>
