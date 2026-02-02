@@ -4,11 +4,11 @@ import { Navigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 import { Pencil, Plus, Save } from "lucide-react";
-import type { Todo, Task } from "../../types";
-import { dummyTodos } from "../../data/todos";
-import Layout from "../../components/layout/Layout";
-import { H2 } from "../../components/Text";
-import { IconButton } from "../../components/Buttons";
+import type { Todo, Task } from "../../../types";
+import { dummyTodos } from "../../../data/todos";
+import Layout from "../../../components/layout/Layout";
+import { H2 } from "../../../components/Text";
+import { IconButton } from "../../../components/Buttons";
 
 export default function Tasks() {
   const params = useParams<{ todoId: string }>();

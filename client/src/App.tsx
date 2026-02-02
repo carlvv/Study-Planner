@@ -6,8 +6,6 @@ import Login from "./pages/Login";
 import Registration from "./pages/Registration/Registration";
 
 import Home from "./pages/protected/Home";
-import Todos from "./pages/protected/Todos";
-import Task from "./pages/protected/Task";
 import { GuestOnlyRoute } from "./routes/GuestOnlyRoute";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
@@ -16,6 +14,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Schedule } from "./pages/protected/Schedule";
 import { ScheduleSettings } from "./pages/protected/Schedule/Settings/Settings";
 import { Curricula } from "./pages/protected/Curricula/Curricula";
+import Todos from "./pages/protected/Todos/Todos";
+import Tasks from "./pages/protected/Todos/Task";
 
 const router = createBrowserRouter([
   // Nur Gäste
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/todo", element: <Todos /> },
-      { path: "/todo/:todoId", element: <Task /> },
+      { path: "/todo/:todoId", element: <Tasks /> },
       { path: "/dashboard", element: <Statistics /> },
       { path: "/schedule", element: <Schedule /> },
       { path: "/schedule/settings", element: <ScheduleSettings /> },
