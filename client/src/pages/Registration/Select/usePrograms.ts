@@ -1,42 +1,29 @@
+import { useQuery } from "@tanstack/react-query";
+import { fetch_backend } from "../../../utils/helper";
 
+interface Curricula {
+    name: string,
+    version: string,
+}
 
-
-const data = [
-    {
-        id: "B_INF",
-        isbachelor: true,
-        name: "Informatik",
-        versions: [
-            '25.0',
-            '23.0',
-            '20.0',
-            '19.0'
-        ]
-    },
-    {
-        id: "B_BWL",
-        isbachelor: true,
-        name: "Betriebtswirschaftslehre",
-        versions: [
-            '25.0a',
-            '23.0',
-            '20.0',
-            '19.0'
-        ]
-    },
-    {
-        id: "B_BWL",
-        isbachelor: false,
-        name: "Betriebtswirschaftslehre",
-        versions: [
-            '25.0a',
-            '19.0'
-        ]
-    }
-]
+interface Data {
+    true: Curricula[]
+    false: Curricula[]
+}
 
 export function usePrograms() {
-    // todo fetch
-
-    return data
+    const {
+        data,  
+        isLoading,
+        error,
+    } = useQuery({
+        queryKey: ["programm-data"],
+        queryFn: async () => {
+            const res = await fetch_backend("/get_all_programs");
+            return res.json() as unknown as Data;
+        },
+        staleTime: Infinity,
+        refetchOnMount: "always",
+    });
+    return { data ,isLoading, error } 
 }

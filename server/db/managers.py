@@ -1,3 +1,4 @@
+from ast import List
 from typing import Optional
 from bson import ObjectId
 from pymongo import MongoClient
@@ -94,6 +95,9 @@ class CurriculaManager(BaseManager[Curricula]):
         if existing:
             return existing.id
         return self.create_curricula(curricula)
+
+    def get_all_programms(self) -> List[Curricula]:
+        return list(self._collection.find({}))
 
 class EventManager(BaseManager[Event]):
     def __init__(self, db: MongoClient):

@@ -93,7 +93,7 @@ export default function Todos() {
       )}
       {/* Bereich um neues Todo zu erstellen */}
       {useForm && (
-        <div ref={formRef} className="bg-white rounded-lg shadow p-4 w-[500px] mt-8">
+        <div ref={formRef} className="bg-white rounded-lg shadow p-4 w-125 mt-8">
           <div className="flex items-center mb-4">
             <label className="text-xl font-bold mr-2 w-30">Titel:</label>
             <input onChange={(e) => setNewTodo((prev) => ({ ...prev, titel: e.target.value }))} type="text" style={{ backgroundColor: "#EEEEEE" }} className="border-black border rounded-lg text-xl flex-1 max-w-xs min-w-1 pl-1"></input>

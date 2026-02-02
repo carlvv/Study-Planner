@@ -83,7 +83,7 @@ export const useForm = (curriculaData: Curricula) => {
           student_id: formData.student_id,
           name: formData.name,
           password: formData.password,
-          study_id: curriculaData,
+          study_id: curriculaData.program_version,
           start_semester: formData.start_semester,
         }),
       });

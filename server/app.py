@@ -18,8 +18,10 @@ def create_app():
         
     from routes.auth.routes import auth_bp
     from routes.main.routes import main_bp
+    from routes.curricula.routes import curricula_bp
     app.register_blueprint(auth_bp)
     app.register_blueprint(main_bp)
+    app.register_blueprint(curricula_bp)
 
     CORS(app, origins=["http://localhost:5173","http://192.168.0.153:5173" ])
 

@@ -6,7 +6,7 @@ main_bp = Blueprint('main', __name__, url_prefix='/')
 
 @main_bp.route("/dashboard", methods=["GET"])
 @jwt_required()
-def protected():
+def dashboard_infos():
     
     identity = get_jwt_identity()
     student = None

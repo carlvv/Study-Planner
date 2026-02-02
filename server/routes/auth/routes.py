@@ -37,9 +37,7 @@ def register():
     student_id = data.get("student_id")
     password = data.get("password")
     name = data.get("name")
-
-    # study_id = data.get("study_id")
-    study_id = "foo" # TODO 
+    study_id = data.get("study_id")
     start_semester = data.get("start_semester")
 
     if user_manager.user_exists(student_id):
