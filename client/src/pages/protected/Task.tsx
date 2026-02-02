@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 import { Pencil, Plus, Save } from "lucide-react";
-import type { Todo } from "../../types";
+import type { Todo, Task } from "../../types";
 import { dummyTodos } from "../../data/todos";
 import Layout from "../../components/layout/Layout";
 import { H2 } from "../../components/Text";
@@ -32,12 +32,17 @@ export default function Tasks() {
 
   //Speichert in welchem Modus der User ist
   const [isEditModus, setEditModus] = useState<boolean>(false);
-  //Speichert den Titel einer neuen Task
-  const [newTaskTitle, setNewTaskTitle] = useState<string>("");
-  //Speichert den neuen Titel des Todos
-  const [newTodoTitle, setNewTodoTitle] = useState<string>(todo.titel);
-  //Speichert die neue Todo Beschreibung
-  const [newTodoDescription, setNewTodoDescription] = useState<string>(todo.text);
+  //Speichert den Text im Task-Textarea
+  const [taskTextArea, setTaskTextArea] = useState<string>("");
+  //Speichert den Text für den Titel des Todos
+  const [todoTitle, setTodoTitle] = useState<string>(todo.titel);
+
+  const setNewTodoText = (newText: string) => {
+    setTodo(prevTodo => ({
+      ...prevTodo,
+      text: newText.trim()
+    }))
+  }
 
   /**
    * Toggled den Wert "erledigt" einer Task
@@ -55,58 +60,27 @@ export default function Tasks() {
   };
 
   /**
-   * Aktualisiert den Titel einer Task
-   * 
-   * @param taskId Task, dessen Titel aktualisiert werden soll
-   * @param newTitel neuer Titel
-   */
-  const updateTitel = (taskId: number, newTitel: string) => {
-    setTodo(prevTodo => ({
-      ...prevTodo,
-      aufgaben: prevTodo.aufgaben.map((task) =>
-        task.id === taskId ? { ...task, titel: newTitel } : task
-      )
-    }));
-  }
-
-  /**
-   * Löscht eine Task
-   * 
-   * @param taskId Task, die gelöscht werden soll
-   */
-  const deleteTask = (taskId: number) => {
-    setTodo(prevTodo => ({
-      ...prevTodo,
-      aufgaben: prevTodo.aufgaben.filter((task) => task.id !== taskId)
-    }));
-  }
-
-  /**
    * Speichert die Änderung am Todo auf dem Server
    * 
    * @param todo Todo, welches aktualisiert werden soll
    */
-  const updateTodo = (todo: Todo) => {
-    setEditModus(false);
+  const updateTodo = () => {
+    //Tasks speichern
+    const newTasks: Task[] = taskTextArea.split("\n").map(line => line.trim()).filter(line => line !== "").map((task, index) => ({ id: Date.now() + index, titel: task, erledigt: false } as Task))
+
+    //alten Titel nehmen falls leer
+    const finalTitle: string = todoTitle.trim() === "" ? todo.titel : todoTitle.trim()
+
     setTodo(prevTodo => ({
       ...prevTodo,
-      titel: newTodoTitle,
-      text: newTodoDescription
-    }))
+      titel: finalTitle,
+      aufgaben: newTasks
+    }));
+
+    setEditModus(false);
 
     //TODO: Todo in DB aktualisieren
   }
-
-  //TODO: vom Backend eindeutig ID geben lassen und abspeichern
-  const addTask = (titel: string) => {
-    setTodo(prevTodo => ({
-      ...prevTodo,
-      aufgaben: [...prevTodo.aufgaben, { id: Date.now(), titel: titel, erledigt: false }]
-    }));
-
-    setNewTaskTitle("")
-  }
-
 
   return (
     <Layout backURL={"/todo"}>
@@ -119,8 +93,8 @@ export default function Tasks() {
             </>
           ) : (
             <>
-              <input type="text"  value={newTodoTitle} className="block w-full lg:text-3xl text-2xl bg-white rounded-2xl border p-1" onChange={(e) => setNewTodoTitle(e.target.value)} />
-              <input type="text" value={newTodoDescription} className="block w-full bg-white rounded-2xl border p-1" onChange={(e) => setNewTodoDescription(e.target.value)} />
+              <input type="text" value={todoTitle} className="block w-full lg:text-3xl text-2xl bg-white rounded-2xl border p-1" onChange={(e) => setTodoTitle(e.target.value)} />
+              <input type="text" value={todo.text} className="block w-full bg-white rounded-2xl border p-1" onChange={(e) => setNewTodoText(e.target.value)} />
             </>
           )}
 
@@ -129,67 +103,50 @@ export default function Tasks() {
           (<IconButton
             outerClassName="bg-primary p-3 rounded-xl  text-white"
             Icon={Pencil}
-            onClick={() => setEditModus(true)}
+            onClick={() => {setEditModus(true); setTaskTextArea(todo.aufgaben.map(task => task.titel).join("\n"))}}
           />) :
           (<IconButton
             outerClassName="bg-primary p-3 rounded-xl"
             Icon={Save}
-            onClick={() => updateTodo(todo)}
+            onClick={() => updateTodo()}
           />)}
 
       </div>
-      {!todo.aufgaben || todo.aufgaben.length === 0 ? (
-        <>
-        {!isEditModus && (<p>Keine Tasks gefunden</p>)}
-        </>
+      {isEditModus ? (
+        <div className="h-screen">
+          <textarea
+            onChange={(e) => setTaskTextArea(e.target.value)}
+            value={taskTextArea}
+            className="bg-white rounded-lg shadow p-1 w-full h-full resize: none box-border border" />
+        </div>
       ) : (
-        <ul>
-          {todo.aufgaben.map((task) => (
-            <li key={task.id} className="grid grid-cols-[1fr_3em]" >
-              {!isEditModus ? (
-                <>
-                  <span className={task.erledigt ? "line-through" : ""}>
-                    {task.titel}
-                  </span>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={task.erledigt}
-                      onChange={() => toggleTaskErledigt(task.id)}
-                      className="w-6 h-6 rounded-full border-2"
-                    />
-                  </label>
-                </>
-              ) : (
-                <>
-                  <input
-                    type="text"
-                    className="bg-white rounded-2xl border p-1"
-                    value={task.titel}
-                    onChange={(e) => updateTitel(task.id, e.target.value)} />
-                  <button onClick={() => deleteTask(task.id)}>
-                    🗑️
-                  </button>
-                </>
-              )
-              }
-            </li>
-          ))}
-        </ul>
+        <>
+          {!todo.aufgaben || todo.aufgaben.length === 0 ?
+            (
+              <p>Dieses Todo enthält noch keine Tasks.</p>
+            ) : (
+              <ul>
+                {todo.aufgaben.map((task) => (
+                  <li key={task.id} className="grid grid-cols-[1fr_3em]">
+                    <span className={task.erledigt ? "line-through" : ""}>
+                      {task.titel}
+                    </span>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={task.erledigt}
+                        onChange={() => toggleTaskErledigt(task.id)}
+                        className="w-6 h-6 rounded-full border-2"
+                      />
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            )}
+        </>
       )}
-      {isEditModus && (
-            <li className="grid grid-cols-[1fr_3em]">
-              <input
-                type="text"
-                className="bg-white rounded-2xl border p-1"
-                value={newTaskTitle}
-                onChange={(e) => setNewTaskTitle(e.target.value)} />
-              <button onClick={() => addTask(newTaskTitle)}>
-                +
-              </button>
-            </li>
-          )}
-    </Layout>
+
+    </Layout >
   );
 }
 
