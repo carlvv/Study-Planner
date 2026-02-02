@@ -84,70 +84,80 @@ export default function Tasks() {
 
   return (
     <Layout backURL={"/todo"}>
-      <div className="flex justify-between items-center mb-8">
-        <div>
+      <div className="flex justify-between items-start mb-8 gap-4">
+        <div className="flex-1">
           {!isEditModus ? (
-            <>
-              <H2 className="py-2">{todo.titel}</H2>
-              <p>{todo.text}</p>
-            </>
+            /* Normal-Modus: Header */
+            <div className="space-y-1">
+              <div className="lg:text-3xl text-2xl font-bold p-3 border border-transparent">
+                {todo.titel}
+              </div>
+              <div className="text-base text-gray-600 p-3 border border-transparent">
+                {todo.text}
+              </div>
+            </div>
           ) : (
-            <>
-              <input type="text" value={todoTitle} className="block w-full lg:text-3xl text-2xl bg-white rounded-2xl border p-2" onChange={(e) => setTodoTitle(e.target.value)} />
-              <input type="text" value={todo.text} className="block w-full bg-white rounded-2xl border p-1" onChange={(e) => setNewTodoText(e.target.value)} />
-            </>
+            /* Edit-Modus: Header */
+            <div className="space-y-1">
+              <input
+                type="text"
+                value={todoTitle}
+                className="block w-full lg:text-3xl text-2xl font-bold bg-white rounded-2xl border border-gray-200 p-3 outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                onChange={(e) => setTodoTitle(e.target.value)}
+              />
+              <input
+                type="text"
+                value={todo.text}
+                className="block w-full text-base bg-white rounded-2xl border border-gray-200 p-3 outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                onChange={(e) => setNewTodoText(e.target.value)}
+              />
+            </div>
           )}
-
         </div>
-        {!isEditModus ?
-          (<IconButton
-            outerClassName="bg-primary p-3 rounded-xl  text-white"
-            Icon={Pencil}
-            onClick={() => {setEditModus(true); setTaskTextArea(todo.aufgaben.map(task => task.titel).join("\n"))}}
-          />) :
-          (<IconButton
-            outerClassName="bg-primary p-3 rounded-xl"
-            Icon={Save}
-            onClick={() => updateTodo()}
-          />)}
 
+        {/* Button-Logik bleibt gleich */}
+        <IconButton
+          outerClassName="bg-primary p-4 rounded-2xl text-white shadow-lg shrink-0"
+          Icon={!isEditModus ? Pencil : Save}
+          onClick={() => !isEditModus ? (setEditModus(true), setTaskTextArea(todo.aufgaben.map(t => t.titel).join("\n"))) : updateTodo()}
+        />
       </div>
-      {isEditModus ? (
-        <div className="h-screen">
+
+      {/* Aufgaben-Bereich */}
+      <div className="min-h-75">
+        {isEditModus ? (
           <textarea
             onChange={(e) => setTaskTextArea(e.target.value)}
             value={taskTextArea}
-            rows={taskTextArea.split("\n").length}
-            className="bg-white rounded-lg shadow p-1 w-full resize: none box-border border" />
-        </div>
-      ) : (
-        <>
-          {!todo.aufgaben || todo.aufgaben.length === 0 ?
-            (
-              <p>Dieses Todo enthält noch keine Tasks.</p>
+            rows={Math.max(8, taskTextArea.split("\n").length)}
+            className="block w-full text-base bg-white rounded-2xl border border-gray-200 p-4 outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none shadow-sm"
+            placeholder="Aufgaben untereinander schreiben..."
+          />
+        ) : (
+          <div className="bg-white rounded-2xl border border-gray-100 p-4 shadow-sm">
+            {!todo.aufgaben || todo.aufgaben.length === 0 ? (
+              <p className="text-gray-400 italic">Dieses Todo enthält noch keine Tasks.</p>
             ) : (
-              <ul>
+              <ul className="space-y-3">
                 {todo.aufgaben.map((task) => (
-                  <li key={task.id} className="grid grid-cols-[1fr_3em]">
-                    <span className={task.erledigt ? "line-through" : ""}>
+                  <li key={task.id} className="flex items-center justify-between group">
+                    <span className={`text-lg ${task.erledigt ? "line-through text-gray-400" : "text-gray-700"}`}>
                       {task.titel}
                     </span>
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={task.erledigt}
-                        onChange={() => toggleTaskErledigt(task.id)}
-                        className="w-6 h-6 rounded-full border-2"
-                      />
-                    </label>
+                    <input
+                      type="checkbox"
+                      checked={task.erledigt}
+                      onChange={() => toggleTaskErledigt(task.id)}
+                      className="w-6 h-6 rounded-lg border-2 border-primary text-primary focus:ring-primary cursor-pointer"
+                    />
                   </li>
                 ))}
               </ul>
             )}
-        </>
-      )}
-
-    </Layout >
+          </div>
+        )}
+      </div>
+    </Layout>
   );
 }
 
