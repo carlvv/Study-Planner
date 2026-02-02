@@ -1,34 +1,32 @@
 
-from collections import namedtuple
 import math
 import re
 import requests
 import pdfplumber
 import pandas as pd
 from io import BytesIO
-
-Module = namedtuple('Module', ['id', 'bez', 'teil', 'vt'])
-Course = namedtuple('Course', ['id', 'bez', 'recommended_semeseter', 'ects', 'which_semester', 'art', 'doz', 'lang'])
+from db.collections.course import Course
+from db.collections.module import Module
+from db.collections.curricula import Curricula
 class ModulReader:
     def __init__(self, df, i):
         self.df = df
         self.cursor = i
     
-    def readCourses(self) -> list: 
+    def readCourses(self, module_id: str) -> list: 
         a = self.next()  
         courses = []
         reading = True
         while reading:
-            res: Course 
             j = 0
             # Skip Indent
             while j < len(self.df.columns) and (a.iloc[j] == '' or isinstance(a.iloc[j], float)):
                 j += 1
             # ID
-            id = a.iloc[j]
+            course_id = a.iloc[j]
             j += 1
             # BEZ
-            bez = a.iloc[j]
+            course_name = a.iloc[j]
             j += 1
             semester = j
             while semester < len(self.df.columns) and a.iloc[semester] == '': 
@@ -38,13 +36,22 @@ class ModulReader:
             j += 7
             which_semester = a.iloc[j]
             j += 1
-            art = a.iloc[j]
+            course_type = a.iloc[j]
             j += 3
-            doz = a.iloc[j]
+            lecturer = a.iloc[j]
             j += 1
             lang = a.iloc[j]
 
-            courses.append(Course(id, bez, recommended_semeseter, ects, which_semester, art, doz, lang))
+            course = Course(
+                course_id=course_id,
+                course_name=course_name,
+                module_number=module_id,
+                ects=int(ects) if ects and str(ects).replace('.', '', 1).isdigit() else 0,
+                course_type=course_type if course_type else "",
+                lecturer=lecturer if lecturer else "",
+                prerequisite_ids=[]
+            )
+            courses.append(course)
             if self.eof():
                 return courses 
             a = self.next()  
@@ -58,11 +65,21 @@ class ModulReader:
 
         return courses
 
-    def readModule(self) -> Module: 
-        module = self.next()
-        teil = self.readCourses()
+    def readModule(self) -> tuple[Module, list[Course]]: 
+        module_data = self.next()
+        module_id = module_data['id']
+        module_name = module_data['bez']
         
-        return Module(id=module['id'],bez=module['bez'], teil=teil, vt=module['Spalte_23'])
+        courses = self.readCourses(module_id)
+        course_ids = [course.course_id for course in courses]
+        
+        module = Module(
+            module_id=module_id,
+            module_name=module_name,
+            course_ids=course_ids
+        )
+        
+        return module, courses
     
     def eof(self):
         return self.cursor >= len(self.df)
@@ -83,7 +100,8 @@ class CurriculaReader:
     def __init__(self, url):
         response = requests.get(url)
         response.raise_for_status()  
-        self.module = []
+        self.modules = []
+        self.courses = []
         self.code = ""
         self.studiengang = ""
         self.abschluss = ""
@@ -131,7 +149,9 @@ class CurriculaReader:
  
         reader = ModulReader(df, 0)
         while not reader.eof():
-            self.module.append(reader.readModule())
+            module, courses = reader.readModule()
+            self.modules.append(module)
+            self.courses.extend(courses)
 
 
 
