@@ -93,7 +93,7 @@ export default function Tasks() {
             </>
           ) : (
             <>
-              <input type="text" value={todoTitle} className="block w-full lg:text-3xl text-2xl bg-white rounded-2xl border p-1" onChange={(e) => setTodoTitle(e.target.value)} />
+              <input type="text" value={todoTitle} className="block w-full lg:text-3xl text-2xl bg-white rounded-2xl border p-2" onChange={(e) => setTodoTitle(e.target.value)} />
               <input type="text" value={todo.text} className="block w-full bg-white rounded-2xl border p-1" onChange={(e) => setNewTodoText(e.target.value)} />
             </>
           )}
@@ -117,7 +117,8 @@ export default function Tasks() {
           <textarea
             onChange={(e) => setTaskTextArea(e.target.value)}
             value={taskTextArea}
-            className="bg-white rounded-lg shadow p-1 w-full h-full resize: none box-border border" />
+            rows={taskTextArea.split("\n").length}
+            className="bg-white rounded-lg shadow p-1 w-full resize: none box-border border" />
         </div>
       ) : (
         <>

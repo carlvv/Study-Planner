@@ -1,5 +1,8 @@
 import type { Todo } from "../types";
 
+/**
+ * Temporäre Daten bis Anbindung ans Backend erfolgt ist
+ */
 export const dummyTodos: Todo[] = [
   {
     matrikelnummer: 12345,
