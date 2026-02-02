@@ -22,6 +22,13 @@ class BaseManager(Generic[T]):
     def _create(self, obj: T) -> ObjectId:
         result = self._collection.insert_one(obj.to_dict())
         return result.inserted_id
+    
+    def get_id_by_object(self, obj: T) -> Optional[ObjectId]:
+        data = self._collection.find_one(obj.to_dict())
+        if data:
+            return data["_id"]
+        print("No data found for object:", obj)
+        return None
 
     def exists(self, query: dict) -> bool:
         return self._collection.find_one(query) is not None
