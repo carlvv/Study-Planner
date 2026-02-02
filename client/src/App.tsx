@@ -16,6 +16,7 @@ import { ScheduleSettings } from "./pages/protected/Schedule/Settings/Settings";
 import { Curricula } from "./pages/protected/Curricula/Curricula";
 import Todos from "./pages/protected/Todos/Todos";
 import Tasks from "./pages/protected/Todos/Task";
+import { Profile } from "./pages/protected/Profile";
 
 const router = createBrowserRouter([
   // Nur Gäste
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
     element: <ProtectedRoute />,
     children: [
       { path: "/", element: <Home /> },
+      { path: "/profile", element: <Profile /> },
       { path: "/todo", element: <Todos /> },
       { path: "/todo/:todoId", element: <Tasks /> },
       { path: "/dashboard", element: <Statistics /> },
