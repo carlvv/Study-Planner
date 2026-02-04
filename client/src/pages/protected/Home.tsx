@@ -55,7 +55,7 @@ function Tile({ icon, to, title, subtitle, color }: TileProps) {
 const TILE_CONFIG = [
   {
     icon: <Clock size={40} />,
-    to: "/time",
+    to: "/timer",
     title: "Track Time",
     color: "bg-indigo-500 text-white",
     key: "time",

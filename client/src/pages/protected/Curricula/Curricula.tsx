@@ -86,7 +86,8 @@ export const Curricula = () => {
                 <Card title={d.stats[2]} text="Offene ECTS" />
                 <Card title={d.stats[3] + "."} text="Semester" />
             </TwoColumnWrapper>
-            <VisibleList list={d.modules} name={"Module"} />
+            <VisibleList list={d.modules.filter(a => a.finished)} name={"Bestandenen Module"} />
+            <VisibleList list={d.modules.filter(a => !a.finished)} name={"Offene Module"} />
         </Layout>
     );
 };
