@@ -19,6 +19,7 @@ class ModulReader:
         courses = []
         reading = True
         prev_id = None
+        same_course = False
         while reading:
             j = 0
             # Skip Indent
@@ -28,6 +29,7 @@ class ModulReader:
             sub_id = a.iloc[j][:2]
             if sub_id != "TB" and sub_id != "TM":
                 course_id = prev_id
+                same_course = True
             else:
                 # ID
                 course_id = a.iloc[j]
@@ -51,16 +53,23 @@ class ModulReader:
             j += 1
             lang = a.iloc[j]
 
-            course = Course(
-                course_id=course_id,
-                course_name=course_name,
-                module_number=module_id,
-                ects=float(str(ects).replace(',', '.')),
-                course_type=course_type if course_type else "",
-                lecturer=lecturer if lecturer else "",
-                prerequisite_ids=[]
-            )
-            courses.append(course)
+            if same_course:
+                course = courses[-1]
+                course.course_name += ", " + course_name
+                course.ects += float(str(ects).replace(',', '.'))
+                same_course = False
+            else:
+                course = Course(
+                    course_id=course_id,
+                    course_name=course_name,
+                    module_number=module_id,
+                    ects=float(str(ects).replace(',', '.')),
+                    course_type=course_type if course_type else "",
+                    lecturer=lecturer if lecturer else "",
+                    prerequisite_ids=[]
+                )
+                courses.append(course)
+            
             if self.eof():
                 return courses 
             a = self.next()  
