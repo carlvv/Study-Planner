@@ -16,6 +16,7 @@ import { ScheduleSettings } from "./pages/protected/Schedule/Settings/Settings";
 import { Curricula } from "./pages/protected/Curricula/Curricula";
 import Todos from "./pages/protected/Todos/Todos";
 import Tasks from "./pages/protected/Todos/Task";
+import Timer from "./pages/protected/Timer";
 import { Profile } from "./pages/protected/Profile";
 
 const router = createBrowserRouter([
@@ -41,7 +42,8 @@ const router = createBrowserRouter([
       { path: "/schedule", element: <Schedule /> },
       { path: "/schedule/settings", element: <ScheduleSettings /> },
       { path: "/curricula", element: <Curricula /> },
-      { path: "/time", element: <></> },
+      { path: "/timer", element: <Timer/> },
+      { path: "/timer/:subject", element: <Timer/> },
     ],
   },
 ]);
