@@ -12,6 +12,16 @@ const subjects = ["Analysis", "SP"]
 //TODO: Letzten Aktivitäten vom Backend holen
 const recentActivities = [{ subject: "BWL", hours: 1, minutes: 20 }, { subject: "SP", hours: 0, minutes: 35 }]
 
+
+const ErrorMessage = {
+    INCOMPLETE_TIME: "Unvollständige Zeitangabe",
+    INVALID_MINUTE: "Minuten müssen zwischen 00 und 59 liegen",
+    ZERO_TIME: "Die Zeit darf nicht 00:00 sein",
+    SERVER_ERROR: "Fehler beim Speichern auf dem Server"
+} as const;
+
+type ErrorKey = keyof typeof ErrorMessage;
+
 export default function Timer() {
     const params = useParams<{ subject: string }>();
 
@@ -22,62 +32,87 @@ export default function Timer() {
     if (!subjects.includes(params.subject))
         return (<h1>{params.subject} ist kein gültiges Modul</h1>)
 
-    const [input, setInput] = useState<string>("");
+    const [errorMessage, setErrorMessage] = useState<ErrorKey | null>(null);
 
-    const addDigit = (number: number) => {
-        if (input.length < 4) {
-            setInput(prev => prev + number)
+    const [input, setInput] = useState<string[]>(["_", "_", "_", "_"]);
+    const [inputIndex, setInputIndex] = useState<number>(0);
+
+    const addDigit = (number: string) => {
+        if (inputIndex <= 3) {
+            setInput(prev => prev.map((value, index) => index === inputIndex ? number : value));
+
+            setInputIndex(inputIndex + 1)
+
+            setErrorMessage(null)
         }
     }
 
     const removeLastDigit = () => {
-        if (input.length > 0) {
-            setInput(prev => prev.slice(0, -1))
+        if (inputIndex > 0) {
+            setInput(prev => prev.map((value, index) => index === inputIndex - 1 ? "_" : value));
+
+            setInputIndex(inputIndex - 1)
+
+            setErrorMessage(null)
         }
     }
 
     const saveTime = () => {
-
-        const { hours, minutes } = getTimeParts(input);
-
-        let numberHours: number = Number(hours);
-        let numberMinutes: number = Number(minutes)
-
-        //Minuten über 60 anpassen
-        if (numberMinutes >= 60) {
-            numberMinutes -= 60;
-            numberHours++;
+        if (inputIndex !== 4) {
+            setErrorMessage("INCOMPLETE_TIME")
+            return;
         }
 
+        if (Number(input[2]) > 5) {
+            setErrorMessage("INVALID_MINUTE");
+            return;
+        }
+
+        if (input.every(value => value === "0")) {
+            setErrorMessage("ZERO_TIME");
+            return;
+        }
+
+        setErrorMessage(null)
 
         //TODO: Verbindung mit Backend
+        if (false) {
+            setErrorMessage("SERVER_ERROR");
+            return;
+        }
     }
 
-    const getTimeParts = (input: string) => {
-        const value = Number(input || "0");
-
-        const hours = Math.floor(value / 100);
-        const minutes = value % 100;
-
-        return {
-            hours: String(hours).padStart(2, "0"),
-            minutes: String(minutes).padStart(2, "0"),
-        };
+    const renderDigit = (digit: string, index: number) => {
+        const isActive = index === inputIndex;
+        return (
+            <span
+                key={index}
+                className={`w-6 text-center text-2xl inline-block 
+                    ${isActive ? "animate-pulse text-blue-500" : ""}`}
+            >
+                {digit}
+            </span>
+        );
     };
-
-    const { hours, minutes } = getTimeParts(input);
 
     return (
         <Layout backURL={"/dashboard"}>
             <div className="flex flex-col items-center justify-center space-y-6">
                 <H1>{params.subject}</H1>
-                <p>{hours}h {minutes}m</p>
+                <div className="text-3xl">
+                    {renderDigit(input[0], 0)}
+                    {renderDigit(input[1], 1)}
+                    <span className="text-sm text-gray-700">h </span>
+                    {renderDigit(input[2], 2)}
+                    {renderDigit(input[3], 3)}
+                    <span className="text-sm text-gray-700">m</span>
+                </div>
                 <div className="grid grid-cols-3 gap-4">
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
                         <button
                             key={i}
                             className="rounded bg-gray-300 p-4 flex items-center justify-center aspect-square"
-                            onClick={() => addDigit(i)}
+                            onClick={() => addDigit(String(i))}
                         >
                             {i}
                         </button>
@@ -92,7 +127,7 @@ export default function Timer() {
                     </button>
                     <button
                         className="rounded bg-gray-300 p-4 flex items-center justify-center aspect-square"
-                        onClick={() => addDigit(0)}
+                        onClick={() => addDigit("0")}
                     >
                         0
                     </button>
@@ -105,6 +140,11 @@ export default function Timer() {
                     </button>
 
                 </div>
+
+                {errorMessage !== null && (
+                    <p className="text-red-500">{ErrorMessage[errorMessage]}</p>
+                )}
+
                 <H3>Letzten Aktivitäten</H3>
                 {recentActivities.map((i) => (
                     <div className="grid grid-cols-2 items-center w-full">
@@ -121,7 +161,7 @@ function ChooseSubject() {
     return (
         <Layout backURL={"/dashboard"}>
             <div className="flex flex-col items-center justify-center space-y-2">
-                <H1>Wähle ein Modul aus</H1>
+                <H1>Module</H1>
                 {subjects.map((subject) => (
                     <Link to={`/timer/${subject}`} className="min-w-64 bg-primary  text-white text-lg font-bold p-2 rounded-xl hover:bg-secondary transition-colors disabled:bg-gray-600">
                         {subject}
