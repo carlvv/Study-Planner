@@ -4,7 +4,13 @@ import re
 from bs4 import BeautifulSoup
 from typing import Dict
 
+import pymongo
 import requests
+
+from db.collections.curricula import Curricula
+from db.managers import CourseManager, CurriculaManager, ModuleManager
+from fetch.Reader import CurriculaReader
+from fetch.Reader import CurriculaReader
 
 
 
@@ -177,3 +183,48 @@ def get_curriculae(url: str = "https://www.fh-wedel.de/studieren/pruefungscenter
     response.raise_for_status()
     return extract_curricula_from_html(response.text)
 
+def fetch_and_save(mongoClient: pymongo.MongoClient | None = None) -> None:
+    """
+    Fetches curricula data and saves it to MongoDB.
+    
+    Args:
+        mongoClient: An optional pymongo.MongoClient instance. If None, a new client will be created.
+    """
+    if mongoClient is None:
+        mongoClient = pymongo.MongoClient("mongodb://localhost:27017/")
+    
+    db = mongoClient["db"]
+    
+    curricula_data = get_curriculae()
+    
+    curricula_manager =  CurriculaManager(db)
+    module_manager =  ModuleManager(db)
+    course_manager =  CourseManager(db)
+
+    for _, info in curricula_data.get("bachelor", {}).items():
+        for entry in info.get("available", []):
+            for _, url in entry.items():
+                cur = CurriculaReader("https://fh-wedel.de"+ url)
+                print(f"\nProcessing: {cur.studiengang} ({cur.code})")
+                print(f"Found {len(cur.modules)} modules and {len(cur.courses)} courses")
+                
+                # Create all courses first
+                for course in cur.courses:
+                    course_db_id = course_manager.create_or_get_course(course)
+                    print(f"  Course '{course.course_id}' ({course.course_name}) -> db_id '{course_db_id}'")
+                
+                # Create all modules
+                for module in cur.modules:
+                    module_db_id = module_manager.create_or_get_module(module)
+                    print(f"  Module '{module.module_id}' ({module.module_name}) -> db_id '{module_db_id}'")
+                
+                # Create curricula
+                curricula = Curricula(
+                    programm_name=cur.studiengang,
+                    programm_version=cur.code,
+                    is_bachelor=True,
+                    modules_ids=sorted([x.module_id for x in cur.modules])
+                )
+                curricula_db_id = curricula_manager.create_or_get_curricula(curricula)
+                print(f"  Curricula '{cur.studiengang}' -> db_id '{curricula_db_id}'")
+                print(f"FINISHED: {cur.studiengang}\n")

@@ -1,6 +1,7 @@
 
 import math
 import re
+from numpy import number
 import requests
 import pdfplumber
 import pandas as pd
@@ -17,14 +18,24 @@ class ModulReader:
         a = self.next()  
         courses = []
         reading = True
+        prev_id = None
+        same_course = False
         while reading:
             j = 0
             # Skip Indent
             while j < len(self.df.columns) and (a.iloc[j] == '' or isinstance(a.iloc[j], float)):
                 j += 1
-            # ID
-            course_id = a.iloc[j]
-            j += 1
+            
+            sub_id = a.iloc[j][:2]
+            if sub_id != "TB" and sub_id != "TM":
+                course_id = prev_id
+                same_course = True
+            else:
+                # ID
+                course_id = a.iloc[j]
+                prev_id = course_id
+                j += 1
+            
             # BEZ
             course_name = a.iloc[j]
             j += 1
@@ -42,16 +53,23 @@ class ModulReader:
             j += 1
             lang = a.iloc[j]
 
-            course = Course(
-                course_id=course_id,
-                course_name=course_name,
-                module_number=module_id,
-                ects=int(ects) if ects and str(ects).replace('.', '', 1).isdigit() else 0,
-                course_type=course_type if course_type else "",
-                lecturer=lecturer if lecturer else "",
-                prerequisite_ids=[]
-            )
-            courses.append(course)
+            if same_course:
+                course = courses[-1]
+                course.course_name += ", " + course_name
+                course.ects += float(str(ects).replace(',', '.'))
+                same_course = False
+            else:
+                course = Course(
+                    course_id=course_id,
+                    course_name=course_name,
+                    module_number=module_id,
+                    ects=float(str(ects).replace(',', '.')),
+                    course_type=course_type if course_type else "",
+                    lecturer=lecturer if lecturer else "",
+                    prerequisite_ids=[]
+                )
+                courses.append(course)
+            
             if self.eof():
                 return courses 
             a = self.next()  
@@ -68,8 +86,11 @@ class ModulReader:
     def readModule(self) -> tuple[Module, list[Course]]: 
         module_data = self.next()
         module_id = module_data['id']
-        module_name = module_data['bez']
-        
+        if module_data['bez'] != '':
+            module_name = module_data['bez']
+        else:
+            module_name = module_data['Spalte_2']
+
         courses = self.readCourses(module_id)
         course_ids = [course.course_id for course in courses]
         
@@ -118,7 +139,7 @@ class CurriculaReader:
 
                 # Erste Seite: Metadaten extrahieren
                 if page_num == 0:
-                    pattern = r"(B_[A-Za-z0-9.]+) Studienverlaufs- und Prüfungsplan ([ A-Za-zäÄöÖüÜß&\-]+)\s*(\([^)]+\))"
+                    pattern = r"(B_[A-Za-z0-9.]+) Studienverlaufs- und Prüfungsplan ([ A-Za-zäÄöÖüÜß&\,-]+)\s*(\([^)]+\))"
                     match = re.search(pattern, df_page.columns[0])
                     if match:
                         self.code = match.group(1)
@@ -138,15 +159,15 @@ class CurriculaReader:
         df = pd.concat(dfs, ignore_index=True)
         
         # Neue Spalten IDs und Bezeichnungen
-        df['id'] = df['Spalte_1'].str[:5]
-        df['bez'] = df['Spalte_1'].str[5:]
+        df['id'] = df['Spalte_1'].str[:5].str.strip()
+        df['bez'] = df['Spalte_1'].str[5:].str.strip()
         # Vorraussetzungen formatieren
         df['Spalte_18'] = df['Spalte_18'].apply(lambda x: "_".join(str(x).split("\n")))
         # Spalten löschen
         df.drop(df.columns[11:15], axis=1, inplace=True) 
         df.drop(df.columns[15:18], axis=1, inplace=True) 
         df.drop(df.columns[11:14], axis=1, inplace=True) 
- 
+
         reader = ModulReader(df, 0)
         while not reader.eof():
             module, courses = reader.readModule()

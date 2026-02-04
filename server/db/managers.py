@@ -53,7 +53,7 @@ class StudentProcessManager(BaseManager[StudentProcess]):
     def __init__(self, db: MongoClient):
         super().__init__(db.process, StudentProcess)
 
-class CourseManager(BaseManager[Course]):
+class CourseManager(BaseManager[Course]):   
     def __init__(self, db: MongoClient):
         super().__init__(db.course, Course)
 
@@ -96,8 +96,8 @@ class CurriculaManager(BaseManager[Curricula]):
             return existing.id
         return self.create_curricula(curricula)
 
-    def get_all_programms(self) -> List[Curricula]:
-        return list(self._collection.find({}))
+    # def get_all_programms(self) -> List[Curricula]:
+    #     return list(self._collection.find({}))
 
 class EventManager(BaseManager[Event]):
     def __init__(self, db: MongoClient):
