@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { LoginLayout } from "../../components/layout/Login_Layout";
 import { fetch_backend_auth } from "../../utils/helper";
 import Layout from "../../components/layout/Layout";
 import { H1 } from "../../components/Text";

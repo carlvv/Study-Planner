@@ -12,12 +12,12 @@ import {
     EyeClosed,
 } from "lucide-react";
 
-const FoldableCard = ({ elem }) => {
+const FoldableCard = ({ elem }: { elem: any }) => {
     const [isVisible, setVisible] = useState(true);
 
     return (
         <>
-            <div className="col-span-12 flex bg-gray-400 p-4 rounded-xl gap-4">
+            <div className={`col-span-12 flex ${elem.finished ? "bg-blue-300" : "bg-gray-400"} p-2 rounded-xl gap-4`}>
                 <IconButton
                     outerClassName="flex items-center "
                     className="max-w-35 min-w-15 h-full p-2 text-black"
@@ -32,14 +32,17 @@ const FoldableCard = ({ elem }) => {
                 </div>
             </div>
             {!isVisible &&
-                elem.courses.map((a) => (
+                elem.courses.map((a: any) => (
                     <>
                         <div className="col-span-1" />
-                        <div className="col-span-11 flex flex-col gap-3 justify-center px-4 p-2 border-2 border-gray-300 rounded-xl">
-                            <h2 className="text-black md:text-xl text-lg">{a.name}</h2>
-                            <h3 className="font-medium md:text-xl text-lg">
-                                {a.code} - {a.ects} ECTS
-                            </h3>
+                        <div className="col-span-11 flex px-4 p-2 border-2 border-gray-300 rounded-xl justify-between items-center">
+                            <div className="flex flex-col gap-1 justify-center ">
+                                <h2 className="text-black md:text-xl text-lg">{a.name}</h2>
+                                <h3 className="font-medium md:text-xl text-lg">
+                                    {a.code} - {a.ects} ECTS
+                                </h3>
+                            </div>
+                            {a.finished && <div className="bold text-lg pr-8">{a.grade == 0 ? "bestanden" : a.grade.toFixed(1)}</div>}
                         </div>
                     </>
                 ))}
@@ -47,7 +50,7 @@ const FoldableCard = ({ elem }) => {
     );
 };
 
-const VisibleList = ({ list, name }) => {
+const VisibleList = ({ list, name }: { list: any[], name: string }) => {
     const [isVisible, setVisible] = useState(true);
 
     return (
@@ -62,27 +65,28 @@ const VisibleList = ({ list, name }) => {
                 />
             </div>
 
-            <div className="grid grid-cols-12 gap-4">
-                {isVisible && list.map((a: unknown) => <FoldableCard elem={a} />)}
+            <div className="grid grid-cols-12 gap-2">
+                {isVisible && list.map((a: unknown, id) => <FoldableCard key={id} elem={a} />)}
             </div>
         </>
     );
 };
 
 export const Curricula = () => {
-    const { name, open, finished, stats } = useCurricula();
-
+    const d = useCurricula();
+    if (d.isLoading) {
+        return <>Es wird geladen...</>
+    }
     return (
         <Layout backURL="/">
-            <H1 className="pt-6">{name}</H1>
+            <H1 className="pt-6">{d.name}</H1>
             <TwoColumnWrapper>
-                <Card title={stats[0]} text="Bestandene Module" />
-                <Card title={stats[1]} text="Durchschnittnote" />
-                <Card title={stats[2]} text="Offene Module" />
-                <Card title={stats[3]} text="Semester" />
+                <Card title={d.stats[0]} text="Bestandene ECTS" />
+                <Card title={d.stats[1]} text="Durchschnittnote" />
+                <Card title={d.stats[2]} text="Offene ECTS" />
+                <Card title={d.stats[3] + "."} text="Semester" />
             </TwoColumnWrapper>
-            <VisibleList list={open} name={"Offene Module"} />
-            <VisibleList list={finished} name={"Bestandene Module"} />
+            <VisibleList list={d.modules} name={"Module"} />
         </Layout>
     );
 };

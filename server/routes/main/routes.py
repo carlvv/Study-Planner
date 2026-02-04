@@ -29,7 +29,6 @@ def profile_info():
     manager = StudentManager(current_app.mongo.db)
     c_manager = CurriculaManager(current_app.mongo.db)
     identity = get_jwt_identity()
-    print(identity)
     student = manager._get_by_dict({"student_id": identity})
     if not student:
         return jsonify(), 500
