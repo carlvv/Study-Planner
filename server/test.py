@@ -15,7 +15,7 @@ from db.collections.curricula import Curricula
 # user_manager.create_user("10001", "test1234", "Max1 Mustermann", "foo", "foo")
 
 
-
+'''
 result = get_curriculae()
 
 print(json.dumps(result, indent=2, ensure_ascii=False))
@@ -27,7 +27,7 @@ module_manager =  ModuleManager(myclient["db"])
 course_manager =  CourseManager(myclient["db"])
 
 # Durch alle Bachelor-Studienrichtungen iterieren
-for program, info in result.get("bachelor", {}).items():
+for _, info in result.get("bachelor", {}).items():
     for entry in info.get("available", []):
         for _, url in entry.items():
             cur = CurriculaReader("https://fh-wedel.de"+ url)
@@ -58,7 +58,7 @@ for program, info in result.get("bachelor", {}).items():
 
 # Start mongo:
 # mongod --fork --logpath /var/log/mongodb/mongod.log --bind_ip 127.0.0.1
-
+'''
 
 
 
@@ -136,3 +136,8 @@ print("Fetched Module:", module_fetched)
 course_fetched = course_manager.get_by_course_id("TEST101")
 print("Fetched Course:", course_fetched)
 '''
+
+
+from fetch import fetch
+
+fetch.fetch_and_save()
