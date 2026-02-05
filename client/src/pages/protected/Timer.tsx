@@ -7,7 +7,8 @@ import { H1, H3 } from "../../components/Text";
 import { useParams } from "react-router-dom";
 
 //TODO: Liste aller Module des Users vom Backend holen
-const subjects = ["Analysis", "SP"]
+const currentSubjects = [{ name: "Analysis", id: 1, ects: 5 }, { name: "Programmstrukturen 1", id: 2, ects: 5 }, { name: "Programmstrukturen 2", id: 3, ects: 5 }]
+const otherSubjects = [{ name: "Systemnahe Programmierung", id: 4, ects: 5 }, { name: "Lineare Algebra", id: 5, ects: 5 }, { name: "Unix", id: 6, ects: 5 }]
 
 //TODO: Letzten Aktivitäten vom Backend holen
 const recentActivities = [{ subject: "BWL", hours: 1, minutes: 20 }, { subject: "SP", hours: 0, minutes: 35 }]
@@ -23,14 +24,18 @@ const ErrorMessage = {
 type ErrorKey = keyof typeof ErrorMessage;
 
 export default function Timer() {
-    const params = useParams<{ subject: string }>();
+    const params = useParams<{ subjectId: string }>();
 
-    if (!params.subject)
+    if (!params.subjectId)
         return (<ChooseSubject />);
 
+    const subject =
+        currentSubjects.find(obj => String(obj.id) === params.subjectId) ??
+        otherSubjects.find(obj => String(obj.id) === params.subjectId)
+
     //TODO: Error-Page
-    if (!subjects.includes(params.subject))
-        return (<h1>{params.subject} ist kein gültiges Modul</h1>)
+    if (!subject)
+        return (<h1>Kein Modul mit {params.subjectId} gefunden</h1>)
 
     const [errorMessage, setErrorMessage] = useState<ErrorKey | null>(null);
 
@@ -98,7 +103,7 @@ export default function Timer() {
     return (
         <Layout backURL={"/dashboard"}>
             <div className="flex flex-col items-center justify-center space-y-6">
-                <H1>{params.subject}</H1>
+                <H1>{subject.name}</H1>
                 <div className="text-3xl">
                     {renderDigit(input[0], 0)}
                     {renderDigit(input[1], 1)}
@@ -160,13 +165,32 @@ export default function Timer() {
 function ChooseSubject() {
     return (
         <Layout backURL={"/dashboard"}>
-            <div className="flex flex-col items-center justify-center space-y-2">
+            <div className="flex flex-col items-start space-y-4 p-4">
                 <H1>Module</H1>
-                {subjects.map((subject) => (
-                    <Link to={`/timer/${subject}`} className="min-w-64 bg-primary  text-white text-lg font-bold p-2 rounded-xl hover:bg-secondary transition-colors disabled:bg-gray-600">
-                        {subject}
-                    </Link>
-                ))}
+
+                <div className="flex flex-col w-full space-y-2">
+                    <H3>Aktuelle</H3>
+                    {currentSubjects.map((subject) => (
+                        <Link to={`/timer/${subject.id}`} className="">
+                            <div className="flex justify-between w-full bg-gray-100 p-2 rounded border border-gray-500 shadow">
+                                <span>{subject.name}</span>
+                                <span>{subject.ects} ECTS</span>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+
+                <div className="flex flex-col w-full space-y-2">
+                    <H3>Andere</H3>
+                    {otherSubjects.map((subject) => (
+                        <Link to={`/timer/${subject.id}`} className="">
+                            <div className="flex justify-between w-full bg-gray-100 p-2 rounded border border-gray-500 shadow">
+                                <span>{subject.name}</span>
+                                <span>{subject.ects} ECTS</span>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
             </div>
         </Layout>
     )

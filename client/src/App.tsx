@@ -43,7 +43,7 @@ const router = createBrowserRouter([
       { path: "/schedule/settings", element: <ScheduleSettings /> },
       { path: "/curricula", element: <Curricula /> },
       { path: "/timer", element: <Timer/> },
-      { path: "/timer/:subject", element: <Timer/> },
+      { path: "/timer/:subjectId", element: <Timer/> },
     ],
   },
 ]);
