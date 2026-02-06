@@ -64,6 +64,7 @@ const VisibleList = ({ list, name }: { list: any[], name: string }) => {
                     onClick={() => setVisible(!isVisible)}
                 />
             </div>
+            
 
             <div className="grid grid-cols-12 gap-2">
                 {isVisible && list.map((a: unknown, id) => <FoldableCard key={id} elem={a} />)}

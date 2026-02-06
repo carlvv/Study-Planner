@@ -1,63 +1,40 @@
-import { useState } from "react";
-import { Navigate } from "react-router-dom";
-
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { Pencil, Plus, Save } from "lucide-react";
-import type { Todo, Task } from "../../../types";
-import { dummyTodos } from "../../../data/todos";
+import { Pencil, Save } from "lucide-react";
+import type { Task, Todo } from "../../../types";
 import Layout from "../../../components/layout/Layout";
-import { H2 } from "../../../components/Text";
 import { IconButton } from "../../../components/Buttons";
+import { useTask } from "./useTask";
 
 export default function Tasks() {
   const params = useParams<{ todoId: string }>();
-  const todoId: number = Number(params.todoId);
 
-  const userMatrikelnummer: number = 12345; //TODO: matrikelnummer lesen
+  const { todo, isLoading, update, isError, error } = useTask(params.todoId ?? "")
 
-  if (!userMatrikelnummer) {
-    return <Navigate to="/login" />;
-  }
-
-  if (isNaN(todoId) || todoId < 0) {
-    return ErrorPage("Ungültige Todo-ID")
-  }
-
-  //Todo vom Server holen
-  const userTodo = dummyTodos.find((todo) => todo.id === todoId)!;
-  const [todo, setTodo] = useState<Todo>(userTodo);
-
-  //TODO: Todo nicht gefunden => return ErrorPage
 
   //Speichert in welchem Modus der User ist
   const [isEditModus, setEditModus] = useState<boolean>(false);
   //Speichert den Text im Task-Textarea
   const [taskTextArea, setTaskTextArea] = useState<string>("");
   //Speichert den Text für den Titel des Todos
-  const [todoTitle, setTodoTitle] = useState<string>(todo.titel);
 
-  const setNewTodoText = (newText: string) => {
-    setTodo(prevTodo => ({
-      ...prevTodo,
-      text: newText.trim()
-    }))
+  const [title, setTitle] = useState<string>("")
+  const [text, setText] = useState<string>("");
+
+  useEffect(() => {
+    if (!isLoading) {
+      setTitle(todo?.titel!)
+      setText(todo?.text!)
+    }
+  }, [isLoading])
+
+  if (isLoading) {
+    return <>Loading...</>
   }
-
-  /**
-   * Toggled den Wert "erledigt" einer Task
-   * 
-   * @param taskId Task-Id, dessen Wert getoggled werden soll
-   */
-  const toggleTaskErledigt = (taskId: number) => {
-    setTodo(prevTodo => ({
-      ...prevTodo,
-      aufgaben: prevTodo.aufgaben.map((task) =>
-        task.id === taskId ? { ...task, erledigt: !task.erledigt } : task
-      )
-    }));
-    // TODO: Daten speichern
-  };
+  if (isError || !todo) {
+    return <>{error?.message}</>
+  }
 
   /**
    * Speichert die Änderung am Todo auf dem Server
@@ -65,21 +42,21 @@ export default function Tasks() {
    * @param todo Todo, welches aktualisiert werden soll
    */
   const updateTodo = () => {
-    //Tasks speichern
-    const newTasks: Task[] = taskTextArea.split("\n").map(line => line.trim()).filter(line => line !== "").map((task, index) => ({ id: Date.now() + index, titel: task, erledigt: false } as Task))
+    const newTasks: Task[] = taskTextArea.split("\n").map(line => line.trim()).filter(line => line !== "").map((task, index) => ({ id: index, titel: task, erledigt: false } as Task))
 
-    //alten Titel nehmen falls leer
-    const finalTitle: string = todoTitle.trim() === "" ? todo.titel : todoTitle.trim()
+    const finalTitle: string = title.trim() === "" ? todo.titel : title.trim()
 
-    setTodo(prevTodo => ({
-      ...prevTodo,
-      titel: finalTitle,
-      aufgaben: newTasks
-    }));
+    // senden
+    update({ title: finalTitle, desc: text, aufgaben: newTasks })
 
-    setEditModus(false);
+    setEditModus(!isEditModus)
+  }
 
-    //TODO: Todo in DB aktualisieren
+  function toggleTaskErledigt(id: number): void {
+    let currentTodo: Todo = todo!
+    console.log(currentTodo, id)
+    currentTodo.aufgaben[id].erledigt = !currentTodo.aufgaben[id].erledigt
+    update({ title: title, desc: text, aufgaben: currentTodo.aufgaben })
   }
 
   return (
@@ -90,10 +67,10 @@ export default function Tasks() {
             /* Normal-Modus: Header */
             <div className="space-y-1">
               <div className="lg:text-3xl text-2xl font-bold p-3 border border-transparent">
-                {todo.titel}
+                {title}
               </div>
               <div className="text-base text-gray-600 p-3 border border-transparent">
-                {todo.text}
+                {text}
               </div>
             </div>
           ) : (
@@ -101,15 +78,15 @@ export default function Tasks() {
             <div className="space-y-1">
               <input
                 type="text"
-                value={todoTitle}
+                value={title}
                 className="block w-full lg:text-3xl text-2xl font-bold bg-white rounded-2xl border border-gray-200 p-3 outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                onChange={(e) => setTodoTitle(e.target.value)}
+                onChange={(e) => setTitle(e.target.value)}
               />
               <input
                 type="text"
-                value={todo.text}
+                value={text}
                 className="block w-full text-base bg-white rounded-2xl border border-gray-200 p-3 outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                onChange={(e) => setNewTodoText(e.target.value)}
+                onChange={(e) => setText(e.target.value)}
               />
             </div>
           )}
@@ -117,7 +94,8 @@ export default function Tasks() {
 
         {/* Button-Logik bleibt gleich */}
         <IconButton
-          outerClassName="bg-primary p-4 rounded-2xl text-white shadow-lg shrink-0"
+          className="ml-auto bg-gray-800 rounded-xl p-4  text-white"
+          size={60}
           Icon={!isEditModus ? Pencil : Save}
           onClick={() => !isEditModus ? (setEditModus(true), setTaskTextArea(todo.aufgaben.map(t => t.titel).join("\n"))) : updateTodo()}
         />

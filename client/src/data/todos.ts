@@ -5,7 +5,6 @@ import type { Todo } from "../types";
  */
 export const dummyTodos: Todo[] = [
   {
-    matrikelnummer: 12345,
     id: 1,
     titel: "React lernen",
     text: "Components, Props, State verstehen",
@@ -17,7 +16,6 @@ export const dummyTodos: Todo[] = [
     ],
   },
   {
-    matrikelnummer: 12345,
     id: 1,
     titel: "React lernen",
     text: "Components, Props, State verstehen",
@@ -29,7 +27,6 @@ export const dummyTodos: Todo[] = [
     ],
   },
   {
-    matrikelnummer: 12345,
     id: 1,
     titel: "React lernen",
     text: "Components, Props, State verstehen",
@@ -41,7 +38,6 @@ export const dummyTodos: Todo[] = [
     ],
   },
   {
-    matrikelnummer: 12345,
     id: 1,
     titel: "React lernen",
     text: "Components, Props, State verstehen",
@@ -53,7 +49,6 @@ export const dummyTodos: Todo[] = [
     ],
   },
   {
-    matrikelnummer: 12345,
     id: 1,
     titel: "React lernen",
     text: "Components, Props, State verstehen",
@@ -65,7 +60,6 @@ export const dummyTodos: Todo[] = [
     ],
   },
   {
-    matrikelnummer: 12345,
     id: 2,
     titel: "Web-Anwendungen",
     text: "Website bauen",
@@ -75,7 +69,6 @@ export const dummyTodos: Todo[] = [
     ],
   },
   {
-    matrikelnummer: 67890,
     id: 3,
     titel: "Mathe üben",
     text: "Lineare Algebra",

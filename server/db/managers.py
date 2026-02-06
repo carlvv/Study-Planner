@@ -165,3 +165,27 @@ class TimeTableManager(BaseManager[TimeTable]):
 class TodoManager(BaseManager[Todo]):
     def __init__(self, db: MongoClient):
         super().__init__(db.todo, Todo)
+
+    def create_todo(self, todo: Todo):
+        self._create(todo)
+    
+    def all_todos(self, student_id):
+        out : list[Todo] = []
+        for data in self._collection.find({ "owner_id": student_id}):
+            out.append(self._model.from_dict(data))
+        return out
+    
+    def get_todo(self, student_id, id):
+        return self._get_by_dict({"owner_id": student_id, "_id": ObjectId(id)})
+    
+    # TODO Time
+    def update_todo(self, student_id, id, title, description, tasks):
+        return self.update_by_id(
+                ObjectId(id),
+                {
+                    "owner_id": student_id,
+                    "title": title,
+                    "description": description,
+                    "tasks": tasks
+                }
+            )

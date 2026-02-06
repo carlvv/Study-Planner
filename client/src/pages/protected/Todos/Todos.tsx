@@ -1,30 +1,23 @@
 import { useState, useRef, useEffect } from "react";
-import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import { Plus } from "lucide-react";
-import { dummyTodos } from "../../../data/todos";
 import type { Todo } from "../../../types";
 import { H1 } from "../../../components/Text";
 import { IconButton } from "../../../components/Buttons";
 import Layout from "../../../components/layout/Layout";
 import { FlexibleColumnWrapper } from "../../../components/layout/FlexibleColumnWrapper";
+import { useTodos } from "./useTodos";
 
 export default function Todos() {
-  const [todos, setTodos] = useState<Todo[]>(dummyTodos); //TODO: richtige Datenbank ansteuern
-
-  const userMatrikelnummer = 12345; //TODO: matrikelnummer lesen
-
-  if (!userMatrikelnummer) {
-    return <Navigate to="/login" />;
-  }
+  const { todos, addTodo, isLoading } = useTodos()
 
   //Zum Einblenden des Forms für ein neues Todo
   const [useForm, setUseForm] = useState<boolean>(false);
   //Zum Einblenden eines Fehlertextes falls kein Titel gesetzt wurde
   const [errorNoTitle, setErrorNoTitle] = useState<boolean>(false)
   //Zum Speichern der Werte eines neuen Todos
-  const [newTodo, setNewTodo] = useState<Todo>({ matrikelnummer: userMatrikelnummer, id: -1, text: "", titel: "", aufgaben: [] });
+  const [newTodo, setNewTodo] = useState<Todo>({ id: -1, text: "", titel: "", aufgaben: [] });
   //Zum automatischen Scrollen zum Form für neue Todos
   const formRef = useRef<HTMLDivElement>(null);
 
@@ -43,10 +36,7 @@ export default function Todos() {
       return;
     }
 
-    //TODO: richtige ID setzen und in DB speichern
-
-    //tmp
-    setTodos((prev) => [...prev, newTodo])
+    addTodo({ title: newTodo.titel,  desc: newTodo.text})
 
     //Reset
     setUseForm(false);
@@ -54,11 +44,14 @@ export default function Todos() {
     setNewTodo((prev) => ({ ...prev, text: "", titel: "" }))
   }
 
+  if (isLoading) {
+    return <>Loading...</>
+  }
+
+
   //TODO: nur Todos des eingelogten Users aud DB holen
   // Nur Todos des eingeloggten Users
-  const userTodos = todos.filter(
-    (todo) => todo.matrikelnummer === userMatrikelnummer
-  );
+
 
   return (
     <Layout backURL={"/"}>
@@ -67,11 +60,11 @@ export default function Todos() {
         <IconButton onClick={() => setUseForm(true)} outerClassName="bg-primary p-3 rounded-xl hover:bg-secondary  text-white" Icon={Plus} />
       </div>
 
-      {userTodos.length === 0 ? (
+      {todos.length === 0 ? (
         <p>Keine offene Todos</p>
       ) : (
         <FlexibleColumnWrapper>
-          {userTodos.map((todo) => (
+          {todos.map((todo) => (
             <div key={todo.id} className="bg-white rounded-lg shadow p-4">
               <Link to={`/todo/${todo.id}`}>
                 <h2 className="text-xl font-bold mb-2">{todo.titel}</h2>

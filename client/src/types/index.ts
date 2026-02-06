@@ -1,5 +1,4 @@
 export type Todo = {
-  matrikelnummer: number;
   id: number;
   titel: string;
   text: string;
