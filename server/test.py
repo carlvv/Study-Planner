@@ -7,7 +7,7 @@ from ast import mod
 import pymongo
 
 from fetch.Reader import CurriculaReader
-from fetch.fetch import get_curriculae
+from fetch.fetch import fetch_and_save, get_curriculae
 from db.collections.curricula import Curricula
 from fetch import fetch
 
