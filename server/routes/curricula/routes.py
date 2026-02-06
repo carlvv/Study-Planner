@@ -16,9 +16,9 @@ def get_all_programs():
     }
 
     for cur in manager.get_all_programms():
-        key = cur.get("is_bachelor")
-        name = cur.get("programm_name")
-        version = cur.get("programm_version")
+        key = cur.is_bachelor
+        name = cur.programm_name
+        version = cur.programm_version
 
         if key is not None and name and version:
             grouped[key].append({

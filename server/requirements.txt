@@ -11,3 +11,4 @@ dotenv
 Flask-PyMongo
 pdfplumber
 pandas
+numpy
