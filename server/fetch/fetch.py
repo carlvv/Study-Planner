@@ -1,4 +1,7 @@
 
+from calendar import c
+import html
+import json
 import re
 
 from bs4 import BeautifulSoup
@@ -89,7 +92,7 @@ def extract_curricula_from_html(html_content: str) -> Dict:
 
 
 
-    
+    print("Extracted curricula data:", json.dumps(result, indent=2, ensure_ascii=False))
     return result
 
 
@@ -126,7 +129,7 @@ def extract_curricula_from_table(table, result_dict: Dict):
         elif current_program_name:
             # Continuation row in historical table (no program name in first cell)
             # Row structure: [Date, Modulübersicht, Curriculum, SPO, Modulhandbuch]
-            curriculum_cell_index = 4
+            curriculum_cell_index = 2
         
         # Skip if no current program
         if not current_program_name or current_program_name in ['Studiengang', '']:
@@ -183,7 +186,7 @@ def get_curriculae(url: str = "https://www.fh-wedel.de/studieren/pruefungscenter
     response.raise_for_status()
     return extract_curricula_from_html(response.text)
 
-def fetch_and_save(mongoClient: pymongo.MongoClient | None = None) -> None:
+def fetch_and_save(mongoClient: pymongo.MongoClient | None = None, delete_existing: bool = True) -> None:
     """
     Fetches curricula data and saves it to MongoDB.
     
@@ -200,6 +203,13 @@ def fetch_and_save(mongoClient: pymongo.MongoClient | None = None) -> None:
     curricula_manager =  CurriculaManager(db)
     module_manager =  ModuleManager(db)
     course_manager =  CourseManager(db)
+
+    if delete_existing:
+        print("Deleting existing curricula, modules, and courses...")
+        curricula_manager.delete_all()
+        module_manager.delete_all()
+        course_manager.delete_all()
+        print("Existing data deleted.")
 
     for _, info in curricula_data.get("bachelor", {}).items():
         for entry in info.get("available", []):

@@ -78,6 +78,15 @@ class CourseManager(BaseManager[Course]):
             return existing.id
         return self.create_course(course)
     
+    def get_all_courses(self) -> list[Course]:
+        out : list[Course] = []
+        for data in self._collection.find({}):
+            out.append(self._model.from_dict(data))
+        return out
+    
+    def delete_all(self):
+        self._collection.delete_many({})
+    
 
 class CurriculaManager(BaseManager[Curricula]):
     def __init__(self, db: MongoClient):
@@ -100,8 +109,14 @@ class CurriculaManager(BaseManager[Curricula]):
             return existing.id
         return self.create_curricula(curricula)
 
-    def get_all_programms(self) -> List[Curricula]:
-        return list(self._collection.find({}))
+    def get_all_programms(self) -> list[Curricula]:
+        out : list[Curricula] = []
+        for data in self._collection.find({}):
+            out.append(self._model.from_dict(data))
+        return out
+
+    def delete_all(self):
+        self._collection.delete_many({})
 
 class EventManager(BaseManager[Event]):
     def __init__(self, db: MongoClient):
@@ -131,6 +146,15 @@ class ModuleManager(BaseManager[Module]):
         if existing:
             return existing.id
         return self.create_module(module)
+    
+    def get_all_modules(self) -> list[Module]:
+        out : list[Module] = []
+        for data in self._collection.find({}):
+            out.append(self._model.from_dict(data))
+        return out
+    
+    def delete_all(self):
+        self._collection.delete_many({})
     
 
 

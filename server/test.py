@@ -9,13 +9,14 @@ import pymongo
 from fetch.Reader import CurriculaReader
 from fetch.fetch import get_curriculae
 from db.collections.curricula import Curricula
+from fetch import fetch
 
 
 # user_manager =  StudentManager(myclient["db"])
 # user_manager.create_user("10001", "test1234", "Max1 Mustermann", "foo", "foo")
 
-
 '''
+
 result = get_curriculae()
 
 print(json.dumps(result, indent=2, ensure_ascii=False))
@@ -55,12 +56,20 @@ for _, info in result.get("bachelor", {}).items():
             print(f"  Curricula '{cur.studiengang}' -> db_id '{curricula_db_id}'")
             print(f"FINISHED: {cur.studiengang}\n")
 
-
+'''
 # Start mongo:
 # mongod --fork --logpath /var/log/mongodb/mongod.log --bind_ip 127.0.0.1
-'''
 
+myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 
+fetch.fetch_and_save(myclient, delete_existing=True)
+curricula_manager =  CurriculaManager(myclient["db"])
+
+all_programms = curricula_manager.get_all_programms()
+all_programms.sort(key=lambda x: (x.programm_name, x.programm_version))
+print("# of programms:", len(all_programms))
+for prog in all_programms:
+    print(prog.programm_name, prog.programm_version)
 
 
 '''
@@ -136,8 +145,3 @@ print("Fetched Module:", module_fetched)
 course_fetched = course_manager.get_by_course_id("TEST101")
 print("Fetched Course:", course_fetched)
 '''
-
-
-from fetch import fetch
-
-fetch.fetch_and_save()
