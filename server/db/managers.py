@@ -59,6 +59,8 @@ class StudentProcessManager(BaseManager[StudentProcess]):
     def get_process(self, student_id):
         return list(self._collection.find({"student_id": student_id}))
     
+    def add_process(self, student_id,course_id, grade, module_id ):
+        return self._create(StudentProcess(student_id=student_id, course_id=course_id, grade=grade, module_id=module_id))
 
 class CourseManager(BaseManager[Course]):   
     def __init__(self, db: MongoClient):
