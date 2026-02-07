@@ -149,3 +149,16 @@ def curricula_update():
     manager.add_process(identity,course_id, grade,module_id)
 
     return jsonify(), 200
+
+@curricula_bp.route("/curricula_delete", methods=["POST"])
+@jwt_required()
+def curricula_delete():
+    manager = StudentProcessManager(current_app.mongo.db)
+    identity = get_jwt_identity()
+
+    data = request.get_json()
+    module_id = data.get("module_id")
+    course_id = data.get("course_id")
+    manager.delete_process(identity, course_id, module_id)
+
+    return jsonify(), 200

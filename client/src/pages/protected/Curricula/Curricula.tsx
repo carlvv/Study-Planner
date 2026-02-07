@@ -19,11 +19,15 @@ const GradeModal = ({
     course,
     onClose,
     onSave,
-    isLoading
+    error,
+    isLoading,
+    onDelete
 }: {
     course: Course;
+    error: string;
     isLoading: boolean,
     onClose: () => void;
+    onDelete: () => void;
     onSave: (grade: number) => void;
 }) => {
     const [mode, setMode] = useState<"passed" | "grade">(
@@ -69,6 +73,7 @@ const GradeModal = ({
                         className="border p-2 rounded"
                     />
                 )}
+                {error != "" && <p className="text-red-500">{error}</p>}
                 {isLoading &&
                     <div className="flex justify-center items-center space-x-2">
                         <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce"></div>
@@ -78,6 +83,16 @@ const GradeModal = ({
                 }
 
                 <div className="flex justify-end gap-2 pt-2">
+                    {course.finished && <>
+                        <button
+                            className="px-4 py-2 rounded bg-red-500 text-white"
+                            onClick={onDelete}
+
+                        >
+                            Note löschen
+                        </button>
+                    </>}
+
                     <button
                         className="px-4 py-2 rounded bg-gray-300"
                         onClick={onClose}
@@ -87,7 +102,7 @@ const GradeModal = ({
                     <button
                         className="px-4 py-2 rounded bg-blue-500 text-white"
                         onClick={() =>
-                            onSave(mode === "passed" ? 0.0 : grade)
+                            onSave(mode === "passed" ? 0 : grade)
                         }
                     >
                         Speichern
@@ -105,6 +120,7 @@ const FoldableCard = ({ elem }: { elem: Module }) => {
     const [isVisible, setVisible] = useState(true);
     const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
     const [isModalOpen, setModalOpen] = useState(false);
+    const [err, setError] = useState("");
 
 
     const queryClient = useQueryClient()
@@ -125,6 +141,23 @@ const FoldableCard = ({ elem }: { elem: Module }) => {
         },
     });
 
+
+    const deleteMutation = useMutation({
+        mutationFn: async ({ moduleId, courseId }: { moduleId: string; courseId: string }) => {
+            const response = await fetch_backend_auth('/curricula_delete', {
+                method: 'POST',
+                body: JSON.stringify({ module_id: moduleId, course_id: courseId }),
+            });
+            if (!response.ok) throw new Error('Fehler beim Löschen der Note');
+            return response.json();
+        },
+        onSuccess: async () => {
+            await queryClient.invalidateQueries({
+                queryKey: ["curricula-data"],
+            });
+            setModalOpen(false);
+        },
+    });
     return (
         <>
             <div className={`col-span-12 flex ${elem.finished ? "bg-blue-300" : "bg-gray-400"} p-2 rounded-xl gap-4`}>
@@ -164,8 +197,22 @@ const FoldableCard = ({ elem }: { elem: Module }) => {
                 <GradeModal
                     course={selectedCourse}
                     isLoading={mutation.isPending}
+                    error={err}
                     onClose={() => setModalOpen(false)}
+                    onDelete={() => {
+                        if (!selectedCourse) return;
+                        deleteMutation.mutate({
+                            moduleId: elem.code,
+                            courseId: selectedCourse.code,
+                        });
+                    }}
                     onSave={async (grade) => {
+                        if (grade != 0 && (grade < 1 || grade > 4)) {
+                            setError("keine gültige Note")
+                            return
+                        }
+                        setError("")
+
                         if (!selectedCourse) return;
                         mutation.mutate({
                             moduleId: elem.code,
@@ -174,6 +221,7 @@ const FoldableCard = ({ elem }: { elem: Module }) => {
                         })
                     }}
                 />
+
             )}
 
         </>

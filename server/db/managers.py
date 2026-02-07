@@ -1,4 +1,5 @@
 from ast import List
+from genericpath import exists
 from typing import Optional
 from bson import ObjectId
 from pymongo import MongoClient
@@ -60,7 +61,15 @@ class StudentProcessManager(BaseManager[StudentProcess]):
         return list(self._collection.find({"student_id": student_id}))
     
     def add_process(self, student_id,course_id, grade, module_id ):
+        exists = self.exists({"student_id": student_id, "module_id": module_id, "course_id":course_id })
+        if exists:
+            self.delete_process(student_id, course_id, module_id)
+        
         return self._create(StudentProcess(student_id=student_id, course_id=course_id, grade=grade, module_id=module_id))
+    
+
+    def delete_process(self, student_id,course_id, module_id ):
+        return self._collection.find_one_and_delete({"student_id": student_id, "module_id": module_id, "course_id":course_id })
 
 class CourseManager(BaseManager[Course]):   
     def __init__(self, db: MongoClient):
