@@ -23,3 +23,18 @@ export type Student = {
   study_id: string;
   start_semester: string;
 };
+export interface Module {
+    code: string;
+    ects: number;
+    finished: boolean;
+    name: string;
+    courses: Course[];
+}
+
+export interface Course {
+    code: string;
+    ects: number;
+    finished: boolean;
+    name: string;
+    grade: number;
+}

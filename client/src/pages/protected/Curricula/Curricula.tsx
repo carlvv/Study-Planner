@@ -4,6 +4,7 @@ import Layout from "../../../components/layout/Layout";
 import { TwoColumnWrapper } from "../../../components/layout/TwoColumnWrapper";
 import { H1, H2, } from "../../../components/Text";
 import { useCurricula } from "./useCurricula";
+import { type Course, type Module } from "../../../types";
 import { IconButton } from "../../../components/Buttons";
 import {
     ArrowDownCircle,
@@ -12,7 +13,7 @@ import {
     EyeClosed,
 } from "lucide-react";
 
-const FoldableCard = ({ elem }: { elem: any }) => {
+const FoldableCard = ({ elem }: { elem: Module }) => {
     const [isVisible, setVisible] = useState(true);
 
     return (
@@ -27,12 +28,12 @@ const FoldableCard = ({ elem }: { elem: any }) => {
                 <div className="flex flex-col gap-2 px-2 ">
                     <h2 className="text-black font-semibold md:text-xl text-lg">{elem.name}</h2>
                     <h3 className="font-medium md:text-xl text-lg">
-                        {elem.code} - {elem.ects} ECTS
+                        {elem.code} - {elem.ects + ""} ECTS
                     </h3>
                 </div>
             </div>
             {!isVisible &&
-                elem.courses.map((a: any) => (
+                elem.courses.map((a: Course) => (
                     <>
                         <div className="col-span-1" />
                         <div className="col-span-11 flex px-4 p-2 border-2 border-gray-300 rounded-xl justify-between items-center">
@@ -50,7 +51,7 @@ const FoldableCard = ({ elem }: { elem: any }) => {
     );
 };
 
-const VisibleList = ({ list, name }: { list: any[], name: string }) => {
+const VisibleList = ({ list, name }: { list: Module[], name: string }) => {
     const [isVisible, setVisible] = useState(true);
 
     return (
@@ -67,7 +68,7 @@ const VisibleList = ({ list, name }: { list: any[], name: string }) => {
             
 
             <div className="grid grid-cols-12 gap-2">
-                {isVisible && list.map((a: unknown, id) => <FoldableCard key={id} elem={a} />)}
+                {isVisible && list.map((a: Module, id) => <FoldableCard key={id} elem={a} />)}
             </div>
         </>
     );
@@ -75,16 +76,16 @@ const VisibleList = ({ list, name }: { list: any[], name: string }) => {
 
 export const Curricula = () => {
     const d = useCurricula();
-    if (d.isLoading) {
+    if (!d || d.isLoading) {
         return <>Es wird geladen...</>
     }
     return (
         <Layout backURL="/">
             <H1 className="pt-6">{d.name}</H1>
             <TwoColumnWrapper>
-                <Card title={d.stats[0]} text="Bestandene ECTS" />
-                <Card title={d.stats[1]} text="Durchschnittnote" />
-                <Card title={d.stats[2]} text="Offene ECTS" />
+                <Card title={d.stats[0] + ""} text="Bestandene ECTS" />
+                <Card title={d.stats[1] + ""} text="Durchschnittnote" />
+                <Card title={d.stats[2] + ""} text="Offene ECTS" />
                 <Card title={d.stats[3] + "."} text="Semester" />
             </TwoColumnWrapper>
             <VisibleList list={d.modules.filter(a => a.finished)} name={"Bestandenen Module"} />

@@ -47,6 +47,9 @@ class StudentManager(BaseManager[Student]):
         user = Student.Builder().name(name).password(password).start_semester(start_semester).student_id(student_id).study_id(study_id).build()
 
         return self._create(user)
+    
+    def update_curricula(self, student_id, version_id):
+        return self.update_one({"student_id": student_id}, { "study_id": version_id })
 
 class StudentProcessManager(BaseManager[StudentProcess]):
     # Manager für den Fortschritt eines Students
