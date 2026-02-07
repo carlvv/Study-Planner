@@ -39,3 +39,4 @@ wheels/
 *.swp
 *.swo
 *~
+.env

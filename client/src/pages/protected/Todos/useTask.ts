@@ -34,6 +34,21 @@ export function useTask(id: string) {
         }
     })
 
+    const deleteMutation = useMutation({
+        mutationFn: async () => {
+            const res = await fetch_backend_auth("/todo_delete/" + id, {method: "DELETE"})
+            if(!res.ok) {
+                const err = await res.json()
+                throw new Error(err ?? 'Unbekannter Fehler')
+            }
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: ["todo-data", id],
+            })
+        }
+    })
 
-    return { todo: data, update: updateMutation.mutate, isLoading, isError, error }
+
+    return { todo: data, update: updateMutation.mutate, deleteTodo: deleteMutation.mutateAsync, isLoading, isError, error }
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
-import { Pencil, Save } from "lucide-react";
+import { Pencil, Save, Trash2 } from "lucide-react";
 import type { Task, Todo } from "../../../types";
 import Layout from "../../../components/layout/Layout";
 import { IconButton } from "../../../components/Buttons";
@@ -10,8 +10,9 @@ import { useTask } from "./useTask";
 export default function Tasks() {
   const params = useParams<{ todoId: string }>();
 
-  const { todo, isLoading, update, isError, error } = useTask(params.todoId ?? "")
+  const { todo, isLoading, update, deleteTodo, isError, error } = useTask(params.todoId ?? "")
 
+  const navigate = useNavigate()
 
   //Speichert in welchem Modus der User ist
   const [isEditModus, setEditModus] = useState<boolean>(false);
@@ -93,6 +94,13 @@ export default function Tasks() {
         </div>
 
         {/* Button-Logik bleibt gleich */}
+        {isEditModus && (
+          <IconButton
+            className="ml-auto bg-gray-800 rounded-xl p-4  text-white"
+            size={60}
+            Icon={Trash2}
+            onClick={async () => {await deleteTodo(); navigate("/todo")}}
+          />)}
         <IconButton
           className="ml-auto bg-gray-800 rounded-xl p-4  text-white"
           size={60}

@@ -81,3 +81,16 @@ def add_todo():
         return jsonify(), 200
     except:
         return jsonify({"error": "Fehler beim Erstellen des neuen Todos"}), 500
+    
+@todo_bp.route("/todo_delete/<id>", methods=["DELETE"])
+@jwt_required()
+def delete_todo(id):
+    try:
+        identity = get_jwt_identity()
+
+        manager = TodoManager(current_app.mongo.db)
+        manager.delete_todo(identity, id)
+
+        return jsonify(), 200
+    except:
+        return jsonify({"error": "Fehler beim Löschen des Todos"}), 500

@@ -177,6 +177,12 @@ class TodoManager(BaseManager[Todo]):
     
     def get_todo(self, student_id, id):
         return self._get_by_dict({"owner_id": student_id, "_id": ObjectId(id)})
+
+    def delete_todo(self, student_id: str, todo_id: str):
+        todo = self._get_by_dict({"_id": ObjectId(todo_id), "owner_id": student_id})
+        if not todo:
+            return False
+        return self.delete_by_id(todo.id)
     
     # TODO Time
     def update_todo(self, student_id, id, title, description, tasks):

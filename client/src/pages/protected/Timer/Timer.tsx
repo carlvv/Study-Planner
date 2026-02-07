@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
-import Layout from "../../components/layout/Layout";
+import Layout from "../../../components/layout/Layout";
 import { Link } from "react-router-dom";
-import { H1, H3 } from "../../components/Text";
+import { H1, H3 } from "../../../components/Text";
 
 import { useParams } from "react-router-dom";
+import { useTimer } from "./useTimer";
 
 //TODO: Liste aller Module des Users vom Backend holen
 const currentSubjects = [{ name: "Analysis", id: 1, ects: 5 }, { name: "Programmstrukturen 1", id: 2, ects: 5 }, { name: "Programmstrukturen 2", id: 3, ects: 5 }]
@@ -37,10 +38,20 @@ export default function Timer() {
     if (!subject)
         return (<h1>Kein Modul mit {params.subjectId} gefunden</h1>)
 
+    const { data, isLoading, isError, error } = useTimer(params.subjectId);
+
     const [errorMessage, setErrorMessage] = useState<ErrorKey | null>(null);
 
     const [input, setInput] = useState<string[]>(["_", "_", "_", "_"]);
     const [inputIndex, setInputIndex] = useState<number>(0);
+
+
+    if(isLoading) {
+        return <>Loading...</>
+    }  
+    if(isError) {
+        return <>Fehler</>
+    }
 
     const addDigit = (number: string) => {
         if (inputIndex <= 3) {

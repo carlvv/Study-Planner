@@ -23,3 +23,10 @@ export type Student = {
   study_id: string;
   start_semester: string;
 };
+
+export type Time = {
+  module_id: string
+  duration_in_min: number
+  date: Date
+  owner_id: string
+}

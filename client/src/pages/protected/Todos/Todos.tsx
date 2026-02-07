@@ -44,7 +44,7 @@ export default function Todos() {
     setNewTodo((prev) => ({ ...prev, text: "", titel: "" }))
   }
 
-  if (isLoading) {
+  if (isLoading || !todos) {
     return <>Loading...</>
   }
 
