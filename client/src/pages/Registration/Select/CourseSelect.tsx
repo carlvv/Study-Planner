@@ -1,4 +1,5 @@
 import { ButtonPrimary } from "../../../components/Buttons";
+import { Loading } from "../../../components/Loading";
 import { usePrograms } from "./usePrograms";
 
 export function CourseSelect({
@@ -18,7 +19,7 @@ export function CourseSelect({
 
 
   if (isLoading) {
-    return <></>
+    return <><Loading isLoading={isLoading} /></>
   }
 
   const programs = isbachelor ? data!.true : data!.false

@@ -1,17 +1,22 @@
 import { type LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
+import { twMerge } from "tailwind-merge";
 
 interface ButtonPrimaryParams {
   to?: string;
   onClick?: () => void;
   children: React.ReactNode;
-  disable? : boolean
+  disable?: boolean
+  className?: string
 }
 
-function ButtonPrimary({ to, onClick, children, disable = false }: ButtonPrimaryParams) {
+function ButtonPrimary({ to, onClick, children, disable = false, className }: ButtonPrimaryParams) {
   const button = (
     <button
-      className="min-w-64 bg-primary  text-white text-lg font-bold p-4 rounded-xl hover:bg-secondary transition-colors disabled:bg-gray-600"
+      className={twMerge(
+        "min-w-64 bg-primary hover:bg-secondary text-white text-lg font-bold p-4 rounded-xl transition-colors disabled:bg-gray-600",
+        className
+      )}
       onClick={onClick}
       disabled={disable}
     >

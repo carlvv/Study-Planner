@@ -7,6 +7,7 @@ import { fetch_backend_auth } from "../../utils/helper";
 import { TwoColumnWrapper } from "../../components/layout/TwoColumnWrapper";
 import Layout from "../../components/layout/Layout";
 import { useQuery } from "@tanstack/react-query";
+import { Loading } from "../../components/Loading";
 
 interface TileProps {
   icon: ReactNode;
@@ -121,11 +122,11 @@ function Home() {
     refetchOnMount: "always",
   });
 
-  if (loading || isLoading) return <></>;
   if (error) return <p>Fehler beim Laden</p>;
 
   return (
     <Layout>
+      <Loading isLoading={isLoading} />
       <div className="w-full">
         <Header name={user?.name} logout={logout} />
       </div>

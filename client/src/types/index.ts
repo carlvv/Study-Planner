@@ -24,9 +24,25 @@ export type Student = {
   start_semester: string;
 };
 
+
 export type Time = {
   module_id: string
   duration_in_min: number
   date: Date
   owner_id: string
+}
+export interface Module {
+    code: string;
+    ects: number;
+    finished: boolean;
+    name: string;
+    courses: Course[];
+}
+
+export interface Course {
+    code: string;
+    ects: number;
+    finished: boolean;
+    name: string;
+    grade: number;
 }

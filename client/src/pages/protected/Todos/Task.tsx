@@ -6,6 +6,7 @@ import type { Task, Todo } from "../../../types";
 import Layout from "../../../components/layout/Layout";
 import { IconButton } from "../../../components/Buttons";
 import { useTask } from "./useTask";
+import { Loading } from "../../../components/Loading";
 
 export default function Tasks() {
   const params = useParams<{ todoId: string }>();
@@ -31,7 +32,7 @@ export default function Tasks() {
   }, [isLoading])
 
   if (isLoading) {
-    return <>Loading...</>
+    return <Loading isLoading={isLoading} />
   }
   if (isError || !todo) {
     return <>{error?.message}</>

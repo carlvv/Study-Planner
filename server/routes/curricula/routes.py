@@ -1,6 +1,8 @@
 import datetime
-from flask import Blueprint, current_app, jsonify
+from flask import Blueprint, current_app, jsonify, request
 from flask_jwt_extended import get_jwt_identity, jwt_required
+from numpy import identity
+from trio import Process
 from db.managers import CourseManager, CurriculaManager, ModuleManager, StudentManager, StudentProcessManager
 
 curricula_bp = Blueprint('curricula', __name__, url_prefix='/')
@@ -132,3 +134,31 @@ def curricula_progress():
             count_semester(student.start_semester),
         ]
     })
+
+
+@curricula_bp.route("/curricula_update", methods=["POST"])
+@jwt_required()
+def curricula_update():
+    manager = StudentProcessManager(current_app.mongo.db)
+    identity = get_jwt_identity()
+
+    data = request.get_json()
+    module_id = data.get("module_id")
+    course_id = data.get("course_id")
+    grade = data.get("grade")
+    manager.add_process(identity,course_id, grade,module_id)
+
+    return jsonify(), 200
+
+@curricula_bp.route("/curricula_delete", methods=["POST"])
+@jwt_required()
+def curricula_delete():
+    manager = StudentProcessManager(current_app.mongo.db)
+    identity = get_jwt_identity()
+
+    data = request.get_json()
+    module_id = data.get("module_id")
+    course_id = data.get("course_id")
+    manager.delete_process(identity, course_id, module_id)
+
+    return jsonify(), 200

@@ -66,3 +66,15 @@ def protected():
         "study_id": claims["study_id"],
         "start_semester": claims["start_semester"]
     }), 200
+
+@auth_bp.route("/profile_change", methods=["POST"])
+@jwt_required()
+def change_profile():
+    user_manager =  StudentManager(current_app.mongo.db)
+    identity = get_jwt_identity()
+
+    data = request.get_json()
+    study_id = data.get("study_id")
+    user_manager.update_curricula(identity, study_id)
+
+    return jsonify(), 200
