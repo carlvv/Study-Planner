@@ -7,6 +7,7 @@ import { useState } from "react";
 import { DegreeSelect } from "../Registration/Select/DegreeSelect";
 import type { Curricula } from "../../types";
 import { CourseSelect } from "../Registration/Select/CourseSelect";
+import { Loading } from "../../components/Loading";
 interface Data { name: string, id: string, programm: string, isbachelor: boolean, version: string, }
 export const Profile = () => {
     const { data, isLoading } = useQuery({
@@ -61,9 +62,7 @@ export const Profile = () => {
 
     if (isLoading) {
         return (
-            <div className="flex items-center justify-center py-20 text-gray-500">
-                Loading…
-            </div>
+            <Loading isLoading={isLoading} />
         );
     }
     return (

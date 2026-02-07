@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { fetch_backend_auth } from "../../../utils/helper";
+import { Loading } from "../../../components/Loading";
 
 const GradeModal = ({
     course,
@@ -38,7 +39,7 @@ const GradeModal = ({
     return (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
             <div className="bg-white rounded-xl p-6 w-96 flex flex-col gap-4">
-                <h2 className="text-xl font-semibold">{course.name}</h2>
+                <h2 className="text-xl font-semibold">{course.code} - {course.name}</h2>
 
                 {/* Auswahl */}
                 <div className="flex gap-4">
@@ -254,7 +255,7 @@ const VisibleList = ({ list, name }: { list: Module[], name: string }) => {
 export const Curricula = () => {
     const d = useCurricula();
     if (!d || d.isLoading) {
-        return <>Es wird geladen...</>
+        return <Loading isLoading={d.isLoading} />
     }
     return (
         <Layout backURL="/">

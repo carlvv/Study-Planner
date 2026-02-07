@@ -8,6 +8,7 @@ import { IconButton } from "../../../components/Buttons";
 import Layout from "../../../components/layout/Layout";
 import { FlexibleColumnWrapper } from "../../../components/layout/FlexibleColumnWrapper";
 import { useTodos } from "./useTodos";
+import { Loading } from "../../../components/Loading";
 
 export default function Todos() {
   const { todos, addTodo, isLoading } = useTodos()
@@ -45,7 +46,7 @@ export default function Todos() {
   }
 
   if (isLoading) {
-    return <>Loading...</>
+    return <Loading isLoading={isLoading} />
   }
 
 
