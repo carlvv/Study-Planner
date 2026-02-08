@@ -1,4 +1,4 @@
-import requests as re
+import requests
 import xml.etree.ElementTree as et
 import pymongo as mongo
 
@@ -8,7 +8,7 @@ from db.managers import EventManager
 
 def dl_api():
     url = "https://intern.fh-wedel.de/~tho/api/splan.php"
-    session = re.Session()
+    session = requests.Session()
     response = session.get(url)
     return response.text
 
@@ -21,7 +21,7 @@ def parse_schedule(stundenplan):
     fachrichtungen: list[Specialisation] = []
     veranstaltungen: list[Event] = []
 
-    tree = et.parse(stundenplan)
+    tree = et.ElementTree(et.fromstring(stundenplan))
     root = tree.getroot()
 
     for splanRootNode in root:
@@ -85,8 +85,6 @@ def parse_schedule(stundenplan):
                 zuhoerer: list[Listener] = []
                 stunden =  int(veranstaltung[6].text)
 
-                nameAAAAAAAA = veranstaltung[2].text
-
                 for termin in veranstaltung[10]:
                     veranstaltungs_raume: list[Room] = []
                     for r in raume:
@@ -129,12 +127,15 @@ def schedule_to_db(events):
 
 
 def create_schedule():
-    # schedule = dl_api()
-    # events = parse_schedule(schedule)
-    events = parse_schedule("splan.xml")
-    print(events)
+    #TODO Datei Download Fehlerhaft
+    #schedule = dl_api()
+    #events = parse_schedule(schedule)
+
+    schedule = open("data/splan-DEBUG.php", "r").read()
+    events = parse_schedule(schedule)
+    print("Parse Ergebnis -> " + str(len(events)))
     amount = schedule_to_db(events)
-    print(amount)
+    print("In DB -> " + str(amount))
 
 
 if __name__ == "__main__":
