@@ -270,6 +270,25 @@ class EventManager(BaseManager[Event]):
     def __init__(self, db: MongoClient):
         super().__init__(db.event, Event)
 
+    def event_exists(self, event: Event) -> bool:
+        return self.exists({"course_id": event.course_id})
+
+    def get_by_event_id(self, course_id: str) -> Optional[Event]:
+        return self._get_by_dict({"course_id": course_id})
+
+    def create_event(self, event: Event) -> Optional[ObjectId]:
+        if self.event_exists(event):
+            return None
+        return self._create(event)
+
+    def create_or_get_event(self, event: Event) -> Optional[ObjectId]:
+        existing = self.get_by_event_id(event.course_id)
+        if existing:
+            return existing.id
+        return self.create_event(event)
+
+    def clear_table(self):
+        self._collection.drop()
 
 class LearnTimeManager(BaseManager[Learntime]):
     def __init__(self, db: MongoClient):

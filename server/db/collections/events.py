@@ -1,18 +1,62 @@
-
 from dataclasses import dataclass
 
 from db.collections.base_model import BaseModel
 
+
+@dataclass(kw_only=True)  # Was macht das?
+class Day:
+    day_id: int
+    desc: str
+
+
+@dataclass(kw_only=True)
+class Timeslot:
+    timeslot_id: int
+    desc: str
+
+
+@dataclass(kw_only=True)
+class Room:
+    room_id: int
+    desc_kurz: str
+    desc_lang: str
+
+
+@dataclass(kw_only=True)
+class Lecturer:
+    lecturer_id: int
+    type: str
+    short: str
+    name: str
+
+
+@dataclass(kw_only=True)
+class Specialisation:
+    specialisation_id: int
+    is_FH: bool
+    is_Master: bool
+    desc_short: str
+    desc_long: str
+
+@dataclass(kw_only=True)
+class Listener:
+    specialisation_id: int
+    recommSemester: [int]
+
+@dataclass(kw_only=True)
+class DayEvent:
+    day: Day
+    start_time: Timeslot
+    end_time: Timeslot
+    rooms: [Room]
+
+
 @dataclass(kw_only=True)
 class Event(BaseModel):
-    course_id: str
+    event_id: int
     name: str
-    day: str
-    semester: str
-    start_time: int | None = None
-    """Startzeit, Beispiel: 9:30 -> 930"""
-    end_time: int | None = None
-    """Endzeit, Beispiel: 10:45 -> 1045"""
-    weekly_event: bool
-    room: str
-    
+    name_add: str
+    course_id: str
+    optional: bool
+    days: [DayEvent]
+    listeners: [Listener]

@@ -1,157 +1,150 @@
-import requests
-from bs4 import BeautifulSoup
-import re
+import xml.etree.ElementTree as et
+import pymongo as mongo
+import requests as re
 
-def dl_aktuell():
-    url = "https://stundenplan.fh-wedel.de/?sicht=Benutzerdefiniert&einrichtung=Fachhochschule"
-    session = requests.Session() #wegen cookies
-    response = session.get(url, timeout=10)
-    response.encoding = 'utf-8'
-    soup = BeautifulSoup(response.text, 'html.parser')
-    form = soup.find('form')
-    checkboxes_to_select = []
-    all_checkboxes = form.find_all('input', {'type': 'checkbox'})
-    for cb in all_checkboxes:
-        name = cb.get('name', '')
-        value = cb.get('value', '')
-        label_text = ''
-        cb_id = cb.get('id', '')
-        if cb_id:
-            label = soup.find('label', {'for': cb_id})
-            if label:
-                label_text = label.get_text(strip=True)
-        if not label_text:
-            parent_label = cb.find_parent('label')
-            if parent_label:
-                label_text = parent_label.get_text(strip=True)
-        if 'plan_veranstaltung' in name.lower():
-            checkboxes_to_select.append((name, value))
-    form_data = {}
-    for input_elem in form.find_all(['input', 'select', 'textarea']):
-        input_type = input_elem.get('type', '').lower()
-        name = input_elem.get('name', '')
-        if not name:
+from db.collections.events import *
+from db.managers import EventManager
+
+
+def dl_api():
+    url = "https://intern.fh-wedel.de/~tho/api/splan.php"
+    session = re.Session()
+    response = session.get(url)
+    return response.text
+
+
+def parse_schedule(stundenplan):
+    tage: list[Day] = []
+    zeiten: list[Timeslot] = []
+    raume: list[Room] = []
+    mitarbeiter: list[Lecturer] = []
+    fachrichtungen: list[Specialisation] = []
+    veranstaltungen: list[Event] = []
+
+    tree = et.ElementTree(et.fromstring(stundenplan))
+    root = tree.getroot()
+
+    for splanRootNode in root:
+        if (splanRootNode.tag == "erstellung"):
             continue
-        if input_type == 'checkbox':
-            continue
-        elif input_type == 'radio':
-            if input_elem.has_attr('checked'):
-                form_data[name] = input_elem.get('value', '')
-        elif input_elem.name == 'select':
-            selected = input_elem.find('option', selected=True)
-            if selected:
-                form_data[name] = selected.get('value', '')
-            elif input_elem.find_all('option'):
-                first_option = input_elem.find('option')
-                form_data[name] = first_option.get('value', '')
-        elif input_type == 'hidden':
-            form_data[name] = input_elem.get('value', '')
-        elif input_type not in ['submit', 'button', 'reset']:
-            form_data[name] = input_elem.get('value', '')
-    for name, value in checkboxes_to_select:
-        if name in form_data:
-            if not isinstance(form_data[name], list):
-                form_data[name] = [form_data[name]]
-            form_data[name].append(value)
-        else:
-            form_data[name] = value
-    form_action = form.get('action', '')
-    form_method = form.get('method', 'get').lower()
-    if form_action:
-        submit_url = requests.compat.urljoin(url, form_action)
-    else:
-        submit_url = url
-    if form_method == 'post':
-        result = session.post(submit_url, data=form_data, timeout=10)
-    else:
-        result = session.get(submit_url, params=form_data, timeout=10)
 
-    return result.text
+        if (splanRootNode.tag == "tage"):  # bisschen unnötig weil woche bleibt konstant
+            for tagXML in splanRootNode:
+                tage.append(Day(
+                    day_id=int(tagXML[0].text),
+                    desc=tagXML[1][1].text
+                ))
 
-def parse_time_slot(time_text):
-    match = re.search(r'(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})', time_text)
-    if match:
-        return match.group(1), match.group(2)
-    return None, None
+        if (splanRootNode.tag == "zeiten"):
+            for zeitXML in splanRootNode:
+                zeiten.append(Timeslot(
+                    timeslot_id=int(zeitXML[0].text),
+                    desc=zeitXML[1].text
+                ))
 
-def parse_schedule_html(html_content):
-    soup = BeautifulSoup(html_content, 'html.parser')
-    table = soup.find('table', class_='stundenplan-tabelle')
-    thead = table.find('thead')
-    day_headers = []
-    if thead:
-        header_row = thead.find('tr')
-        for th in header_row.find_all('th'):
-            day_text = th.get_text(strip=True)
-            colspan = int(th.get('colspan', 1))
-            if day_text and day_text != 'Zeit':
-                for _ in range(colspan):
-                    day_headers.append(day_text)
-    courses = []
-    tbody = table.find('tbody') 
-    for row in tbody.find_all('tr'):
-        time_cell = row.find('td', class_='zeit-spalten')
-        if not time_cell:
-            continue
-        time_text = time_cell.get_text(strip=True)
-        start_time, end_time = parse_time_slot(time_text)
-        cells = row.find_all('td')
-        col_index = 0       
-        for cell in cells[1:]:
-            if 'veranstaltung-zelle' not in cell.get('class', []):
-                col_index += 1
-                continue
-            if col_index < len(day_headers):
-                day = day_headers[col_index]
-            else:
-                day = "Unknown"
-            course_name_div = cell.find('div', class_='veranstaltungs-bezeichnung')
-            if not course_name_div:
-                col_index += 1
-                continue
-            course_name = course_name_div.find('strong')
-            if course_name:
-                course_name = course_name.get_text(strip=True)
-            else:
-                course_name = course_name_div.get_text(strip=True)
-            instructors = []
-            instructor_div = cell.find('div', class_='dozenten-links')
-            if instructor_div:
-                for instructor_link in instructor_div.find_all('a'):
-                    instructors.append(instructor_link.get_text(strip=True))
-            instructor_str = ', '.join(instructors) if instructors else ''
-            course = {
-                'name': course_name,
-                'day': day,
-                'start_time': start_time,
-                'end_time': end_time,
-                'instructor': instructor_str
-            }
-            courses.append(course)
-            colspan = int(cell.get('colspan', 1))
-            col_index += colspan
-    return courses
+        if (splanRootNode.tag == "raeume"):
+            for raumXML in splanRootNode:
+                raume.append(Room(
+                    room_id=int(raumXML[0].text),
+                    desc_kurz=raumXML[1][0].text,
+                    desc_lang=raumXML[1][1].text
+                ))
+
+        if (splanRootNode.tag == "mitarbeiter"):
+            for mitarbeiterXML in splanRootNode:
+                mitarbeiter.append(Lecturer(
+                    lecturer_id=int(mitarbeiterXML[0].text),
+                    type=mitarbeiterXML[1].text,
+                    short=mitarbeiterXML[2][1][0].text,
+                    name=mitarbeiterXML[2][1][1].text + " " + mitarbeiterXML[2][1][2].text
+                ))
+
+        if (splanRootNode.tag == "fachrichtungen"):
+            # skip maxsem
+            for fachrichtungXML in splanRootNode[1]:  # FH
+                fachrichtungen.append(Specialisation(
+                    specialisation_id=int(fachrichtungXML[0].text),
+                    is_FH=True,
+                    is_Master=fachrichtungXML[1][0].text[0] == 'B',
+                    desc_short=fachrichtungXML[1][0].text,
+                    desc_long=fachrichtungXML[1][1].text,
+                ))
+
+            for fachrichtungXML in splanRootNode[2]:  # PTL
+                fachrichtungen.append(Specialisation(
+                    specialisation_id=int(fachrichtungXML[0].text),
+                    is_FH=True,
+                    is_Master=False,
+                    desc_short=fachrichtungXML[1][0].text,
+                    desc_long=fachrichtungXML[1][1].text,
+                ))
+
+        if (splanRootNode.tag == "veranstaltungen"):
+            for veranstaltung in splanRootNode:
+                veransttage: list[DayEvent] = []
+                zuhoerer: list[Listener] = []
+                stunden = int(veranstaltung[6].text)
+
+                for termin in veranstaltung[10]:
+                    veranstaltungs_raume: list[Room] = []
+                    for r in raume:
+                        for vertR in termin[2]:
+                            if (r.room_id == int(vertR.text)):
+                                veranstaltungs_raume.append(r)
+                    veransttage.append(DayEvent(
+                        day=tage[int(termin[0].text) - 1],
+                        start_time=zeiten[int(termin[1].text) - 1],
+                        end_time=zeiten[int(termin[1].text) - 2 + stunden],  # -2 wegen 0 offset
+                        rooms=veranstaltungs_raume
+                    ))
+
+                for teilnehmer in veranstaltung[12]:
+                    if (veranstaltung[12].tag == "fachrichtungen"):
+                        recommSem: list[int] = []
+                        for r in teilnehmer[0]:
+                            if (r.tag == "id"):
+                                continue
+                            recommSem.append(int(r.text))
+                        zuhoerer.append(Listener(
+                            specialisation_id=int(teilnehmer[0][0].text),
+                            recommSemester=recommSem
+                        ))
+
+                veranstaltungen.append(Event(
+                    event_id=int(veranstaltung[0].text),
+                    name=veranstaltung[2].text,
+                    name_add=veranstaltung[3].text,
+                    course_id=veranstaltung[4].text,
+                    optional=bool(int(veranstaltung[9].text)),
+                    days=veransttage,
+                    listeners=zuhoerer,
+                ))
+    return veranstaltungen
 
 
-def schedule_to_db(courses):
-    done = False
-    return done
+def schedule_to_db(events):
+    myclient = mongo.MongoClient("mongodb://localhost:27017/")
+    eventManager = EventManager(myclient["db"])
+    eventManager.clear_table()
+    i = 0
+    for event in events:
+        eventManager.create_event(event)
+        i = i + 1  # gibts kein i++ ???
+    assert i == len(events)
+    return i
 
-def course_to_string(course):
-    return (
-        f"Course: {course['name']}\n"
-        f"Day: {course['day']}\n"
-        f"Time: {course['start_time']} - {course['end_time']}\n"
-        f"Instructor: {course['instructor']}"
-    )
 
 def create_schedule():
-    stundenplan = dl_aktuell()
-    courses = parse_schedule_html(stundenplan)
-    result = schedule_to_db(courses)
-    for kurs in courses:
-        print(course_to_string(kurs) + "\n")
-    return result
+    # TODO Datei Download Fehlerhaft
+    # schedule = dl_api()
+    # events = parse_schedule(schedule)
+
+    schedule = open("data/splan-DEBUG.php", "r").read()
+    events = parse_schedule(schedule)
+    print("Parse Ergebnis -> " + str(len(events)))
+    amount = schedule_to_db(events)
+    print("In DB -> " + str(amount))
+
 
 if __name__ == "__main__":
     create_schedule()
