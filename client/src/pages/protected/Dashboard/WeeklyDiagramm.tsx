@@ -1,4 +1,4 @@
-interface WeeklyData {
+export interface WeeklyData {
   Montag: number;
   Dienstag: number;
   Mittwoch: number;
@@ -98,8 +98,8 @@ export function WeeklyDiagramm({ data }: { data: WeeklyData }) {
             </div>
           ))}
 
-          {extendedData.map((a) => (
-            <p className={`text-xm text-center mt-2 h-[${OFFSET}px]`}>
+          {extendedData.map((a, i) => (
+            <p className={`text-xm text-center mt-2 h-[${OFFSET}px]`} key={i}>
               {a.label.substring(0, 2)}
             </p>
           ))}

@@ -33,7 +33,6 @@ def register():
     user_manager =  StudentManager(current_app.mongo.db)
 
     data = request.get_json()
-    print(data)
     student_id = data.get("student_id")
     password = data.get("password")
     name = data.get("name")
