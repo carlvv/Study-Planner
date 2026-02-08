@@ -1,71 +1,38 @@
+import re
+import pymongo
 import requests
 from bs4 import BeautifulSoup
-import re
+
+from db.collections.events import Event
+from db.managers import EventManager
+
 
 def dl_aktuell():
     url = "https://stundenplan.fh-wedel.de/?sicht=Benutzerdefiniert&einrichtung=Fachhochschule"
-    session = requests.Session() #wegen cookies
-    response = session.get(url, timeout=10)
-    response.encoding = 'utf-8'
+    session = requests.Session()
+    response = session.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
     form = soup.find('form')
-    checkboxes_to_select = []
-    all_checkboxes = form.find_all('input', {'type': 'checkbox'})
-    for cb in all_checkboxes:
-        name = cb.get('name', '')
-        value = cb.get('value', '')
-        label_text = ''
-        cb_id = cb.get('id', '')
-        if cb_id:
-            label = soup.find('label', {'for': cb_id})
-            if label:
-                label_text = label.get_text(strip=True)
-        if not label_text:
-            parent_label = cb.find_parent('label')
-            if parent_label:
-                label_text = parent_label.get_text(strip=True)
-        if 'plan_veranstaltung' in name.lower():
-            checkboxes_to_select.append((name, value))
-    form_data = {}
-    for input_elem in form.find_all(['input', 'select', 'textarea']):
-        input_type = input_elem.get('type', '').lower()
-        name = input_elem.get('name', '')
-        if not name:
-            continue
-        if input_type == 'checkbox':
-            continue
-        elif input_type == 'radio':
-            if input_elem.has_attr('checked'):
-                form_data[name] = input_elem.get('value', '')
-        elif input_elem.name == 'select':
-            selected = input_elem.find('option', selected=True)
-            if selected:
-                form_data[name] = selected.get('value', '')
-            elif input_elem.find_all('option'):
-                first_option = input_elem.find('option')
-                form_data[name] = first_option.get('value', '')
-        elif input_type == 'hidden':
-            form_data[name] = input_elem.get('value', '')
-        elif input_type not in ['submit', 'button', 'reset']:
-            form_data[name] = input_elem.get('value', '')
-    for name, value in checkboxes_to_select:
-        if name in form_data:
-            if not isinstance(form_data[name], list):
-                form_data[name] = [form_data[name]]
-            form_data[name].append(value)
-        else:
-            form_data[name] = value
     form_action = form.get('action', '')
     form_method = form.get('method', 'get').lower()
-    if form_action:
-        submit_url = requests.compat.urljoin(url, form_action)
-    else:
-        submit_url = url
+    submit_url = requests.compat.urljoin(url, form_action) if form_action else url
+    checkboxes = form.find_all('input', {'name': 'plan_veranstaltung', 'type': 'checkbox'})
+    form_data = {}
+    for checkbox in checkboxes:
+        if 'plan_veranstaltung' in form_data:
+            form_data['plan_veranstaltung'].append(checkbox['value'])
+        else:
+            form_data['plan_veranstaltung'] = [checkbox['value']]
+    submit_button = form.find('input', {'type': 'submit', 'value': 'Plan Erstellen'})
+    if submit_button:
+        button_name = submit_button.get('name', 'submit')
+        form_data[button_name] = submit_button['value']
+    for hidden_input in form.find_all('input', {'type': 'hidden'}):
+        form_data[hidden_input.get('name')] = hidden_input.get('value')
     if form_method == 'post':
         result = session.post(submit_url, data=form_data, timeout=10)
     else:
         result = session.get(submit_url, params=form_data, timeout=10)
-
     return result.text
 
 def parse_time_slot(time_text):
@@ -87,8 +54,8 @@ def parse_schedule_html(html_content):
             if day_text and day_text != 'Zeit':
                 for _ in range(colspan):
                     day_headers.append(day_text)
-    courses = []
-    tbody = table.find('tbody') 
+    events = []
+    tbody = table.find('tbody')
     for row in tbody.find_all('tr'):
         time_cell = row.find('td', class_='zeit-spalten')
         if not time_cell:
@@ -96,7 +63,7 @@ def parse_schedule_html(html_content):
         time_text = time_cell.get_text(strip=True)
         start_time, end_time = parse_time_slot(time_text)
         cells = row.find_all('td')
-        col_index = 0       
+        col_index = 0
         for cell in cells[1:]:
             if 'veranstaltung-zelle' not in cell.get('class', []):
                 col_index += 1
@@ -127,31 +94,35 @@ def parse_schedule_html(html_content):
                 'end_time': end_time,
                 'instructor': instructor_str
             }
-            courses.append(course)
+            events.append(course)
             colspan = int(cell.get('colspan', 1))
             col_index += colspan
-    return courses
+    return events
 
+def schedule_to_db(events):
+    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+    events_manager = EventManager(myclient["db"])
+    for event in events:
+        events_manager.create_event(
+            Event(
+                course_id = event["name"],
+                name = "", #TODO
+                day = event["day"],
+                start_time = event["start_time"],
+                end_time = event["end_time"],
+                weekly_event = False, #TODO
+                room = "", #TODO
+                semester = "" #TODO
+            )
+        )
 
-def schedule_to_db(courses):
-    done = False
-    return done
-
-def course_to_string(course):
-    return (
-        f"Course: {course['name']}\n"
-        f"Day: {course['day']}\n"
-        f"Time: {course['start_time']} - {course['end_time']}\n"
-        f"Instructor: {course['instructor']}"
-    )
 
 def create_schedule():
     stundenplan = dl_aktuell()
-    courses = parse_schedule_html(stundenplan)
-    result = schedule_to_db(courses)
-    for kurs in courses:
-        print(course_to_string(kurs) + "\n")
-    return result
+    events = parse_schedule_html(stundenplan)
+    schedule_to_db(events)
+    print(len(events))
+
 
 if __name__ == "__main__":
     create_schedule()
