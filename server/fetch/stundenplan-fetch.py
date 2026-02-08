@@ -20,7 +20,6 @@ def parse_schedule(stundenplan):
     mitarbeiter: list[Lecturer] = []
     fachrichtungen: list[Specialisation] = []
     veranstaltungen: list[Event] = []
-    res: list[Event] = []
 
     tree = et.parse(stundenplan)
     root = tree.getroot()
@@ -39,7 +38,7 @@ def parse_schedule(stundenplan):
         if (splanRootNode.tag == "zeiten"):
             for zeitXML in splanRootNode:
                 zeiten.append(Timeslot(
-                    zeit_id=int(zeitXML[0].text),
+                    timeslot_id=int(zeitXML[0].text),
                     desc=zeitXML[1].text
                 ))
 
@@ -82,33 +81,36 @@ def parse_schedule(stundenplan):
 
         if (splanRootNode.tag == "veranstaltungen"):
             for veranstaltung in splanRootNode:
-                veransttage = list[DayEvent] = []
-                zuhoerer = list[Listener] = []
-                stunden = int(veranstaltung[6].text)
+                veransttage: list[DayEvent] = []
+                zuhoerer: list[Listener] = []
+                stunden =  int(veranstaltung[6].text)
+
+                nameAAAAAAAA = veranstaltung[2].text
 
                 for termin in veranstaltung[10]:
-                    veranstaltungs_raume = list[Room] = []
+                    veranstaltungs_raume: list[Room] = []
                     for r in raume:
                         for vertR in termin[2]:
-                            if (r.room_id == int(vertR[0].text)):
+                            if (r.room_id == int(vertR.text)):
                                 veranstaltungs_raume.append(r)
                     veransttage.append(DayEvent(
                         day=tage[int(termin[0].text) - 1],
                         start_time=zeiten[int(termin[1].text) - 1],
                         end_time=zeiten[int(termin[1].text) - 2 + stunden],  # -2 wegen 0 offset
-                        rooms=veranstaltungs_raume.copy()
+                        rooms=veranstaltungs_raume
                     ))
 
-                for teilnehmer in veranstaltung[12][0]:
-                    recommSem = []
-                    for r in teilnehmer:
-                        if (r.tag == "id")
-                            continue
-                        recommSem.append(int(r.text))
-                    zuhoerer.append(Listener(
-                        specialisation_id=int(teilnehmer[0].text),
-                        recommSemester=recommSem
-                    ))
+                for teilnehmer in veranstaltung[12]:
+                    if (veranstaltung[12].tag == "fachrichtungen"):
+                        recommSem: list[int] = []
+                        for r in teilnehmer[0]:
+                            if (r.tag == "id"):
+                                continue
+                            recommSem.append(int(r.text))
+                        zuhoerer.append(Listener(
+                            specialisation_id=int(teilnehmer[0][0].text),
+                            recommSemester=recommSem
+                        ))
 
                 veranstaltungen.append(Event(
                     event_id=int(veranstaltung[0].text),
@@ -119,8 +121,7 @@ def parse_schedule(stundenplan):
                     days=veransttage,
                     listeners=zuhoerer,
                 ))
-
-    return res
+    return veranstaltungen
 
 
 def schedule_to_db(events):
@@ -129,13 +130,11 @@ def schedule_to_db(events):
 
 def create_schedule():
     # schedule = dl_api()
-
-    # with ("splan.xml", "wb"):
-
     # events = parse_schedule(schedule)
     events = parse_schedule("splan.xml")
+    print(events)
     amount = schedule_to_db(events)
-    # print(amount)
+    print(amount)
 
 
 if __name__ == "__main__":
