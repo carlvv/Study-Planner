@@ -155,6 +155,9 @@ class EventManager(BaseManager[Event]):
             return existing.id
         return self.create_event(event)
 
+    def clear_table(self):
+        self._collection.drop()
+
 class LearnTimeManager(BaseManager[Learntime]):
     def __init__(self, db: MongoClient):
         super().__init__(db.lt, Learntime)

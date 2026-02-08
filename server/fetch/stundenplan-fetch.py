@@ -1,6 +1,6 @@
-import requests
 import xml.etree.ElementTree as et
 import pymongo as mongo
+import requests as re
 
 from db.collections.events import *
 from db.managers import EventManager
@@ -8,7 +8,7 @@ from db.managers import EventManager
 
 def dl_api():
     url = "https://intern.fh-wedel.de/~tho/api/splan.php"
-    session = requests.Session()
+    session = re.Session()
     response = session.get(url)
     return response.text
 
@@ -83,7 +83,7 @@ def parse_schedule(stundenplan):
             for veranstaltung in splanRootNode:
                 veransttage: list[DayEvent] = []
                 zuhoerer: list[Listener] = []
-                stunden =  int(veranstaltung[6].text)
+                stunden = int(veranstaltung[6].text)
 
                 for termin in veranstaltung[10]:
                     veranstaltungs_raume: list[Room] = []
@@ -115,7 +115,7 @@ def parse_schedule(stundenplan):
                     name=veranstaltung[2].text,
                     name_add=veranstaltung[3].text,
                     course_id=veranstaltung[4].text,
-                    optional=bool(veranstaltung[9].text),
+                    optional=bool(int(veranstaltung[9].text)),
                     days=veransttage,
                     listeners=zuhoerer,
                 ))
@@ -123,13 +123,21 @@ def parse_schedule(stundenplan):
 
 
 def schedule_to_db(events):
-    return 0
+    myclient = mongo.MongoClient("mongodb://localhost:27017/")
+    eventManager = EventManager(myclient["db"])
+    eventManager.clear_table()
+    i = 0
+    for event in events:
+        eventManager.create_event(event)
+        i = i + 1  # gibts kein i++ ???
+    assert i == len(events)
+    return i
 
 
 def create_schedule():
-    #TODO Datei Download Fehlerhaft
-    #schedule = dl_api()
-    #events = parse_schedule(schedule)
+    # TODO Datei Download Fehlerhaft
+    # schedule = dl_api()
+    # events = parse_schedule(schedule)
 
     schedule = open("data/splan-DEBUG.php", "r").read()
     events = parse_schedule(schedule)
