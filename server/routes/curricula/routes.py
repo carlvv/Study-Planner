@@ -49,91 +49,47 @@ def count_semester(start):
 def curricula_progress():
     db = current_app.mongo.db
     identity = get_jwt_identity()
-    
-    # 1. Daten-Initialisierung & Student Check
+
     student = StudentManager(db)._get_by_dict({"student_id": identity})
     if not student:
         return jsonify({"error": "Student nicht gefunden"}), 404
 
-    curriculum = CurriculaManager(db)._get_by_dict({"programm_version": student.study_id})
+    curricula_manager = CurriculaManager(db)
+    curriculum = curricula_manager.get_curricula_with_progress(
+        student_id=identity,
+        version=student.study_id         
+    )
     if not curriculum:
         return jsonify({"error": "Curriculum nicht gefunden"}), 404
 
-    # Wir holen alle Leistungen des Studenten auf einmal
-    processes = [p for p in StudentProcessManager(db).get_process(identity)]
-    all_processes = {}
-    for p in processes:
-        print(p)
-        all_processes[p["course_id"]] = p
-
-    module_manager = ModuleManager(db)
-    course_manager = CourseManager(db)
-
-    # 3. Berechnungs-Variablen
-    modules_output = []
+    # 3. Berechnung der Statistiken
     total_ects_finished = 0
     ects_relevant_for_grade = 0
     weighted_grade_points = 0
-    
-    # 4. Hauptschleife
-    for module_id in curriculum.modules_ids:
-        module = module_manager.get_by_module_id(module_id)
-        if not module: continue
 
-        module_courses = []
-        module_ects_total = 0
-        all_courses_in_module_finished = True
+    for module in curriculum["modules"]:
+        for course in module["courses"]:
+            if course["finished"]:
+                total_ects_finished += course["ects"]
+                if course["grade"] > 0:
+                    ects_relevant_for_grade += course["ects"]
+                    weighted_grade_points += course["grade"] * course["ects"]
 
-        for course_id in module.course_ids:
-            course = course_manager.get_by_course_id(course_id)
-            if not course: continue
-            
-            process = all_processes.get(course_id)
-            is_finished = process is not None
-            grade = process["grade"] if is_finished else 0
-            
-            module_ects_total += course.ects
-            
-            if is_finished:
-                total_ects_finished += course.ects
-                # Logik für Durchschnittsnote: Nur Kurse mit Note > 0 berücksichtigen
-                if grade > 0:
-                    ects_relevant_for_grade += course.ects
-                    weighted_grade_points += (grade * course.ects)
-            else:
-                all_courses_in_module_finished = False
-
-            module_courses.append({
-                "name": course.course_name,
-                "code": course.course_id,
-                "ects": course.ects,
-                "grade": grade,
-                "finished": is_finished
-            })
-
-        modules_output.append({
-            "name": module.module_name,
-            "code": module.module_id,
-            "ects": module_ects_total,
-            "courses": module_courses,
-            "finished": all_courses_in_module_finished
-        })
-
-    # 5. Finale Statistiken
     avg_grade = (weighted_grade_points / ects_relevant_for_grade) if ects_relevant_for_grade > 0 else 0
-    ects_target = 210 if curriculum.is_bachelor else 90
-    program_name = f"{'Bachelor' if curriculum.is_bachelor else 'Master'} {curriculum.programm_name}"
+    ects_target = 210 if curriculum["is_bachelor"] else 90
+    program_name = f"{'Bachelor' if curriculum['is_bachelor'] else 'Master'} {curriculum['programm_name']}"
 
     return jsonify({
         "name": program_name,
-        "modules": modules_output,
+        "modules": curriculum["modules"],
         "stats": [
             total_ects_finished,
             round(avg_grade, 2),
             max(0, ects_target - total_ects_finished),
-            count_semester(student.start_semester),
+            count_semester(student.start_semester)
         ]
     })
+
 
 
 @curricula_bp.route("/curricula_update", methods=["POST"])

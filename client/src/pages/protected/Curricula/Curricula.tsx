@@ -39,7 +39,7 @@ const GradeModal = ({
     return (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
             <div className="bg-white rounded-xl p-6 w-96 flex flex-col gap-4">
-                <h2 className="text-xl font-semibold">{course.code} - {course.name}</h2>
+                <h2 className="text-xl font-semibold">{course.course_id} - {course.course_name}</h2>
 
                 {/* Auswahl */}
                 <div className="flex gap-4">
@@ -169,9 +169,9 @@ const FoldableCard = ({ elem }: { elem: Module }) => {
                     onClick={() => setVisible(!isVisible)}
                 />
                 <div className="flex flex-col gap-2 px-2 ">
-                    <h2 className="text-black font-semibold md:text-xl text-lg">{elem.name}</h2>
+                    <h2 className="text-black font-semibold md:text-xl text-lg">{elem.module_name}</h2>
                     <h3 className="font-medium md:text-xl text-lg">
-                        {elem.code} - {elem.ects + ""} ECTS
+                        {elem.module_id} - {elem.ects + ""} ECTS
                     </h3>
                 </div>
             </div>
@@ -184,9 +184,9 @@ const FoldableCard = ({ elem }: { elem: Module }) => {
                             setModalOpen(true);
                         }}>
                             <div className="flex flex-col gap-1 justify-center ">
-                                <h2 className="text-black md:text-xl text-lg">{a.name}</h2>
+                                <h2 className="text-black md:text-xl text-lg">{a.course_name}</h2>
                                 <h3 className="font-medium md:text-xl text-lg">
-                                    {a.code} - {a.ects} ECTS
+                                    {a.course_id} - {a.ects} ECTS
                                 </h3>
                             </div>
                             {a.finished && <div className="bold text-lg pr-8">{a.grade == 0 ? "bestanden" : a.grade.toFixed(1)}</div>}
@@ -203,8 +203,8 @@ const FoldableCard = ({ elem }: { elem: Module }) => {
                     onDelete={() => {
                         if (!selectedCourse) return;
                         deleteMutation.mutate({
-                            moduleId: elem.code,
-                            courseId: selectedCourse.code,
+                            moduleId: elem.module_id,
+                            courseId: selectedCourse.course_id,
                         });
                     }}
                     onSave={async (grade) => {
@@ -216,8 +216,8 @@ const FoldableCard = ({ elem }: { elem: Module }) => {
 
                         if (!selectedCourse) return;
                         mutation.mutate({
-                            moduleId: elem.code,
-                            courseId: selectedCourse.code,
+                            moduleId: elem.module_id,
+                            courseId: selectedCourse.course_id,
                             grade,
                         })
                     }}

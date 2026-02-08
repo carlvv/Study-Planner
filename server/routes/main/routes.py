@@ -1,7 +1,7 @@
 from flask import Blueprint, current_app, jsonify
 from flask_jwt_extended import get_jwt, get_jwt_identity, jwt_required
 
-from db.managers import CurriculaManager, ModuleManager, StudentManager, TodoManager
+from db.managers import CurriculaManager, LearnTimeManager, ModuleManager, StudentManager, TodoManager
 
 
 main_bp = Blueprint('main', __name__, url_prefix='/')
@@ -11,6 +11,8 @@ main_bp = Blueprint('main', __name__, url_prefix='/')
 def dashboard_infos():
     todos_m = TodoManager(current_app.mongo.db)
     curricula_m = CurriculaManager(current_app.mongo.db)
+    lt_manager = LearnTimeManager(current_app.mongo.db)
+
     identity = get_jwt_identity()
 
     student = StudentManager(current_app.mongo.db)._get_by_dict({"student_id": identity})
@@ -19,12 +21,16 @@ def dashboard_infos():
     curricula = curricula_m._get_by_dict({ "programm_version": student.study_id})
 
     module_count = 0 if not curricula else len(curricula.modules_ids)
+
+    lt_stats = lt_manager.get_statistics(identity)["stats"]
+    total = lt_stats["total"]
+    daily = lt_stats["daily"]
     data = {
-        "time": f"0h",
+        "time": f"Heute {daily // 60}h gelernt",
         "tasks": f"{todo_count} Todos",
         "schedule": "No schedule",
         "curricula": f"{module_count} Module",
-        "dashboard": f"0h",
+        "dashboard": f"Gesamt {total // 60}h gelernt",
     }
 
     return jsonify(data), 200

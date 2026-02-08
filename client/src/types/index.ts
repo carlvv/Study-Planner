@@ -32,17 +32,17 @@ export type Time = {
   owner_id: string
 }
 export interface Module {
-    code: string;
+    module_id: string;
     ects: number;
     finished: boolean;
-    name: string;
+    module_name: string;
     courses: Course[];
 }
 
 export interface Course {
-    code: string;
+    course_id: string;
     ects: number;
     finished: boolean;
-    name: string;
+    course_name: string;
     grade: number;
 }
