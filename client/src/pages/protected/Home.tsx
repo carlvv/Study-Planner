@@ -57,14 +57,14 @@ const TILE_CONFIG = [
   {
     icon: <Clock size={40} />,
     to: "/timer",
-    title: "Track Time",
+    title: "Lernzeiten",
     color: "bg-indigo-500 text-white",
     key: "time",
   },
   {
     icon: <List size={40} />,
     to: "/todo",
-    title: "Tasks",
+    title: "Aufgaben",
     color: "bg-lime-400 text-black",
     key: "tasks",
   },

@@ -1,7 +1,9 @@
 from ast import List
 from genericpath import exists
+from datetime import datetime, date, timedelta, time, timezone
 from typing import Optional
 from bson import ObjectId
+from numpy import identity
 from pymongo import MongoClient
 from db.collections.course import Course
 from db.collections.curricula import Curricula
@@ -139,6 +141,140 @@ class EventManager(BaseManager[Event]):
 class LearnTimeManager(BaseManager[Learntime]):
     def __init__(self, db: MongoClient):
         super().__init__(db.lt, Learntime)
+
+    def get_all(self, student_id): 
+        out : list[Learntime] = []
+        for data in self._collection.find({ "owner_id": student_id}):
+            out.append(self._model.from_dict(data))
+        return out
+    
+    from datetime import datetime, date, timedelta, time, timezone
+
+    def get_statistics(self, student_id: str):
+        today = date.today()
+        start_of_week = today - timedelta(days=today.weekday())
+
+        today_start = datetime.combine(today, time.min, tzinfo=timezone.utc)
+        today_end   = datetime.combine(today, time.max, tzinfo=timezone.utc)
+        week_start  = datetime.combine(start_of_week, time.min, tzinfo=timezone.utc)
+
+        pipeline = [
+            { "$match": { "owner_id": student_id } },
+            {
+                "$facet": {
+
+                    # ---------- DAILY ----------
+                    "statsData": [
+                        {
+                            "$match": {
+                                "$expr": {
+                                    "$and": [
+                                        { "$gte": [{ "$toDate": "$date" }, today_start] },
+                                        { "$lte": [{ "$toDate": "$date" }, today_end] }
+                                    ]
+                                }
+                            }
+                        },
+                        { "$group": { "_id": None, "daily": { "$sum": "$duration_in_min" } } }
+                    ],
+
+                    # ---------- WEEKLY ----------
+                    "weeklyData": [
+                        {
+                            "$match": {
+                                "$expr": { "$gte": [{ "$toDate": "$date" }, week_start] }
+                            }
+                        },
+                        { "$group": { "_id": None, "weekly": { "$sum": "$duration_in_min" } } }
+                    ],
+
+                    # ---------- AVG ----------
+                    "avgData": [
+                        {
+                            "$group": {
+                                "_id": { "$dateTrunc": { "date": { "$toDate": "$date" }, "unit": "day" } },
+                                "total": { "$sum": "$duration_in_min" }
+                            }
+                        },
+                        { "$group": { "_id": None, "avg": { "$avg": "$total" } } }
+                    ],
+
+                    # ---------- TOTAL ----------
+                    "totalData": [
+                        { "$group": { "_id": None, "total": { "$sum": "$duration_in_min" } } }
+                    ],
+
+                    # ---------- WEEKDAY ----------
+                    "weeklyDistributionData": [
+                        { "$group": { "_id": { "$dayOfWeek": { "$toDate": "$date" } }, "total": { "$sum": "$duration_in_min" } } }
+                    ],
+
+                    # ---------- MODULES ----------
+                    "modulesData": [
+                        {
+                            "$group": {
+                                "_id": "$module_id",
+                                "totalTime": { "$sum": "$duration_in_min" },
+                                "sessionCount": { "$sum": 1 },
+                                "last_session": { "$max": { "$toDate": "$date" } }
+                            }
+                        },
+                        {
+                            "$lookup": {
+                                "from": "module",
+                                "localField": "_id",
+                                "foreignField": "module_id",
+                                "as": "module_info"
+                            }
+                        },
+                        {
+                            "$addFields": {
+                                "name": { "$arrayElemAt": ["$module_info.module_name", 0] }
+                            }
+                        },
+                        {
+                            "$project": {
+                                "module_id": "$_id",
+                                "name": 1,
+                                "totalTime": 1,
+                                "sessionCount": 1,
+                                "last_session": { "$dateToString": { "date": "$last_session", "format": "%Y-%m-%dT%H:%M:%S" } },
+                                "_id": 0
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "$project": {
+                    "stats": {
+                        "daily": { "$ifNull": [{ "$arrayElemAt": ["$statsData.daily", 0] }, 0] },
+                        "weekly": { "$ifNull": [{ "$arrayElemAt": ["$weeklyData.weekly", 0] }, 0] },
+                        "avg": { "$ifNull": [{ "$arrayElemAt": ["$avgData.avg", 0] }, 0] },
+                        "total": { "$ifNull": [{ "$arrayElemAt": ["$totalData.total", 0] }, 0] }
+                    },
+                    "weeklyDistribution": "$weeklyDistributionData",
+                    "modules": "$modulesData"
+                }
+            }
+        ]
+
+        result = list(self._collection.aggregate(pipeline))[0]
+
+        # Wochentage korrekt mappen
+        weekday_map = {1: "Sonntag", 2: "Montag", 3: "Dienstag", 4: "Mittwoch",
+                    5: "Donnerstag", 6: "Freitag", 7: "Samstag"}
+
+        weekly_dist = {day: 0 for day in weekday_map.values()}
+        for d in result["weeklyDistribution"]:
+            weekly_dist[weekday_map[d["_id"]]] = d["total"]
+
+        return {
+            "stats": result["stats"],          # in Minuten
+            "weeklyDistribution": weekly_dist, # in Minuten
+            "modules": result["modules"]       # totalTime in Minuten
+        }
+
 
 class ModuleManager(BaseManager[Module]):
     def __init__(self, db: MongoClient):

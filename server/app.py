@@ -21,10 +21,12 @@ def create_app():
     from routes.curricula.routes import curricula_bp
     from routes.todo.routes import todo_bp
     from routes.timer.routes import timer_bp
+    from routes.dashboard.routes import dashboard_bp
     app.register_blueprint(auth_bp)
     app.register_blueprint(main_bp)
     app.register_blueprint(curricula_bp)
     app.register_blueprint(todo_bp)
+    app.register_blueprint(dashboard_bp)
     app.register_blueprint(timer_bp)
 
     CORS(app, origins=["http://localhost:5173","http://192.168.0.153:5173" ])

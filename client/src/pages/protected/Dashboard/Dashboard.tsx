@@ -1,48 +1,24 @@
 import { Card, CardWrapper } from "../../../components/Card/Card";
+import { Loading } from "../../../components/Loading";
 import { H1, H2, H3, P } from "../../../components/Text";
 import { FlexibleColumnWrapper } from "../../../components/layout/FlexibleColumnWrapper";
 import Layout from "../../../components/layout/Layout";
 import { TwoColumnWrapper } from "../../../components/layout/TwoColumnWrapper";
 import { WeeklyDiagramm } from "./WeeklyDiagramm";
+import { useDashboard } from "./useDashboard";
 
-interface ModuleStatistic {
-  title: string;
-  totalTime: number;
-  sessionCount: number;
-  last_session: Date;
-}
-
-const statistics: ModuleStatistic[] = [
-  {
-    title: "Analysis",
-    sessionCount: 19,
-    last_session: new Date(2026, 11, 18),
-    totalTime: 4030,
-  },
-  {
-    title: "Einführung in der Betriebswirschaftslehre",
-    sessionCount: 39,
-    last_session: new Date(2026, 11, 20),
-    totalTime: 2003,
-  },
-  {
-    title: "Technologien der Mediengestaltung und GUI Programmierung",
-    sessionCount: 19,
-    last_session: new Date(2026, 11, 31),
-    totalTime: 10422,
-  },
-];
 
 export function displayTotalTime(value: number) {
   value = Math.round(value);
   if (value < 60) {
     return value + "min";
   }
-  const hours = (value / 60).toFixed(0);
-  const min = (value % 60).toFixed(0);
+  const hours = Math.floor(value / 60); // ganze Stunden
+  const min = value % 60; // verbleibende Minuten
 
   return `${hours}h ${min}min`;
 }
+
 
 function displayTitle(name: string) {
   if (name.length > 15) {
@@ -60,36 +36,38 @@ function displayTitle(name: string) {
 }
 
 export function Statistics() {
+  const { data, isError, error, isLoading } = useDashboard()
+
+  if (isError) {
+      <Loading isLoading={isError} message={error.message} />
+  }
+  if (isLoading || !data) {
+    return <Loading isLoading message={ "Daten werden geladen..."}  />
+  }
+  const { avg, daily, total, weekly } = data.stats
+
   return (
     <Layout backURL={"/"}>
       <H1 className="pt-4">Study Statistik</H1>
       <TwoColumnWrapper>
-        <Card title={displayTotalTime(104)} text="Heute gelernt" />
-        <Card title={displayTotalTime(355)} text="Diese Woche gelernt" />
-        <Card title={displayTotalTime(45)} text="Durchschnitt Tag" />
-        <Card title="25 ECTS" text="Gewählte Module" />
+        <Card title={displayTotalTime(daily)} text="Heute gelernt" />
+        <Card title={displayTotalTime(weekly)} text="Diese Woche gelernt" />
+        <Card title={displayTotalTime(avg)} text="Durchschnitt Tag" />
+        <Card title={((total / 60) / 30).toFixed(2) + " ECTS"} text="Gelernte ECTS" />
       </TwoColumnWrapper>
-      <div className="p-4"></div>
+      <div className="p-4" />
       <CardWrapper>
         <H3 className="mb-8">Dein Lernfortschritt im Wochenverlauf</H3>
         <WeeklyDiagramm
-          data={{
-            Montag: 110,
-            Dienstag: 150,
-            Mittwoch: 110,
-            Donnerstag: 24,
-            Freitag: 180,
-            Samstag: 75,
-            Sonntag: 15,
-          }}
+          data={data.weeklyDistribution}
         />
       </CardWrapper>
       <H2 className="mt-8">Modul Statistiken</H2>
       <FlexibleColumnWrapper>
-        {statistics.map((a) => (
-          <CardWrapper>
+        {data.modules.map((a) => (
+          <CardWrapper key={a.name + a.sessionCount}>
             <h1 className="font-semibold text-xl w-50 text-wrap">
-              {displayTitle(a.title)}
+              {displayTitle(a.name)}
             </h1>
             <div className="flex justify-between w-full">
               <p className="text-gray-500 text-sm">Gesamtzeit</p>
@@ -105,7 +83,7 @@ export function Statistics() {
             </div>
             <div className="flex justify-between w-full">
               <p className="text-gray-500 text-sm">Gesamtzeit</p>
-              <P>{a.last_session.toLocaleDateString()}</P>
+              <P>{new Date(a.last_session).toLocaleDateString()}</P>
             </div>
           </CardWrapper>
         ))}

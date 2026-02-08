@@ -112,7 +112,7 @@ export default function Timer() {
     };
 
     return (
-        <Layout backURL={"/dashboard"}>
+        <Layout backURL={"/timer"}>
             <div className="flex flex-col items-center justify-center space-y-6">
                 <H1>{subject.name}</H1>
                 <div className="text-3xl">
@@ -175,7 +175,7 @@ export default function Timer() {
 
 function ChooseSubject() {
     return (
-        <Layout backURL={"/dashboard"}>
+        <Layout backURL={"/"}>
             <div className="flex flex-col items-start space-y-4 p-4">
                 <H1>Module</H1>
 
