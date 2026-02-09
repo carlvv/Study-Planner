@@ -294,6 +294,9 @@ class LearnTimeManager(BaseManager[Learntime]):
     def __init__(self, db: MongoClient):
         super().__init__(db.lt, Learntime)
 
+    def create_learn_time(self, learnTime: Learntime):
+        return self._create(learnTime)
+
     def get_all(self, student_id):
         out: list[Learntime] = []
         for data in self._collection.find({"owner_id": student_id}):

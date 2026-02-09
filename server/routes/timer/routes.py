@@ -3,26 +3,79 @@ from turtle import title
 from flask import Blueprint, current_app, jsonify, request
 from flask_jwt_extended import get_jwt_identity, jwt_required
 
-from db.managers import LearnTimeManager
+from db.managers import CurriculaManager, LearnTimeManager, ModuleManager, StudentManager
+from db.collections.learntime import Learntime
 
 timer_bp = Blueprint('timer', __name__, url_prefix='/')
 from flask import jsonify
 
+from dateutil import parser
 
+# Liefert ein sortiertes Array von den neuesten Lernzeiten
+# limit -> limietiert die Größe des Arrays
 @timer_bp.route("/timer_recent", methods=["GET"])
 @jwt_required()
 def get_recent_times():
-    manager = LearnTimeManager(current_app.mongo.db)
+    try:
+        manager = LearnTimeManager(current_app.mongo.db)
 
-    identity = get_jwt_identity()
+        identity = get_jwt_identity()
 
-    # TODO: die letzten Lernzeiten vom User holen
+        allLearnTime = manager.get_all(identity)
 
-    return jsonify(), 200
+        allLearnTime = sorted(
+            allLearnTime,
+            key=lambda x: x.date,
+            reverse=True
+        )
 
+        res = []
+
+        for learnTime in allLearnTime:
+            res.append({
+                "module_id": learnTime.module_id,
+                "duration_in_min": learnTime.duration_in_min,
+                "date": learnTime.date.isoformat(),
+                "owner_id": identity
+            })
+
+        return jsonify(res), 200
+    except:
+        return jsonify({"error": "Fehler beim Abrufen der Lernzeiten"}), 500
+
+# Erstellt eine neue LearnTime und speichert diese ab
+# erwartet im Body ein JSON-Objekt mit den Werten "duration_in_min", "date", "module_id"
 @timer_bp.route("/timer_add", methods=["POST"])
 @jwt_required()
 def create_time():
-    # TODO: Zeit speichern
+    try:
+        manager = LearnTimeManager(current_app.mongo.db)
 
-    return jsonify(), 200
+        identity = get_jwt_identity()
+
+        data = request.get_json()
+
+        module_id = data.get("module_id")
+        duration_in_min = data.get("duration_in_min")
+        date_str = data.get("date")
+        date = parser.isoparse(date_str)
+
+        learnTime = Learntime(module_id=module_id, duration_in_min=duration_in_min, date=date, owner_id=identity)
+        manager.create_learn_time(learnTime=learnTime)
+
+        return jsonify(), 200
+    except:
+        return jsonify({"error": "Fehler beim Erstellen der Lernzeit"}), 500
+    
+# Liefert alle Module, die der User hat
+@timer_bp.route("/get_user_modules", methods=["GET"])
+@jwt_required()
+def get_user_modules():
+    try:
+        identity = get_jwt_identity()
+
+        # TODO: Module vom User holen
+
+        return jsonify(), 200
+    except:
+        return jsonify({"error": "Fehler beim Erstellen der Lernzeit"}), 500 

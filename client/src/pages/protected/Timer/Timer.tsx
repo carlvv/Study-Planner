@@ -11,9 +11,6 @@ import { useTimer } from "./useTimer";
 const currentSubjects = [{ name: "Analysis", id: 1, ects: 5 }, { name: "Programmstrukturen 1", id: 2, ects: 5 }, { name: "Programmstrukturen 2", id: 3, ects: 5 }]
 const otherSubjects = [{ name: "Systemnahe Programmierung", id: 4, ects: 5 }, { name: "Lineare Algebra", id: 5, ects: 5 }, { name: "Unix", id: 6, ects: 5 }]
 
-//TODO: Letzten Aktivitäten vom Backend holen
-const recentActivities = [{ subject: "BWL", hours: 1, minutes: 20 }, { subject: "SP", hours: 0, minutes: 35 }]
-
 
 const ErrorMessage = {
     INCOMPLETE_TIME: "Unvollständige Zeitangabe",
@@ -38,7 +35,7 @@ export default function Timer() {
     if (!subject)
         return (<h1>Kein Modul mit {params.subjectId} gefunden</h1>)
 
-    const { data, isLoading, isError, error } = useTimer(params.subjectId);
+    const { recentData, recentIsLoading, recentIsError, recentError, create /*,modulesData, modulesIsLoading, modulesIsError, modulesError*/ } = useTimer(params.subjectId);
 
     const [errorMessage, setErrorMessage] = useState<ErrorKey | null>(null);
 
@@ -46,11 +43,11 @@ export default function Timer() {
     const [inputIndex, setInputIndex] = useState<number>(0);
 
 
-    if(isLoading) {
+    if (recentIsLoading) {
         return <>Loading...</>
-    }  
-    if(isError) {
-        return <>Fehler</>
+    }
+    if (recentIsError || !recentData) {
+        return <>{recentError}</>
     }
 
     const addDigit = (number: string) => {
@@ -91,11 +88,10 @@ export default function Timer() {
 
         setErrorMessage(null)
 
-        //TODO: Verbindung mit Backend
-        if (false) {
-            setErrorMessage("SERVER_ERROR");
-            return;
-        }
+        //                      10h                          1h                      10m                     1m
+        const duration_in_min = Number(input[0]) * 10 * 60 + Number(input[1]) * 60 + Number(input[2]) * 10 + Number(input[3]);
+
+        create({module_id: params.subjectId?? "" , duration_in_min: duration_in_min, date: new Date()})
     }
 
     const renderDigit = (digit: string, index: number) => {
@@ -162,10 +158,10 @@ export default function Timer() {
                 )}
 
                 <H3>Letzten Aktivitäten</H3>
-                {recentActivities.map((i) => (
+                {recentData.map((i) => (
                     <div className="grid grid-cols-2 items-center w-full">
-                        <p className="text-center">{i.subject}</p>
-                        <p className="text-center">{i.hours > 0 ? i.hours + "h" : ""} {i.minutes}m</p>
+                        <p className="text-center">{i.module_id}</p>
+                        <p className="text-center">{i.duration_in_min >= 60 ? Math.floor(i.duration_in_min / 60) + "h" : ""} {i.duration_in_min % 60 == 0 ? "00m" : i.duration_in_min % 60 + "m"}</p>
                     </div>
                 ))}
             </div>
