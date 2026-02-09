@@ -56,7 +56,7 @@ class Event(BaseModel):
     event_id: int
     name: str
     name_add: str
-    course_id: str
+    course_id: int
     optional: bool
     days: [DayEvent]
     listeners: [Listener]

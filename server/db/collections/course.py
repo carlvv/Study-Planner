@@ -5,7 +5,8 @@ from db.collections.base_model import BaseModel
 
 @dataclass(kw_only=True)
 class Course(BaseModel):
-    course_id: str
+    course_id: int
+    event_id: int
     course_name: str
     module_number: str
     ects: int
