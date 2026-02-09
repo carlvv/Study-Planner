@@ -110,7 +110,7 @@ def parse_schedule(stundenplan):
                             recommSemester=recommSem
                         ))
                 print(veranstaltung[4].text)
-                id = -1 if not veranstaltung[4].text or veranstaltung[4].text[2:5] == '' else int(veranstaltung[4].text[2:5])
+                id = "" if not veranstaltung[4].text or veranstaltung[4].text[1:5] == '' else (veranstaltung[4].text[1:5])
                 veranstaltungen.append(Event(
                     event_id=int(veranstaltung[0].text),
                     name=veranstaltung[2].text,

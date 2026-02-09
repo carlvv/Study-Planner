@@ -63,10 +63,8 @@ class ModulReader:
                     course.ects += ects
                     same_course = False
                 else:
-                    digits = re.sub(r"\D", "", course_id)
-                    course_id_clean = int(digits) if digits else None
                     course = Course(
-                        course_id=course_id_clean,
+                        course_id=course_id[1:],
                         course_name=course_name,
                         module_number=module_id,
                         ects=ects,

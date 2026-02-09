@@ -26,11 +26,30 @@
 # from fetch.fetch import get_curriculae
 
 
+# import json
+
+# import pymongo
+# from db.collections.curricula import Curricula
+# from db.managers import CourseManager, CurriculaManager, EventManager, ModuleManager
+# from fetch.Reader import CurriculaReader
+# from fetch.fetch import get_curriculae
+
+
 # result = get_curriculae()
 
 # print(json.dumps(result, indent=2, ensure_ascii=False))
     
-# myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+import pymongo
+
+from db.managers import EventManager
+
+
+myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+event_manager =  EventManager(myclient["db"])
+
+
+print(event_manager.get_all_events_with_course())
 
 # curricula_manager =  CurriculaManager(myclient["db"])
 # module_manager =  ModuleManager(myclient["db"])
@@ -153,9 +172,10 @@
 
 # course_fetched = course_manager.get_by_course_id("TEST101")
 # print("Fetched Course:", course_fetched)
-# '''
+# # '''
 
-from fetch.stundenplan_fetch import create_schedule
+# from db.managers import EventManager
+# from fetch.stundenplan_fetch import create_schedule
 
 
-create_schedule()
+# create_schedule()
