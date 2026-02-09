@@ -64,7 +64,7 @@ class ModulReader:
                     same_course = False
                 else:
                     course = Course(
-                        course_id=course_id,
+                        course_id=course_id[1:],
                         course_name=course_name,
                         module_number=module_id,
                         ects=ects,
