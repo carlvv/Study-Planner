@@ -322,7 +322,6 @@ class CurriculaManager(BaseManager[Curricula]):
         result = list(self._collection.aggregate(pipeline))
         return result[0] if result else None
 
-
 class EventManager(BaseManager[Event]):
     def __init__(self, db: MongoClient):
         super().__init__(db.event, Event)
@@ -584,9 +583,6 @@ class ModuleManager(BaseManager[Module]):
     def delete_all(self):
         self._collection.delete_many({})
 
-    def get_active_modules(self):
-        pass
-
 
 class TimeTableManager(BaseManager[TimeTable]):
     def __init__(self, db: MongoClient):
@@ -618,6 +614,70 @@ class TimeTableManager(BaseManager[TimeTable]):
         if len(res) == 0:
             return None
         return res[0]
+
+    def get_active_modules(self, student_id: str):
+        # Zuerst prüfen, ob für den Studenten überhaupt ein Eintrag existiert
+        exists = self._get_by_dict({"owner_id": student_id})
+        if exists is None:
+            return None
+
+        pipeline = [
+            # 1. Filter: nur aktive TimeTables des Studenten
+            {"$match": {"active": True, "owner_id": student_id}},
+            
+            # 2. Lookup: Join mit event-Collection über event_ids
+            {
+                "$lookup": {
+                    "from": "event",
+                    "localField": "event_ids",
+                    "foreignField": "event_id",
+                    "as": "events",
+                }
+            },
+            {"$unwind": "$events"},  # Entpacken der events-Liste für weitere Joins
+            
+            # 3. Join event.course_id mit course.course_id
+            {
+                "$lookup": {
+                    "from": "course",
+                    "localField": "events.course_id",
+                    "foreignField": "course_id",
+                    "as": "courses",
+                }
+            },
+            {"$unwind": "$courses"},
+            
+            # 4. Join course.module_id mit module.module_id
+            {
+                "$lookup": {
+                    "from": "module",
+                    "localField": "courses.module_number",
+                    "foreignField": "module_id",
+                    "as": "modules",
+                }
+            },
+            
+            # 5. Optional: Nur die Module zurückgeben
+            {
+                "$project": {
+                    "_id": 0,
+                    "modules": 1,
+                }
+            }
+        ]
+
+        res = list(self._collection.aggregate(pipeline))
+        if not res:
+            return None
+
+        # Die Module sammeln (falls mehrere TimeTables vorhanden)
+        all_modules = []
+        for r in res:
+            all_modules.extend(r.get("modules", []))
+        
+        return all_modules
+
+
 
 
 class TodoManager(BaseManager[Todo]):
