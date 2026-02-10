@@ -5,6 +5,8 @@ import os
 from flask_cors import CORS
 from flask_pymongo import PyMongo
 
+from db.collections import timetable
+
 
 def create_app():
     app = Flask(__name__)
@@ -22,12 +24,14 @@ def create_app():
     from routes.todo.routes import todo_bp
     from routes.timer.routes import timer_bp
     from routes.dashboard.routes import dashboard_bp
+    from routes.timetable.routes import timetable_bp
     app.register_blueprint(auth_bp)
     app.register_blueprint(main_bp)
     app.register_blueprint(curricula_bp)
     app.register_blueprint(todo_bp)
     app.register_blueprint(dashboard_bp)
     app.register_blueprint(timer_bp)
+    app.register_blueprint(timetable_bp)
 
     CORS(app, origins=["http://localhost:5173","http://192.168.0.153:5173" ])
 

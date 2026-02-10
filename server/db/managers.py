@@ -136,6 +136,9 @@ class CurriculaManager(BaseManager[Curricula]):
             }
         )
 
+    def get_by_version(self, version: str) -> Optional[Curricula]:
+        return self._get_by_dict({"programm_version": version})
+
     def get_by_name_version(self, name: str, version: str) -> Optional[Curricula]:
         return self._get_by_dict({"programm_name": name, "programm_version": version})
 
@@ -304,8 +307,31 @@ class EventManager(BaseManager[Event]):
                 "$unwind": "$course"
             }
         ]
-
         return list(self._collection.aggregate(pipeline))
+    
+    def get_events_curricula(self, curr: Curricula) -> List[Dict[str, Any]]:
+        pipeline = [
+            {
+                "$lookup": {
+                    "from": "course",
+                    "localField": "course_id",
+                    "foreignField": "course_id",
+                    "as": "course"
+                }
+            },
+            {
+                "$unwind": "$course"
+            },
+            {
+                "$match": {
+                    "course.module_number": {"$in": curr.modules_ids}
+                }
+            }
+        ]
+
+        res = list(self._collection.aggregate(pipeline))
+        return res
+
 
 
 class LearnTimeManager(BaseManager[Learntime]):
@@ -517,6 +543,38 @@ class ModuleManager(BaseManager[Module]):
 class TimeTableManager(BaseManager[TimeTable]):
     def __init__(self, db: MongoClient):
         super().__init__(db.tt, TimeTable)
+        self._event_collection = db.event
+
+    def get_active_events(self, owner: str):
+        pipeline = [
+            # 1. Filter: active=True und owner_id==owner
+            {
+                "$match": {
+                    "active": True,
+                    "owner_id": owner
+                }
+            },
+            # 2. Lookup: Join mit event-Collection über event_ids
+            {
+                "$lookup": {
+                    "from": "event",
+                    "localField": "event_ids",
+                    "foreignField": "event_id",
+                    "as": "events"
+                }
+            },
+            # Optional: Nur bestimmte Felder zurückgeben
+            {
+                "$project": {
+                    "events": 1,
+                    "_id": 0,
+                    "semester": 1,
+                    "name": 1
+                }
+            }
+        ]
+        return list(self._collection.aggregate(pipeline))[0]
+
 
 
 class TodoManager(BaseManager[Todo]):

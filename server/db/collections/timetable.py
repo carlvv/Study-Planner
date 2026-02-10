@@ -8,6 +8,8 @@ from db.collections.base_model import BaseModel
 class TimeTable(BaseModel):
     semester: str
     owner_id: str
+    active: bool
+    name: str 
     event_ids: List[str] = field(default_factory=list)  
 
     def add_event(self, id: str):

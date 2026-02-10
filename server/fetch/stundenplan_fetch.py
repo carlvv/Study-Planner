@@ -130,7 +130,7 @@ def schedule_to_db(events):
     i = 0
     for event in events:
         eventManager.create_event(event)
-        i = i + 1  # gibts kein i++ ???
+        i = i + 1  # gibts kein i++ ??? fr
     assert i == len(events)
     return i
 
