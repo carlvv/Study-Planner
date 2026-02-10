@@ -23,6 +23,9 @@ export const useSchedule = () => {
         queryFn: async () => {
             const res = await fetch_backend_auth("/timetable/get_active")
             const all = (await res.json());
+            if (all == "empty") {
+                return null
+            }
             const data = all.events;
 
 

@@ -175,8 +175,9 @@ const StepOne = ({
           <label className="block text-sm mb-2">
             Erstellungsart
           </label>
+          {/* TODO */}
           <div className="space-y-2">
-            {["manuell", "automatisch"].map((v) => (
+            {["manuell"].map((v) => ( 
               <label key={v} className="flex items-center gap-2">
                 <input
                   type="radio"

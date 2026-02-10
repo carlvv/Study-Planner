@@ -66,7 +66,12 @@ def set_active():
 def get_active():
     identity = get_jwt_identity()
     manager = TimeTableManager(current_app.mongo.db)
-    return jsonify(manager.get_active_events(identity)), 200
+    res = manager.get_active_events(identity)
+    if not res:
+        return jsonify("empty"), 200
+
+    return jsonify(res), 200
+
 
 # TODO
 def current_semester():
