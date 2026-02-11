@@ -135,6 +135,9 @@ class CurriculaManager(BaseManager[Curricula]):
             }
         )
 
+    def get_by_version(self, version: str) -> Optional[Curricula]:
+        return self._get_by_dict({"programm_version": version})
+
     def get_by_name_version(self, name: str, version: str) -> Optional[Curricula]:
         return self._get_by_dict({"programm_name": name, "programm_version": version})
 
@@ -165,27 +168,24 @@ class CurriculaManager(BaseManager[Curricula]):
     ) -> Optional[dict]:
         pipeline = [
             {"$match": {"programm_version": version}},
-
             # 1. Alle Module des Programms laden
             {
                 "$lookup": {
                     "from": "module",
                     "localField": "modules_ids",
                     "foreignField": "module_id",
-                    "as": "modules_data"
+                    "as": "modules_data",
                 }
             },
-
             # 2. ALLE Kurse laden, die in diesen Modulen vorkommen
             {
                 "$lookup": {
                     "from": "course",
                     "localField": "modules_data.course_ids",
                     "foreignField": "course_id",
-                    "as": "all_courses"
+                    "as": "all_courses",
                 }
             },
-
             # 3. Fortschritt des Studenten laden
             {
                 "$lookup": {
@@ -194,10 +194,9 @@ class CurriculaManager(BaseManager[Curricula]):
                     "pipeline": [
                         {"$match": {"$expr": {"$eq": ["$student_id", "$$student_id"]}}}
                     ],
-                    "as": "all_progress"
+                    "as": "all_progress",
                 }
             },
-
             # 4. Daten zusammenführen & Berechnungen (ECTS, Status)
             {
                 "$addFields": {
@@ -215,18 +214,69 @@ class CurriculaManager(BaseManager[Curricula]):
                                                 "in": {
                                                     "$let": {
                                                         "vars": {
-                                                            "c_info": { "$arrayElemAt": [{ "$filter": { "input": "$all_courses", "cond": { "$eq": ["$$this.course_id", "$$c_id"] } } }, 0] },
-                                                            "p_info": { "$arrayElemAt": [{ "$filter": { "input": "$all_progress", "cond": { "$eq": ["$$this.course_id", "$$c_id"] } } }, 0] }
+                                                            "c_info": {
+                                                                "$arrayElemAt": [
+                                                                    {
+                                                                        "$filter": {
+                                                                            "input": "$all_courses",
+                                                                            "cond": {
+                                                                                "$eq": [
+                                                                                    "$$this.course_id",
+                                                                                    "$$c_id",
+                                                                                ]
+                                                                            },
+                                                                        }
+                                                                    },
+                                                                    0,
+                                                                ]
+                                                            },
+                                                            "p_info": {
+                                                                "$arrayElemAt": [
+                                                                    {
+                                                                        "$filter": {
+                                                                            "input": "$all_progress",
+                                                                            "cond": {
+                                                                                "$eq": [
+                                                                                    "$$this.course_id",
+                                                                                    "$$c_id",
+                                                                                ]
+                                                                            },
+                                                                        }
+                                                                    },
+                                                                    0,
+                                                                ]
+                                                            },
                                                         },
                                                         "in": {
                                                             "course_id": "$$c_id",
                                                             "course_name": "$$c_info.course_name",
-                                                            "ects": { "$ifNull": ["$$c_info.ects", 0] },
-                                                            "finished": { "$cond": [{ "$gt": ["$$p_info", None] }, True, False] },
-                                                            "grade": { "$ifNull": ["$$p_info.grade", 0] }
-                                                        }
+                                                            "ects": {
+                                                                "$ifNull": [
+                                                                    "$$c_info.ects",
+                                                                    0,
+                                                                ]
+                                                            },
+                                                            "finished": {
+                                                                "$cond": [
+                                                                    {
+                                                                        "$gt": [
+                                                                            "$$p_info",
+                                                                            None,
+                                                                        ]
+                                                                    },
+                                                                    True,
+                                                                    False,
+                                                                ]
+                                                            },
+                                                            "grade": {
+                                                                "$ifNull": [
+                                                                    "$$p_info.grade",
+                                                                    0,
+                                                                ]
+                                                            },
+                                                        },
                                                     }
-                                                }
+                                                },
                                             }
                                         }
                                     },
@@ -234,36 +284,42 @@ class CurriculaManager(BaseManager[Curricula]):
                                         "module_id": "$$m.module_id",
                                         "module_name": "$$m.module_name",
                                         "courses": "$$module_courses",
-                                        "ects": { "$sum": "$$module_courses.ects" },
+                                        "ects": {"$sum": "$$module_courses.ects"},
                                         "finished": {
                                             "$and": [
-                                                { "$gt": [{ "$size": "$$module_courses" }, 0] },
-                                                { "$allElementsTrue": ["$$module_courses.finished"] }
+                                                {
+                                                    "$gt": [
+                                                        {"$size": "$$module_courses"},
+                                                        0,
+                                                    ]
+                                                },
+                                                {
+                                                    "$allElementsTrue": [
+                                                        "$$module_courses.finished"
+                                                    ]
+                                                },
                                             ]
-                                        }
-                                    }
+                                        },
+                                    },
                                 }
-                            }
+                            },
                         }
                     }
                 }
             },
-
             # 5. NEU: Sortierung des Modul-Arrays nach module_id
             {
                 "$addFields": {
                     "modules": {
-                        "$sortArray": { "input": "$modules", "sortBy": { "module_id": 1 } }
+                        "$sortArray": {"input": "$modules", "sortBy": {"module_id": 1}}
                     }
                 }
             },
-
             # 6. Aufräumen
-            { "$project": { "modules_data": 0, "all_courses": 0, "all_progress": 0 } }
+            {"$project": {"modules_data": 0, "all_courses": 0, "all_progress": 0}},
         ]
         result = list(self._collection.aggregate(pipeline))
         return result[0] if result else None
-
 
 class EventManager(BaseManager[Event]):
     def __init__(self, db: MongoClient):
@@ -302,15 +358,29 @@ class EventManager(BaseManager[Event]):
                     "from": "course",
                     "localField": "course_id",
                     "foreignField": "course_id",
-                    "as": "course"
+                    "as": "course",
                 }
             },
+            {"$unwind": "$course"},
+        ]
+        return list(self._collection.aggregate(pipeline))
+
+    def get_events_curricula(self, curr: Curricula) -> List[Dict[str, Any]]:
+        pipeline = [
             {
-                "$unwind": "$course"
-            }
+                "$lookup": {
+                    "from": "course",
+                    "localField": "course_id",
+                    "foreignField": "course_id",
+                    "as": "course",
+                }
+            },
+            {"$unwind": "$course"},
+            {"$match": {"course.module_number": {"$in": curr.modules_ids}}},
         ]
 
-        return list(self._collection.aggregate(pipeline))
+        res = list(self._collection.aggregate(pipeline))
+        return res
 
 
 class LearnTimeManager(BaseManager[Learntime]):
@@ -522,6 +592,97 @@ class ModuleManager(BaseManager[Module]):
 class TimeTableManager(BaseManager[TimeTable]):
     def __init__(self, db: MongoClient):
         super().__init__(db.tt, TimeTable)
+        self._event_collection = db.event
+
+    def get_active_events(self, owner: str):
+        exists = self._get_by_dict({"owner_id": owner})
+        print(exists)
+        if exists == None:
+            return None
+
+        pipeline = [
+            # 1. Filter: active=True und owner_id==owner
+            {"$match": {"active": True, "owner_id": owner}},
+            # 2. Lookup: Join mit event-Collection über event_ids
+            {
+                "$lookup": {
+                    "from": "event",
+                    "localField": "event_ids",
+                    "foreignField": "event_id",
+                    "as": "events",
+                }
+            },
+            # Optional: Nur bestimmte Felder zurückgeben
+            {"$project": {"events": 1, "_id": 0, "semester": 1, "name": 1}},
+        ]
+        res = list(self._collection.aggregate(pipeline))
+        if len(res) == 0:
+            return None
+        return res[0]
+
+    def get_active_modules(self, student_id: str):
+        # Zuerst prüfen, ob für den Studenten überhaupt ein Eintrag existiert
+        exists = self._get_by_dict({"owner_id": student_id})
+        if exists is None:
+            return None
+
+        pipeline = [
+            # 1. Filter: nur aktive TimeTables des Studenten
+            {"$match": {"active": True, "owner_id": student_id}},
+            
+            # 2. Lookup: Join mit event-Collection über event_ids
+            {
+                "$lookup": {
+                    "from": "event",
+                    "localField": "event_ids",
+                    "foreignField": "event_id",
+                    "as": "events",
+                }
+            },
+            {"$unwind": "$events"},  # Entpacken der events-Liste für weitere Joins
+            
+            # 3. Join event.course_id mit course.course_id
+            {
+                "$lookup": {
+                    "from": "course",
+                    "localField": "events.course_id",
+                    "foreignField": "course_id",
+                    "as": "courses",
+                }
+            },
+            {"$unwind": "$courses"},
+            
+            # 4. Join course.module_id mit module.module_id
+            {
+                "$lookup": {
+                    "from": "module",
+                    "localField": "courses.module_number",
+                    "foreignField": "module_id",
+                    "as": "modules",
+                }
+            },
+            
+            # 5. Optional: Nur die Module zurückgeben
+            {
+                "$project": {
+                    "_id": 0,
+                    "modules": 1,
+                }
+            }
+        ]
+
+        res = list(self._collection.aggregate(pipeline))
+        if not res:
+            return None
+
+        # Die Module sammeln (falls mehrere TimeTables vorhanden)
+        all_modules = []
+        for r in res:
+            all_modules.extend(r.get("modules", []))
+        
+        return all_modules
+
+
 
 
 class TodoManager(BaseManager[Todo]):

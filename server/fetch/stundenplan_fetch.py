@@ -129,9 +129,9 @@ def schedule_to_db(events):
     eventManager.clear_table()
     i = 0
     for event in events:
-        if eventManager.create_event(event):
-            i = i + 1  # gibts kein i++ ???
-    #assert i == len(events)
+        eventManager.create_event(event)
+        i = i + 1  # gibts kein i++ ??? fr
+    assert i == len(events)
     return i
 
 

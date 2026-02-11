@@ -5,6 +5,7 @@ import { useSchedule, type TimeTable, type TimeTableDay } from "./useSchedule";
 import { IconButton } from "../../../components/Buttons";
 import { zip } from "../../../utils/zip";
 import { displayTotalTime } from "../Dashboard/Dashboard";
+import { Loading } from "../../../components/Loading";
 
 function Hint() {
   return (
@@ -13,6 +14,7 @@ function Hint() {
     </p>
   );
 }
+
 function displayTime(startMinute: number, endMinute: number) {
   function getTime(time: number): string {
     let h = Math.floor(time / 60).toFixed(0);
@@ -69,13 +71,16 @@ function Course({
           </div>
         )}
       </div>
-      <div className="hidden sm:block col-span-3 relative">
-        {idx > 0 && idx < n && (
-          <div className="absolute -top-8 left-3 text-wrap text-lg">
-            {displayPause(endMinute, course.startMinute)} Pause
-          </div>
-        )}
-      </div>
+      {endMinute - course.startMinute < 0 && <>
+        <div className="hidden sm:block col-span-3 relative">
+          {idx > 0 && idx < n && (
+            <div className="absolute -top-8 left-3 text-wrap text-lg">
+              {displayPause(endMinute, course.startMinute)} Pause
+            </div>
+          )}
+        </div>
+      </>}
+
     </>
   );
 }
@@ -95,7 +100,7 @@ function TimeTable({ days }: { days: TimeTableDay[][] }) {
     <>
       {zip(days, labels).map((day) => {
         if (day[0].length == 0) {
-            return <></>
+          return <></>
         }
         return (
           <div>
@@ -118,13 +123,17 @@ function TimeTable({ days }: { days: TimeTableDay[][] }) {
 }
 
 export const Schedule = () => {
-  const isActive = useSchedule();
+  const { data, isLoading } = useSchedule();
+
+  if (isLoading) {
+    return <Loading isLoading={isLoading} />
+  }
 
   return (
     <Layout backURL="/">
       <div className="flex items-center justify-between pt-6 ">
         <H1>
-          {!isActive ? "Stundenplan" : "Stundenplan - " + isActive.semester}
+          {!data! ? "Stundenplan" : "Stundenplan - " + data!.semester + ` (${data!.name}) `}
         </H1>
         <IconButton
           className="ml-auto bg-gray-800 rounded-xl p-2  text-white"
@@ -134,7 +143,7 @@ export const Schedule = () => {
         />
       </div>
       <div className="flex flex-col justify-between pt-6">
-        {!isActive ? <Hint /> : <TimeTable days={isActive.days} />}
+        {!data! ? <Hint /> : <TimeTable days={data!.days} />}
       </div>
     </Layout>
   );

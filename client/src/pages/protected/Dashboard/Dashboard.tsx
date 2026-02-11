@@ -21,18 +21,21 @@ export function displayTotalTime(value: number) {
 }
 
 
-function displayTitle(name: string) {
-  if (name.length > 15) {
-    return name
-      .split(" ")
-      .reduce((acc, v) => {
-        if (v.length < 4) {
-          return acc + v + " ";
-        }
-        return acc + v.substring(0, 5) + ". ";
-      }, "")
-      .trim();
+function displayTitle(name: any) {
+  if (name instanceof String) {
+    if (name.length > 15) {
+      return name
+        .split(" ")
+        .reduce((acc, v) => {
+          if (v.length < 4) {
+            return acc + v + " ";
+          }
+          return acc + v.substring(0, 5) + ". ";
+        }, "")
+        .trim();
+    }
   }
+
   return name;
 }
 
