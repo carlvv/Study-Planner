@@ -41,14 +41,14 @@ class Specialisation:
 @dataclass(kw_only=True)
 class Listener:
     specialisation_id: int
-    recommSemester: [int]
+    recommSemester: list[int]
 
 @dataclass(kw_only=True)
 class DayEvent:
     day: Day
     start_time: Timeslot
     end_time: Timeslot
-    rooms: [Room]
+    rooms: list[Room]
 
 
 @dataclass(kw_only=True)
@@ -58,5 +58,5 @@ class Event(BaseModel):
     name_add: str
     course_id: str
     optional: bool
-    days: [DayEvent]
-    listeners: [Listener]
+    days: list[DayEvent]
+    listeners: list[Listener]

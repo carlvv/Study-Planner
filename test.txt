@@ -1,0 +1,517 @@
+SB149
+SB205
+SM018
+SM031
+SB015
+SA001
+SB001
+SB002
+SB037B038
+SB259
+SB259
+SB016B
+SB016U1
+SB016U2
+SB016U3
+SB016U4
+SB016U5
+SB016U6
+SB128
+SM033B
+SX003
+SB371
+SA042
+SA043
+SM033BF
+SB139
+SM019
+SB322
+SX005
+SX005
+SB358
+SB359U2
+SB359U1
+SB162C
+SB043
+SB043
+SB077
+SB305
+SB098
+SB361
+SB362U1
+SB362U2
+SB362U3
+SB362U4
+SM002
+SM003
+SB079
+SB284
+SM015
+SM034
+SM051
+SB319.dsg
+SB319.saw
+SB094
+SB364
+SB069U2
+SB069U1
+SB003E
+SB003E
+SB003
+SB003U
+SB193
+SM006
+SM007
+SB151
+SM061
+SM060
+SM060
+SB163
+SB163U
+SB292
+SB185
+SM084
+SM080
+SB090
+SA163
+SA163
+SM033F
+SB374
+SM036F
+SB246
+SB247
+SB315
+SA037
+SB081
+SB084
+SA159
+SB194
+SB105
+SX002
+None
+SB017
+SB307
+SB006
+SB165
+SB289B
+SM095
+SM118
+SA020
+SB131
+SB271
+SX001
+SB375
+SB376
+SB367
+SM107
+SB195
+SB133
+SA150
+SM047
+SB363M
+SM066
+None
+SA008A009
+SA008A009
+SM083
+SM083
+SM065
+SB153M
+SB113
+SA016
+SB155
+SM004O
+SB099P
+SA073
+SB100
+SB085
+SM119
+SB208
+SB290
+SB177
+SB177
+SA033
+SB012
+SB012
+SB392
+SB248
+SA138
+SA139
+SA139
+SB005A
+SB005B
+SB010
+SB011V
+SB011B
+SB011U1
+SB011U2
+SB011U3
+SB011U4
+SB011U5
+SM112
+SM118
+SB118
+SM054
+SM057
+SB102
+SB119
+SM037
+SB210
+SM123
+SM041
+SA157
+SB033
+SB033
+SB013
+SA032P2
+SB014
+SA032P1
+SB342
+SM035
+SB188
+SB188U
+SB368
+SB086
+SB353
+SB353
+SB353
+SB353
+SB353
+SB353
+SB353
+SB353
+SB353
+SB353
+SB353
+SB357
+SB357
+SB357
+SB357
+SB357
+SB357
+SB357
+SB357
+SB356
+SB356
+SB356
+SB356
+SB356
+SB356
+SB356
+SB356
+SB356
+SB356
+SB356
+SB355
+SB355
+SB355
+SB355
+SB355
+SB355
+SB355
+SB355
+SB355
+SM008
+SB040.afi
+SM024.afi
+SB040.web
+SB040.bo
+SB040.awo
+SB040.ann.mpa
+SM024.gi
+SB040.uh
+SM024.gb
+SB040.iw
+SB040.fbo
+SM024.afi.web
+SB040.gi
+SB040.dpr
+SB040.gh
+SB040.mpg
+SB040.dmi.smt
+SM024.dmi.smt
+SB363S
+SB191
+SB191
+SB047
+SB034
+SB074B
+SA046
+SB074U1
+SB074U1
+SB074U2
+SB074U3
+SB074U4
+SB074U5
+SM094
+SM004S
+SM102
+SM101
+SM100
+SM103
+SM122
+SB032
+SB072
+SB162T
+SB089
+SB289U
+SB153U
+SB173
+SA155
+SB262B263
+SB091
+SB087
+SM038
+SB265
+SB266
+SB266
+SM036V
+SB377
+SA161
+SB220
+SM048
+SM048
+SB103
+SB201
+SB202
+SM043
+SB203
+SB260
+SM049
+SM049
+SM050
+SM050
+Parse Ergebnis -> 283
+In DB -> 175
+Course ID: TB001, Name: Analysis
+  Event found for Course ID 'TB001': Analysis
+Course ID: TB002, Name: Übg. Analysis
+  Event found for Course ID 'TB002': Analysis
+Course ID: TB003, Name: Diskrete Mathematik
+  Event found for Course ID 'TB003': Discrete Mathematics
+Course ID: TB004, Name: Programmstrukturen 1
+  No event found for Course ID 'B004'
+Course ID: TB005, Name: Übg. Programmstrukturen 1
+  Event found for Course ID 'TB005': Programmstrukturen 1
+Course ID: TB006, Name: Informationstechnik
+  Event found for Course ID 'TB006': Informationstechnik
+Course ID: TB065, Name: Einführung in die Digitaltechnik
+  No event found for Course ID 'B065'
+Course ID: TB069, Name: Prakt. Digitaltechnik
+  Event found for Course ID 'TB069': Digitaltechnik
+Course ID: TB067, Name: Grundlagen der Funktionalen Programmierung
+  No event found for Course ID 'B067'
+Course ID: TB073, Name: Übg. Grundlagen der Funktionalen Programmierung
+  No event found for Course ID 'B073'
+Course ID: TB009, Name: Deskriptive Statistik, Grundlagen der Linearen Algebra
+  No event found for Course ID 'B009'
+Course ID: TB010, Name: Programmstrukturen 2
+  Event found for Course ID 'TB010': Programmstrukturen 2
+Course ID: TB011, Name: Übg. Programmstrukturen 2
+  Event found for Course ID 'TB011': Programmstrukturen 2
+Course ID: TB062, Name: Digitaltechnik, Rechnerstrukturen
+  No event found for Course ID 'B062'
+Course ID: TB064, Name: Einführung in die Betriebswirtschaft
+  No event found for Course ID 'B064'
+Course ID: TB012, Name: Programmierpraktikum
+  Event found for Course ID 'TB012': Programmierpraktikum
+Course ID: TB013, Name: Rechnernetze
+  Event found for Course ID 'TB013': Rechnernetze
+Course ID: TB014, Name: Prakt. Rechnernetze
+  Event found for Course ID 'TB014': Rechnernetze
+Course ID: TB015, Name: Algorithmen und Datenstrukturen
+  Event found for Course ID 'TB015': Algorithmen und
+Course ID: TB016, Name: Übg. Algorithmen und Datenstrukturen
+  Event found for Course ID 'TB016': AuD
+Course ID: TB017, Name: Induktive Statistik
+  Event found for Course ID 'TB017': Induktive Statistik
+Course ID: TB072, Name: Systemnahe Programmierung
+  Event found for Course ID 'TB072': Systemnahe
+Course ID: TB074, Name: Übg. Systemnahe Programmierung
+  Event found for Course ID 'TB074': SP
+Course ID: TB019, Name: UNIX und Shell-Programmierung, Übg. UNIX und Shell-Programmierung
+  No event found for Course ID 'B019'
+Course ID: TB068, Name: Lineare Algebra
+  No event found for Course ID 'B068'
+Course ID: TB020, Name: Einführung in Datenbanken
+  No event found for Course ID 'B020'
+Course ID: TB021, Name: Übg. Einführung in Datenbanken
+  No event found for Course ID 'B021'
+Course ID: TB078, Name: Datenschutz, Medienrecht
+  No event found for Course ID 'B078'
+Course ID: TB024, Name: Fortgeschrittene Objektorientierte Programmierung
+  No event found for Course ID 'B024'
+Course ID: TB025, Name: Übg. Fortgeschrittene Objektorientierte Programmierung
+  No event found for Course ID 'B025'
+Course ID: TB026, Name: Software-Design
+  No event found for Course ID 'B026'
+Course ID: TB027, Name: Web-Anwendungen
+  No event found for Course ID 'B027'
+Course ID: TB028, Name: Übg. Web-Anwendungen
+  No event found for Course ID 'B028'
+Course ID: TB029, Name: Operations Research
+  No event found for Course ID 'B029'
+Course ID: TB030, Name: Übg. Operations Research
+  No event found for Course ID 'B030'
+Course ID: TB066, Name: Grundlagen der Computergrafik
+  No event found for Course ID 'B066'
+Course ID: TB071, Name: Prakt. Grundlagen der Computergrafik, Aufwand pro Semester, Prfg.-Nr.
+  No event found for Course ID 'B071'
+Course ID: TB032, Name: Systemanalyse
+  Event found for Course ID 'TB032': Systemanalyse
+Course ID: TB033, Name: Prozessmodellierung
+  Event found for Course ID 'TB033': Prozessmodellierung
+Course ID: TB034, Name: Softwarequalität
+  Event found for Course ID 'TB034': Softwarequalität
+Course ID: TB036, Name: Anwendungen der Künstlichen Intelligenz
+  No event found for Course ID 'B036'
+Course ID: TB076, Name: Bildbearbeitung und -analyse
+  No event found for Course ID 'B076'
+Course ID: TB083, Name: Prakt. Bildbearbeitung und -analyse
+  No event found for Course ID 'B083'
+Course ID: TB037, Name: Anwendungsentwicklung in ERP-Systemen
+  Event found for Course ID 'TB037': Anwendungsentwicklung in ERP-Systemen
+Course ID: TB038, Name: Übg. Anwendungsentwicklung in ERP-Systemen
+  No event found for Course ID 'B038'
+Course ID: TB063, Name: Echtzeitsysteme, Interface-Technologie
+  No event found for Course ID 'B063'
+Course ID: TB070, Name: Prakt. Echtzeitsysteme
+  No event found for Course ID 'B070'
+Course ID: TB089, Name: Technologie der Mediengestaltung und GUI-Programmierung
+  Event found for Course ID 'TB089': Technologie Mediengestaltung
+Course ID: TB042, Name: Assistenz
+  No event found for Course ID 'B042'
+Course ID: TB043, Name: Communication Skills
+  Event found for Course ID 'TB043': Communication Skills
+Course ID: TB044, Name: Entre- und Intrapreneurship
+  No event found for Course ID 'B044'
+Course ID: TB045, Name: Workshop Entre- und Intrapreneurship
+  No event found for Course ID 'B045'
+Course ID: TB046, Name: Projektmanagement
+  No event found for Course ID 'B046'
+Course ID: TB047, Name: Softwareprojekt
+  Event found for Course ID 'TB047': Softwareprojekt
+Course ID: TB048, Name: IT-Sicherheit
+  No event found for Course ID 'B048'
+Course ID: TB050, Name: Bachelor-Thesis
+  No event found for Course ID 'B050'
+Course ID: TB051, Name: Praktikum
+  No event found for Course ID 'B051'
+Course ID: TB052, Name: Bachelor-Kolloquium
+  No event found for Course ID 'B052'
+Course ID: TB061, Name: Applied Data Science and Machine Learning
+  No event found for Course ID 'B061'
+Course ID: TB104, Name: Data Literacy
+  No event found for Course ID 'B104'
+Course ID: TB121, Name: Übg. Data Science
+  No event found for Course ID 'B121'
+Course ID: TB057, Name: Formale Sprachen
+  No event found for Course ID 'B057'
+Course ID: TB079, Name: Data Visualization, Feature Engineering
+  Event found for Course ID 'TB079': Datenvisualisierung /
+Course ID: TB090, Name: Übg. Exploratory Data Analysis
+  Event found for Course ID 'TB090': Exploratory Data Analysis
+Course ID: TB059, Name: Geschäftsprozesse mit ERP-Systemen
+  No event found for Course ID 'B059'
+Course ID: TB060, Name: Übg. Geschäftsprozesse mit ERP-Systemen
+  No event found for Course ID 'B060'
+Course ID: TB040, Name: Seminar
+  Event found for Course ID 'TB040': Seminar - Bachelor
+Course ID: TB039, Name: Auslandssemester
+  No event found for Course ID 'B039'
+Course ID: TB268, Name: Grundlagen der Wirtschaftspsychologie
+  No event found for Course ID 'B268'
+Course ID: TB282, Name: Web- and App-Analytics
+  No event found for Course ID 'B282'
+Course ID: TB126, Name: Web-Analytics Projekt
+  No event found for Course ID 'B126'
+Course ID: TB284, Name: Digital Product Management
+  Event found for Course ID 'TB284': Digital Product Management
+Course ID: TB296, Name: Datenbanktheorie und -implementierung
+  No event found for Course ID 'B296'
+Course ID: TB297, Name: Workshop container- und serviceorientierte Architekturen
+  No event found for Course ID 'B297'
+Course ID: TB305, Name: Computer Vision
+  Event found for Course ID 'TB305': Computer Vision
+Course ID: TB312, Name: Einführung in das wissenschaftliche Arbeiten
+  No event found for Course ID 'B312'
+     Zeit     |           Montag           |       Dienstag       |       Mittwoch      |      Donnerstag      |    Freitag    
+-------------------------------------------------------------------------------------------------------------------------------
+08:00 - 09:15 |                            |                      | Induktive Statistik | Algorithmen und      | Rechnernetze  
+09:30 - 10:45 |                            | Programmstrukturen 2 | Induktive Statistik | Algorithmen und      | Rechnernetze  
+11:00 - 12:15 |                            | Programmstrukturen 2 |                     | Systemnahe           | Analysis      
+12:30 - 13:45 | Digital Product Management |                      |                     | Systemnahe           | Analysis      
+14:00 - 15:15 | Digital Product Management | Programmstrukturen 2 | Systemanalyse       | Programmstrukturen 1 | Digitaltechnik
+15:30 - 16:45 | Softwarequalität           | Programmstrukturen 2 | Systemanalyse       | Programmstrukturen 1 | Digitaltechnik
+17:00 - 18:15 | Softwarequalität           | Programmstrukturen 2 | SP                  |                      | Digitaltechnik
+None
+     Zeit     |           Montag           |       Dienstag       |       Mittwoch      |      Donnerstag      |    Freitag    
+-------------------------------------------------------------------------------------------------------------------------------
+08:00 - 09:15 |                            |                      | Induktive Statistik | Algorithmen und      | Rechnernetze  
+09:30 - 10:45 |                            | AuD                  | Induktive Statistik | Algorithmen und      | Rechnernetze  
+11:00 - 12:15 |                            |                      |                     | Systemnahe           | Analysis      
+12:30 - 13:45 | Digital Product Management |                      |                     | Systemnahe           | Analysis      
+14:00 - 15:15 | Digital Product Management | Programmstrukturen 2 | Systemanalyse       | Programmstrukturen 1 | Digitaltechnik
+15:30 - 16:45 | Softwarequalität           |                      | Systemanalyse       | Programmstrukturen 1 | Digitaltechnik
+17:00 - 18:15 | Softwarequalität           |                      | SP                  |                      | Digitaltechnik
+None
+     Zeit     |           Montag           |       Dienstag       |       Mittwoch      |      Donnerstag      |       Freitag      
+------------------------------------------------------------------------------------------------------------------------------------
+08:00 - 09:15 |                            |                      | Induktive Statistik | Algorithmen und      | Rechnernetze       
+09:30 - 10:45 |                            | Programmstrukturen 2 | Induktive Statistik | Algorithmen und      | Rechnernetze       
+11:00 - 12:15 |                            | Programmstrukturen 2 |                     | Systemnahe           | Analysis           
+12:30 - 13:45 | Digital Product Management |                      |                     | Systemnahe           | Analysis           
+14:00 - 15:15 | Digital Product Management | Programmstrukturen 2 | Systemanalyse       | Programmstrukturen 1 | Prozessmodellierung
+15:30 - 16:45 | Softwarequalität           | Programmstrukturen 2 | Systemanalyse       | Programmstrukturen 1 | Prozessmodellierung
+17:00 - 18:15 | Softwarequalität           | Programmstrukturen 2 | SP                  |                      | Prozessmodellierung
+None
+     Zeit     |           Montag           |       Dienstag       |       Mittwoch      |      Donnerstag      |           Freitag           
+---------------------------------------------------------------------------------------------------------------------------------------------
+08:00 - 09:15 |                            |                      | Induktive Statistik | Algorithmen und      | Rechnernetze                
+09:30 - 10:45 |                            | Programmstrukturen 2 | Induktive Statistik | Algorithmen und      | Rechnernetze                
+11:00 - 12:15 |                            | Programmstrukturen 2 |                     | Systemnahe           | Analysis                    
+12:30 - 13:45 | Digital Product Management |                      |                     | Systemnahe           | Analysis                    
+14:00 - 15:15 | Digital Product Management | Programmstrukturen 2 | Systemanalyse       | Programmstrukturen 1 | Technologie Mediengestaltung
+15:30 - 16:45 | Softwarequalität           | Programmstrukturen 2 | Systemanalyse       | Programmstrukturen 1 | Technologie Mediengestaltung
+17:00 - 18:15 | Softwarequalität           | Programmstrukturen 2 | SP                  |                      | Technologie Mediengestaltung
+None
+     Zeit     |           Montag           |       Dienstag       |       Mittwoch      |      Donnerstag      |        Freitag       
+--------------------------------------------------------------------------------------------------------------------------------------
+08:00 - 09:15 |                            |                      | Induktive Statistik | Algorithmen und      | Rechnernetze         
+09:30 - 10:45 |                            | Programmstrukturen 2 | Induktive Statistik | Algorithmen und      | Rechnernetze         
+11:00 - 12:15 |                            | Programmstrukturen 2 |                     | Systemnahe           | Analysis             
+12:30 - 13:45 | Digital Product Management |                      |                     | Systemnahe           | Analysis             
+14:00 - 15:15 | Digital Product Management | Programmstrukturen 2 | Systemanalyse       | Programmstrukturen 1 | Datenvisualisierung /
+15:30 - 16:45 | Softwarequalität           | Programmstrukturen 2 | Systemanalyse       | Programmstrukturen 1 | Datenvisualisierung /
+17:00 - 18:15 | Softwarequalität           | Programmstrukturen 2 | SP                  |                      |                      
+None
+     Zeit     |           Montag           |       Dienstag       |       Mittwoch      |      Donnerstag      |       Freitag      
+------------------------------------------------------------------------------------------------------------------------------------
+08:00 - 09:15 |                            |                      | Induktive Statistik | Algorithmen und      | Rechnernetze       
+09:30 - 10:45 |                            | AuD                  | Induktive Statistik | Algorithmen und      | Rechnernetze       
+11:00 - 12:15 |                            |                      |                     | Systemnahe           | Analysis           
+12:30 - 13:45 | Digital Product Management |                      |                     | Systemnahe           | Analysis           
+14:00 - 15:15 | Digital Product Management | Programmstrukturen 2 | Systemanalyse       | Programmstrukturen 1 | Prozessmodellierung
+15:30 - 16:45 | Softwarequalität           |                      | Systemanalyse       | Programmstrukturen 1 | Prozessmodellierung
+17:00 - 18:15 | Softwarequalität           |                      | SP                  |                      | Prozessmodellierung
+None
+     Zeit     |           Montag           |       Dienstag       |       Mittwoch      |      Donnerstag      |           Freitag           
+---------------------------------------------------------------------------------------------------------------------------------------------
+08:00 - 09:15 |                            |                      | Induktive Statistik | Algorithmen und      | Rechnernetze                
+09:30 - 10:45 |                            | AuD                  | Induktive Statistik | Algorithmen und      | Rechnernetze                
+11:00 - 12:15 |                            |                      |                     | Systemnahe           | Analysis                    
+12:30 - 13:45 | Digital Product Management |                      |                     | Systemnahe           | Analysis                    
+14:00 - 15:15 | Digital Product Management | Programmstrukturen 2 | Systemanalyse       | Programmstrukturen 1 | Technologie Mediengestaltung
+15:30 - 16:45 | Softwarequalität           |                      | Systemanalyse       | Programmstrukturen 1 | Technologie Mediengestaltung
+17:00 - 18:15 | Softwarequalität           |                      | SP                  |                      | Technologie Mediengestaltung
+None
+     Zeit     |           Montag           |       Dienstag       |       Mittwoch      |      Donnerstag      |        Freitag       
+--------------------------------------------------------------------------------------------------------------------------------------
+08:00 - 09:15 |                            |                      | Induktive Statistik | Algorithmen und      | Rechnernetze         
+09:30 - 10:45 |                            | AuD                  | Induktive Statistik | Algorithmen und      | Rechnernetze         
+11:00 - 12:15 |                            |                      |                     | Systemnahe           | Analysis             
+12:30 - 13:45 | Digital Product Management |                      |                     | Systemnahe           | Analysis             
+14:00 - 15:15 | Digital Product Management | Programmstrukturen 2 | Systemanalyse       | Programmstrukturen 1 | Datenvisualisierung /
+15:30 - 16:45 | Softwarequalität           |                      | Systemanalyse       | Programmstrukturen 1 | Datenvisualisierung /
+17:00 - 18:15 | Softwarequalität           |                      | SP                  |                      |                      
+None

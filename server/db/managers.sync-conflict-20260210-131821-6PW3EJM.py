@@ -1,6 +1,7 @@
+from ast import List
 from genericpath import exists
 from datetime import datetime, date, timedelta, time, timezone
-from typing import Any, Dict, List, Optional
+from typing import Optional
 from bson import ObjectId
 from numpy import identity
 from pymongo import MongoClient
@@ -284,41 +285,14 @@ class EventManager(BaseManager[Event]):
         existing = self.get_by_event_id(event.course_id)
         if existing:
             return existing.id
-        return self._create(event)
+        return self.create_event(event)
 
     def clear_table(self):
         self._collection.drop()
 
-    def get_all_events(self) -> list[Event]:
-        out: list[Event] = []
-        for data in self._collection.find({}):
-            out.append(self._model.from_dict(data))
-        return out
-
-    def get_all_events_with_course(self) -> List[Dict[str, Any]]:
-        pipeline = [
-            {
-                "$lookup": {
-                    "from": "course",
-                    "localField": "course_id",
-                    "foreignField": "course_id",
-                    "as": "course"
-                }
-            },
-            {
-                "$unwind": "$course"
-            }
-        ]
-
-        return list(self._collection.aggregate(pipeline))
-
-
 class LearnTimeManager(BaseManager[Learntime]):
     def __init__(self, db: MongoClient):
         super().__init__(db.lt, Learntime)
-
-    def create_learn_time(self, learnTime: Learntime):
-        return self._create(learnTime)
 
     def get_all(self, student_id):
         out: list[Learntime] = []

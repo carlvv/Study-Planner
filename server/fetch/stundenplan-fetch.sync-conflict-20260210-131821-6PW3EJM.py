@@ -109,13 +109,12 @@ def parse_schedule(stundenplan):
                             specialisation_id=int(teilnehmer[0][0].text),
                             recommSemester=recommSem
                         ))
-                print(veranstaltung[4].text)
-                id = "" if not veranstaltung[4].text or veranstaltung[4].text[1:5] == '' else (veranstaltung[4].text[1:5])
+
                 veranstaltungen.append(Event(
                     event_id=int(veranstaltung[0].text),
                     name=veranstaltung[2].text,
                     name_add=veranstaltung[3].text,
-                    course_id=id,
+                    course_id=veranstaltung[4].text,
                     optional=bool(int(veranstaltung[9].text)),
                     days=veransttage,
                     listeners=zuhoerer,
@@ -129,9 +128,9 @@ def schedule_to_db(events):
     eventManager.clear_table()
     i = 0
     for event in events:
-        if eventManager.create_event(event):
-            i = i + 1  # gibts kein i++ ???
-    #assert i == len(events)
+        eventManager.create_event(event)
+        i = i + 1  # gibts kein i++ ???
+    assert i == len(events)
     return i
 
 
@@ -140,7 +139,7 @@ def create_schedule():
     # schedule = dl_api()
     # events = parse_schedule(schedule)
 
-    schedule = open("server/data/splan-DEBUG.php", "r").read()
+    schedule = open("data/splan-DEBUG.php", "r").read()
     events = parse_schedule(schedule)
     print("Parse Ergebnis -> " + str(len(events)))
     amount = schedule_to_db(events)
