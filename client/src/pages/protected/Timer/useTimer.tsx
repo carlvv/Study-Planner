@@ -12,7 +12,7 @@ export function useTimer(subjectId: string) {
     const queryClient = useQueryClient()
 
     const { data: recentData, isLoading: recentIsLoading, isError: recentIsError, error: recentError } = useQuery({
-        queryKey: ["recent-timer-data", subjectId],  // eindeutiger Key
+        queryKey: ["recent-timer-data"], 
         queryFn: async () => {
             const res = await fetch_backend_auth("/timer_recent")
             if (!res.ok) {
@@ -21,25 +21,38 @@ export function useTimer(subjectId: string) {
             }
             return res.json() as unknown as Time[]
         },
-        staleTime: 1000 * 60 * 5,
     })
     
-    const { data: modulesData, isLoading: modulesIsLoading, isError: modulesIsError, error: modulesError } = useQuery({
-        queryKey: ["modules-data"],  // eindeutiger Key
+    const { 
+        data: modulesData, 
+        isLoading: modulesIsLoading, 
+        isError: modulesIsError, 
+        error: modulesError 
+        } = useQuery({
+        queryKey: ["modules-data"],
         queryFn: async () => {
             const res = await fetch_backend_auth("/timer_get_modules")
             if (!res.ok) {
-                const err = await res.json()
-                throw new Error(err.error ?? "Fehler beim Laden der Module")
+            const err = await res.json()
+            throw new Error(err.error ?? "Fehler beim Laden der Module")
             }
 
-            const data = await res.json()
-            console.log(data)
+            const data = await res.json() as TimerModulesResponse
 
-            return data as unknown as TimerModulesResponse
+            const uniqueActiveModules = Array.from(
+            new Map(
+                data.active_modules.map(m => [m.module_id, m])
+            ).values()
+            )
+
+            return {
+            ...data,
+            active_modules: uniqueActiveModules
+            }
         },
         staleTime: 1000 * 60 * 5,
     })
+
 
     const createMutation = useMutation({
         mutationFn: async ({ module_id, duration_in_min, date }: { module_id: string, duration_in_min: number, date: Date }) => {
@@ -51,7 +64,7 @@ export function useTimer(subjectId: string) {
         },
         onSuccess: () => {
             queryClient.invalidateQueries({
-                queryKey: ["recent-timer-data", subjectId],
+                queryKey: ["recent-timer-data"],
             })
         }
     })

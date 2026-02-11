@@ -89,7 +89,15 @@ export const ScheduleSettings = () => {
                 <div>
                   <div className="font-medium">{plan.name}</div>
                   <div className="text-sm text-white flex flex-wrap">
-                    {plan.events.map(a => <div className="bg-gray-500 m-1 px-4 py-1 rounded-2xl">{a.name} </div>)}
+                    {[...new Set(plan.events.map(e => e.name +" "+  (!e.name_add ? "" : e.name_add) ))].map(name => (
+                  <div
+                    key={name}
+                    className="bg-gray-500 m-1 px-4 py-1 rounded-2xl"
+                  >
+                    {name}
+                  </div>
+                ))}
+
                   </div>
                 </div>
                 {plan.active && <Check size={50} />}

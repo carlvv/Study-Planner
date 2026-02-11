@@ -58,8 +58,7 @@ def create_time():
 
         module_id = data.get("module_id")
         duration_in_min = data.get("duration_in_min")
-        date_str = data.get("date")
-        date = parser.isoparse(date_str)
+        date = datetime.datetime.now()
 
         learnTime = Learntime(module_id=module_id, duration_in_min=duration_in_min, date=date, owner_id=identity)
         manager.create_learn_time(learnTime=learnTime)

@@ -31,6 +31,6 @@ export const useDashboard = () => {
             
             return await res.json() as unknown as Data
         },
-        staleTime: 1000 * 60 * 5 // fetch jede minute
+        refetchOnMount: "always"
     })
 }
