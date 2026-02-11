@@ -11,12 +11,13 @@ import TextInput from "../../../../components/Input";
 interface Data {
   active: boolean,
   event_ids: number[]
+  events: any[]
   name: string,
   owner_id: string,
   semester: string,
   _id: any
 }
-type GroupedData = [string, Data[]][]; // [semester, Data[]][]
+type GroupedData = [string, Data[]][];
 
 export const ScheduleSettings = () => {
   const { data, isLoading } = useQuery<GroupedData>({
@@ -24,14 +25,12 @@ export const ScheduleSettings = () => {
     queryFn: async () => {
       const res = await fetch_backend_auth("/timetable/get_all");
       const items: Data[] = await res.json();
-
       const grouped: Record<string, Data[]> = items.reduce((acc, item) => {
         const key = item.semester;
         if (!acc[key]) acc[key] = [];
         acc[key].push(item);
         return acc;
       }, {} as Record<string, Data[]>);
-
       return Object.entries(grouped);
     },
   });
@@ -89,11 +88,11 @@ export const ScheduleSettings = () => {
               >
                 <div>
                   <div className="font-medium">{plan.name}</div>
-                  <div className="text-sm text-gray-600">
-                    {plan.event_ids.length} Module
+                  <div className="text-sm text-white flex flex-wrap">
+                    {plan.events.map(a => <div className="bg-gray-500 m-1 px-4 py-1 rounded-2xl">{a.name} </div>)}
                   </div>
                 </div>
-                {plan.active && <Check />}
+                {plan.active && <Check size={50} />}
               </div>
             ))}
           </div>
@@ -107,16 +106,14 @@ export const ScheduleSettings = () => {
 
 
 const CreateScheduleModal = ({ onClose }: { onClose: () => void }) => {
-  const [step, setStep] = useState<1 | 2>(1);
+  const [step, setStep] = useState<1 | 2 | 3>(1);
   const [type, setType] = useState<string | null>(null);
   const [selectedModules, setSelectedModules] = useState<number[]>([]);
-
   const handleNext = () => {
     if (type === "manuell") {
       setStep(2);
     } else {
-      // später: KI / automatisch
-      onClose();
+      setStep(3)
     }
   };
 
@@ -150,6 +147,11 @@ const CreateScheduleModal = ({ onClose }: { onClose: () => void }) => {
             onSend={onClose}
           />
         )}
+        {step === 3 && (
+          <StepThree
+            onClose={onClose}
+          />
+        )}
       </div>
     </div>
   );
@@ -177,7 +179,7 @@ const StepOne = ({
           </label>
           {/* TODO */}
           <div className="space-y-2">
-            {["manuell"].map((v) => ( 
+            {["manuell", "automatisch" ].map((v) => ( 
               <label key={v} className="flex items-center gap-2">
                 <input
                   type="radio"
@@ -301,3 +303,66 @@ const StepTwo = ({
   );
 };
 
+
+const StepThree = ({
+  onClose
+}: {
+  onClose: () => void;
+}) => {
+  const [text, setText] = useState("")
+  const queryClient = useQueryClient();
+
+  const createMutation = useMutation({
+    mutationFn: async () => {
+      const res = await fetch_backend_auth("/timetable/create_timetable", {
+        method: "POST",
+        body: JSON.stringify({
+          name: text
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to create timetable");
+      }
+
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["all_timetable"],
+      });
+      onClose();
+    }
+  });
+
+  return (
+    <>
+      <h2 className="text-lg font-medium mb-4">
+        Name festlegen
+      </h2>
+
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm mb-2">
+            Gewünschte Name
+          </label>
+          <input
+            type="text"
+            value={text ?? ""}
+            onChange={(e) => setText(e.target.value)}
+            className="w-full border rounded-md px-3 py-2"
+            placeholder="z.B Stundenplan 1"
+          />
+        </div>
+
+        <button
+          disabled={text=="" || createMutation.isPending}
+          onClick={() => createMutation.mutate()}
+          className="w-full bg-gray-900 text-white py-2 rounded-md disabled:opacity-50"
+        >
+          {createMutation.isPending ? "Erstellen…" : "Stundenplan erstellen"}
+        </button>
+      </div>
+    </>
+  );
+};

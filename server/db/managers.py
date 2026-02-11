@@ -351,19 +351,6 @@ class EventManager(BaseManager[Event]):
             out.append(self._model.from_dict(data))
         return out
 
-    def get_all_events_with_course(self) -> List[Dict[str, Any]]:
-        pipeline = [
-            {
-                "$lookup": {
-                    "from": "course",
-                    "localField": "course_id",
-                    "foreignField": "course_id",
-                    "as": "course",
-                }
-            },
-            {"$unwind": "$course"},
-        ]
-        return list(self._collection.aggregate(pipeline))
 
     def get_events_curricula(self, curr: Curricula) -> List[Dict[str, Any]]:
         pipeline = [
@@ -381,6 +368,62 @@ class EventManager(BaseManager[Event]):
 
         res = list(self._collection.aggregate(pipeline))
         return res
+    
+    def get_open_events(self, curr: Curricula, student_id) -> List[Dict[str, Any]]:
+        pipeline = [
+            {
+                "$lookup": {
+                    "from": "course",
+                    "localField": "course_id",
+                    "foreignField": "course_id",
+                    "as": "course",
+                }
+            },
+            {"$unwind": "$course"},
+            {
+                "$match": {
+                    "course.module_number": {"$in": curr.modules_ids}
+                }
+            },
+            {
+                "$lookup": {
+                    "from": "process",
+                    "let": {
+                        "module_id": "$course.module_number",
+                        "course_id": "$course_id",
+                    },
+                    "pipeline": [
+                        {
+                            "$match": {
+                                "$expr": {
+                                    "$and": [
+                                        {"$eq": ["$module_id", "$$module_id"]},
+                                        {"$eq": ["$course_id", "$$course_id"]},
+                                        {"$eq": ["$student_id", student_id]},
+                                    ]
+                                }
+                            }
+                        }
+                    ],
+                    "as": "process_match",
+                }
+            },
+            {
+                "$match": {
+                    "process_match": {"$eq": []}
+                }
+            },
+            {
+                "$project": {
+                    "process_match": 0  # entfernt das Hilfsfeld
+                }
+            }
+        ]
+
+        return list(self._collection.aggregate(pipeline))
+
+
+
 
 
 class LearnTimeManager(BaseManager[Learntime]):
@@ -594,9 +637,31 @@ class TimeTableManager(BaseManager[TimeTable]):
         super().__init__(db.tt, TimeTable)
         self._event_collection = db.event
 
+    def get_all_timetable(self, owner: str):
+        exists = self._get_by_dict({"owner_id": owner})
+        if exists == None:
+            return None
+
+        pipeline = [
+            # 1. Filter: active=True und owner_id==owner
+            {"$match": {"owner_id": owner}},
+            # 2. Lookup: Join mit event-Collection über event_ids
+            {
+                "$lookup": {
+                    "from": "event",
+                    "localField": "event_ids",
+                    "foreignField": "event_id",
+                    "as": "events",
+                }
+            },
+        ]
+        res = list(self._collection.aggregate(pipeline))
+        if len(res) == 0:
+            return None
+        return res
+
     def get_active_events(self, owner: str):
         exists = self._get_by_dict({"owner_id": owner})
-        print(exists)
         if exists == None:
             return None
 

@@ -140,7 +140,7 @@ def create_schedule():
     # schedule = dl_api()
     # events = parse_schedule(schedule)
 
-    schedule = open("server/data/splan-DEBUG.php", "r").read()
+    schedule = open("./data/splan-DEBUG.php", "r").read()
     events = parse_schedule(schedule)
     print("Parse Ergebnis -> " + str(len(events)))
     amount = schedule_to_db(events)

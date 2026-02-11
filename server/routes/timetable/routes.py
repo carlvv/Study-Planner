@@ -1,5 +1,6 @@
 import datetime
 from math import fabs
+from random import randint
 from turtle import title
 from bson import ObjectId
 from discord import Object
@@ -7,8 +8,9 @@ from flask import Blueprint, current_app, jsonify, request
 from flask_jwt_extended import get_jwt_identity, jwt_required
 from numpy import identity
 
-from db.collections import student
-from db.collections.timetable import TimeTable
+from db.collections import curricula, student
+from db.collections.events import Event
+from db.collections.timetable import TimeTable, Timetable
 from db.managers import (
     CurriculaManager,
     EventManager,
@@ -46,8 +48,8 @@ def get_all_modules():
 @jwt_required()
 def get():
     identity = get_jwt_identity()
-    manager = TimeTableManager(current_app.mongo.db)
-    return jsonify(list(manager._collection.find({"owner_id": identity}))), 200
+    res = TimeTableManager(current_app.mongo.db).get_all_timetable(identity)
+    return jsonify(res), 200
 
 
 @timetable_bp.route("/set_active", methods=["POST"])
@@ -73,9 +75,21 @@ def get_active():
     return jsonify(res), 200
 
 
-# TODO
 def current_semester():
-    return "WS25"
+    now = datetime.datetime.now()
+    year = now.year
+    month = now.month
+
+    if 4 <= month <= 9:
+        # Sommersemester
+        return f"SS{year % 100:02d}"
+    else:
+        # Wintersemester
+        if month >= 10:
+            ws_year = year
+        else:
+            ws_year = year - 1
+        return f"WS{ws_year % 100:02d}"
 
 
 @timetable_bp.route("/create_timetable", methods=["POST"])
@@ -87,13 +101,37 @@ def create_timetable():
     active = True
     if len(list(manager._collection.find({"owner_id": identity}))) != 0:
         active = False
+    
     obj = request.get_json()
-    tt = TimeTable(
-        name=obj["name"],
-        semester=current_semester(),
-        owner_id=identity,
-        event_ids=obj["module_ids"],
-        active=active,
-    )
-    manager._create(tt)
+    if "module_ids" in obj:
+        tt = TimeTable(
+            name=obj["name"],
+            semester=current_semester(),
+            owner_id=identity,
+            event_ids=obj["module_ids"],
+            active=active,
+        )
+        manager._create(tt)
+
+    elif "name" in obj:
+        student = StudentManager(current_app.mongo.db)._get_by_dict({"student_id": identity})
+        curricula = CurriculaManager(current_app.mongo.db)._get_by_dict({"programm_version": student.study_id})
+        events = EventManager(current_app.mongo.db).get_open_events(curricula, identity)
+        name = obj["name"]
+
+        for event in events:
+            event.pop("course")
+
+        res = Timetable.get_max_conflict_free_timetables([Event.from_dict(e) for e in events ])
+        tt = TimeTable(
+            name=name,
+            semester=current_semester(),
+            owner_id=identity,
+            event_ids=[e.event_id for e in  res[randint(0, len(res) - 1)].get_events() ],
+            active=active,
+        )
+        manager._create(tt)
+
+    
+    
     return jsonify(), 200
