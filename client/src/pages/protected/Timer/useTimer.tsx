@@ -1,6 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { fetch_backend_auth } from "../../../utils/helper"
-import type { Time } from "../../../types"
+import type { Module, Time } from "../../../types"
+
+export type TimerModulesResponse = {
+    active_modules: Module[]
+    all_modules: Module[]
+}
 
 export function useTimer(subjectId: string) {
 
@@ -18,20 +23,23 @@ export function useTimer(subjectId: string) {
         },
         staleTime: 1000 * 60 * 5,
     })
-    /*
+    
     const { data: modulesData, isLoading: modulesIsLoading, isError: modulesIsError, error: modulesError } = useQuery({
         queryKey: ["modules-data"],  // eindeutiger Key
         queryFn: async () => {
-            const res = await fetch_backend_auth("/get_user_modules")
+            const res = await fetch_backend_auth("/timer_get_modules")
             if (!res.ok) {
                 const err = await res.json()
                 throw new Error(err.error ?? "Fehler beim Laden der Module")
             }
-            return res.json() as unknown as Time[]
+
+            const data = await res.json()
+            console.log(data)
+
+            return data as unknown as TimerModulesResponse
         },
         staleTime: 1000 * 60 * 5,
     })
-        */
 
     const createMutation = useMutation({
         mutationFn: async ({ module_id, duration_in_min, date }: { module_id: string, duration_in_min: number, date: Date }) => {
@@ -48,5 +56,5 @@ export function useTimer(subjectId: string) {
         }
     })
 
-    return {recentData, recentIsLoading, recentIsError, recentError, create: createMutation.mutate /*,modulesData, modulesIsLoading, modulesIsError, modulesError */ }
+    return {recentData, recentIsLoading, recentIsError, recentError, create: createMutation.mutate, modulesData, modulesIsLoading, modulesIsError, modulesError }
 }

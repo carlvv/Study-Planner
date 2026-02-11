@@ -5,12 +5,7 @@ import { Link } from "react-router-dom";
 import { H1, H3 } from "../../../components/Text";
 
 import { useParams } from "react-router-dom";
-import { useTimer } from "./useTimer";
-
-//TODO: Liste aller Module des Users vom Backend holen
-const currentSubjects = [{ name: "Analysis", id: 1, ects: 5 }, { name: "Programmstrukturen 1", id: 2, ects: 5 }, { name: "Programmstrukturen 2", id: 3, ects: 5 }]
-const otherSubjects = [{ name: "Systemnahe Programmierung", id: 4, ects: 5 }, { name: "Lineare Algebra", id: 5, ects: 5 }, { name: "Unix", id: 6, ects: 5 }]
-
+import { useTimer, type TimerModulesResponse } from "./useTimer";
 
 const ErrorMessage = {
     INCOMPLETE_TIME: "Unvollständige Zeitangabe",
@@ -24,31 +19,31 @@ type ErrorKey = keyof typeof ErrorMessage;
 export default function Timer() {
     const params = useParams<{ subjectId: string }>();
 
+    const { recentData, recentIsLoading, recentIsError, recentError, create, modulesData, modulesIsLoading, modulesIsError, modulesError } = useTimer(params.subjectId ?? "");
+
+    const [errorMessage, setErrorMessage] = useState<ErrorKey | null>(null);
+    const [input, setInput] = useState<string[]>(["_", "_", "_", "_"]);
+    const [inputIndex, setInputIndex] = useState<number>(0);
+
+    if (recentIsLoading || modulesIsLoading) {
+        return <>Loading...</>
+    }
+    if (recentIsError || !recentData) {
+        return <>{recentError?.message}</>
+    }
+    if (modulesIsError || !modulesData) {
+        return <>{modulesError?.message}</>
+    }
     if (!params.subjectId)
-        return (<ChooseSubject />);
+        return (<ChooseSubject data={modulesData!} />);
 
     const subject =
-        currentSubjects.find(obj => String(obj.id) === params.subjectId) ??
-        otherSubjects.find(obj => String(obj.id) === params.subjectId)
+        modulesData?.all_modules.find((module) => module.module_id === params.subjectId)
 
     //TODO: Error-Page
     if (!subject)
         return (<h1>Kein Modul mit {params.subjectId} gefunden</h1>)
 
-    const { recentData, recentIsLoading, recentIsError, recentError, create /*,modulesData, modulesIsLoading, modulesIsError, modulesError*/ } = useTimer(params.subjectId);
-
-    const [errorMessage, setErrorMessage] = useState<ErrorKey | null>(null);
-
-    const [input, setInput] = useState<string[]>(["_", "_", "_", "_"]);
-    const [inputIndex, setInputIndex] = useState<number>(0);
-
-
-    if (recentIsLoading) {
-        return <>Loading...</>
-    }
-    if (recentIsError || !recentData) {
-        return <>{recentError}</>
-    }
 
     const addDigit = (number: string) => {
         if (inputIndex <= 3) {
@@ -91,7 +86,10 @@ export default function Timer() {
         //                      10h                          1h                      10m                     1m
         const duration_in_min = Number(input[0]) * 10 * 60 + Number(input[1]) * 60 + Number(input[2]) * 10 + Number(input[3]);
 
-        create({module_id: params.subjectId?? "" , duration_in_min: duration_in_min, date: new Date()})
+        create({ module_id: params.subjectId ?? "", duration_in_min: duration_in_min, date: new Date() })
+
+        setInput(["_", "_", "_", "_"]);
+        setInputIndex(0);
     }
 
     const renderDigit = (digit: string, index: number) => {
@@ -110,7 +108,7 @@ export default function Timer() {
     return (
         <Layout backURL={"/timer"}>
             <div className="flex flex-col items-center justify-center space-y-6">
-                <H1>{subject.name}</H1>
+                <H1>{subject.module_name}</H1>
                 <div className="text-3xl">
                     {renderDigit(input[0], 0)}
                     {renderDigit(input[1], 1)}
@@ -158,9 +156,9 @@ export default function Timer() {
                 )}
 
                 <H3>Letzten Aktivitäten</H3>
-                {recentData.map((i) => (
-                    <div className="grid grid-cols-2 items-center w-full">
-                        <p className="text-center">{i.module_id}</p>
+                {recentData.reverse().slice(0, 3).map((i) => (
+                    <div key={i.module_id + i.duration_in_min + i.owner_id} className="grid grid-cols-2 items-center w-full">
+                        <p className="text-center">{modulesData.all_modules.find((module) => module.module_id === i.module_id)?.module_name}</p>
                         <p className="text-center">{i.duration_in_min >= 60 ? Math.floor(i.duration_in_min / 60) + "h" : ""} {i.duration_in_min % 60 == 0 ? "00m" : i.duration_in_min % 60 + "m"}</p>
                     </div>
                 ))}
@@ -169,7 +167,7 @@ export default function Timer() {
     )
 }
 
-function ChooseSubject() {
+function ChooseSubject({ data }: { data: TimerModulesResponse }) {
     return (
         <Layout backURL={"/"}>
             <div className="flex flex-col items-start space-y-4 p-4">
@@ -177,23 +175,26 @@ function ChooseSubject() {
 
                 <div className="flex flex-col w-full space-y-2">
                     <H3>Aktuelle</H3>
-                    {currentSubjects.map((subject) => (
-                        <Link to={`/timer/${subject.id}`} className="">
-                            <div className="flex justify-between w-full bg-gray-100 p-2 rounded border border-gray-500 shadow">
-                                <span>{subject.name}</span>
-                                <span>{subject.ects} ECTS</span>
-                            </div>
-                        </Link>
-                    ))}
+                    {!data.active_modules ?
+                     (<p>Wähle deine aktuellen Module aus indem du einen Studenplan erstellst</p>) :
+                        data.active_modules.map((module) => (
+                            <Link to={`/timer/${module.module_id}`} className="">
+                                <div className="flex justify-between w-full bg-gray-100 p-2 rounded border border-gray-500 shadow">
+                                    <span>{module.module_name}</span>
+                                    <span>{module.ects} ECTS</span>
+                                </div>
+                            </Link>
+                        ))}
+
                 </div>
 
                 <div className="flex flex-col w-full space-y-2">
-                    <H3>Andere</H3>
-                    {otherSubjects.map((subject) => (
-                        <Link to={`/timer/${subject.id}`} className="">
+                    <H3>Alle</H3>
+                    {data.all_modules.map((module) => (
+                        <Link to={`/timer/${module.module_id}`} className="">
                             <div className="flex justify-between w-full bg-gray-100 p-2 rounded border border-gray-500 shadow">
-                                <span>{subject.name}</span>
-                                <span>{subject.ects} ECTS</span>
+                                <span>{module.module_name}</span>
+                                <span>{module.ects} ECTS</span>
                             </div>
                         </Link>
                     ))}
