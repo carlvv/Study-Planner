@@ -3,6 +3,7 @@ from datetime import datetime, date, timedelta, time, timezone
 from typing import Any, Dict, List, Optional
 from bson import ObjectId
 from numpy import identity
+from datetime import datetime, date, timedelta, time, timezone
 from pymongo import MongoClient
 from db.collections.course import Course
 from db.collections.curricula import Curricula
@@ -438,8 +439,6 @@ class LearnTimeManager(BaseManager[Learntime]):
         for data in self._collection.find({"owner_id": student_id}):
             out.append(self._model.from_dict(data))
         return out
-
-    from datetime import datetime, date, timedelta, time, timezone
 
     def get_statistics(self, student_id: str):
         today = date.today()

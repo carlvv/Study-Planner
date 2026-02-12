@@ -19,7 +19,7 @@ type ErrorKey = keyof typeof ErrorMessage;
 export default function Timer() {
     const params = useParams<{ subjectId: string }>();
 
-    const { recentData, recentIsLoading, recentIsError, recentError, create, modulesData, modulesIsLoading, modulesIsError, modulesError } = useTimer(params.subjectId ?? "");
+    const { recentData, recentIsLoading, recentIsError, recentError, create, modulesData, modulesIsLoading, modulesIsError, modulesError } = useTimer();
 
     const [errorMessage, setErrorMessage] = useState<ErrorKey | null>(null);
     const [input, setInput] = useState<string[]>(["_", "_", "_", "_"]);
@@ -87,7 +87,6 @@ export default function Timer() {
         const duration_in_min = Number(input[0]) * 10 * 60 + Number(input[1]) * 60 + Number(input[2]) * 10 + Number(input[3]);
 
         create({ module_id: params.subjectId ?? "", duration_in_min: duration_in_min, date: new Date() })
-
         setInput(["_", "_", "_", "_"]);
         setInputIndex(0);
     }
@@ -181,7 +180,6 @@ function ChooseSubject({ data }: { data: TimerModulesResponse }) {
                             <Link to={`/timer/${module.module_id}`} className="">
                                 <div className="flex justify-between w-full bg-gray-100 p-2 rounded border border-gray-500 shadow">
                                     <span>{module.module_name}</span>
-                                    <span>{module.ects} ECTS</span>
                                 </div>
                             </Link>
                         ))}
@@ -194,7 +192,6 @@ function ChooseSubject({ data }: { data: TimerModulesResponse }) {
                         <Link to={`/timer/${module.module_id}`} className="">
                             <div className="flex justify-between w-full bg-gray-100 p-2 rounded border border-gray-500 shadow">
                                 <span>{module.module_name}</span>
-                                <span>{module.ects} ECTS</span>
                             </div>
                         </Link>
                     ))}

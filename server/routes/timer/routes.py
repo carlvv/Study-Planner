@@ -89,28 +89,9 @@ def get_modules():
             ._collection
             .find({"module_id": {"$in": curriculum.modules_ids}})
         )
-
-        for module in modules:
-            # TODO: Kurse iterieren und ects summieren
-            module["ects"] = 5
-            print(module)
-
-        for module in modules:
-            # TODO: Kurse iterieren und ects summieren
-            module["ects"] = 5
-            print(module)
-
-        
         timeTableManager = TimeTableManager(current_app.mongo.db)
     
         activeModules = timeTableManager.get_active_modules(identity)
-
-        for module in activeModules:
-            # TODO: Kurse iterieren und ects summieren
-            module["ects"] = 5
-            print(module)
-
-        print({"active_modules": activeModules, "all_modules": modules})
 
         return jsonify({"active_modules": activeModules, "all_modules": modules}), 200
     except:

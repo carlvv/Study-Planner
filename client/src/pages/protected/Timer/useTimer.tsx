@@ -7,7 +7,7 @@ export type TimerModulesResponse = {
     all_modules: Module[]
 }
 
-export function useTimer(subjectId: string) {
+export function useTimer() {
 
     const queryClient = useQueryClient()
 
@@ -21,6 +21,7 @@ export function useTimer(subjectId: string) {
             }
             return res.json() as unknown as Time[]
         },
+        staleTime: 1000 * 60 * 5
     })
     
     const { 
