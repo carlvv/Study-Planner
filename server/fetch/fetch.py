@@ -2,6 +2,7 @@
 from calendar import c
 import html
 import json
+import math
 import re
 
 from bs4 import BeautifulSoup
@@ -96,7 +97,7 @@ def extract_curricula_from_html(html_content: str) -> Dict:
     return result
 
 
-def extract_curricula_from_table(table, result_dict: Dict):
+def extract_curricula_from_table(table, result_dict: Dict, min_version: float = 23):
     """
     Extracts curricula information from a bachelor table.
     Only extracts files from the "Studienverlaufsplan" column.
@@ -155,7 +156,9 @@ def extract_curricula_from_table(table, result_dict: Dict):
             if link and 'Curriculum_B_' in link:
                 if current_program_name not in result_dict:
                      result_dict[current_program_name] = {"available": []}
-                result_dict[current_program_name]["available"].append({name: link})
+                match = re.search(r"(\d+\.\d+)", name)
+                if match and float(match.group(1)) >= min_version:
+                    result_dict[current_program_name]["available"].append({name: link})
 
 
 
