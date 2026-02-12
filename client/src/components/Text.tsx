@@ -30,6 +30,15 @@ function H3({ children, className: classname }: HeadlinesProps) {
   );
 }
 
+function H4({ children, className: classname }: HeadlinesProps) {
+  if (!classname) classname = "";
+  return (
+    <h3 className={"text-xl md:text-lg lg:text-1xl " + classname}>
+      {children}
+    </h3>
+  );
+}
+
 function SubHeadline({ children, className: classname }: HeadlinesProps) {
   if (!classname) classname = "";
   return (
@@ -48,4 +57,4 @@ function P({ children, className: classname }: HeadlinesProps) {
   );
 }
 
-export { P, H1, H2, H3, SubHeadline };
+export { P, H1, H2, H3, H4, SubHeadline };

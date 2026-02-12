@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, timezone
 from turtle import title
 from bson import Decimal128
 from flask import Blueprint, current_app, jsonify, request
@@ -26,22 +26,27 @@ def get_recent_times():
 
         allLearnTime = sorted(
             allLearnTime,
-            key=lambda x: x.date,
+            key=lambda x: x.date.replace(tzinfo=None),
             reverse=True
         )
 
         res = []
 
         for learnTime in allLearnTime:
+            dt = learnTime.date
+            if not isinstance(dt, datetime):
+                dt = dt.to_datetime()
+
             res.append({
                 "module_id": learnTime.module_id,
                 "duration_in_min": learnTime.duration_in_min,
-                "date": learnTime.date.isoformat(),
+                "date": dt.isoformat(),
                 "owner_id": identity
             })
 
         return jsonify(res), 200
-    except:
+    except Exception as e :
+        print(e)
         return jsonify({"error": "Fehler beim Abrufen der Lernzeiten"}), 500
 
 # Erstellt eine neue LearnTime und speichert diese ab
@@ -58,13 +63,14 @@ def create_time():
 
         module_id = data.get("module_id")
         duration_in_min = data.get("duration_in_min")
-        date = datetime.datetime.now()
+        date = datetime.now(timezone.utc)
 
         learnTime = Learntime(module_id=module_id, duration_in_min=duration_in_min, date=date, owner_id=identity)
         manager.create_learn_time(learnTime=learnTime)
 
         return jsonify(), 200
-    except:
+    except Exception as e:
+        print(e)
         return jsonify({"error": "Fehler beim Erstellen der Lernzeit"}), 500
     
 # Liefert alle Module, die der User hat

@@ -1,7 +1,7 @@
 from dataclasses import dataclass, asdict, field
 from typing import Optional, Type, TypeVar, Dict, Any
 from bson import ObjectId
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 
 T = TypeVar("T", bound="BaseModel")
 
@@ -24,7 +24,7 @@ class BaseModel:
         for k, v in data.items():
             if isinstance(v, str):
                 try:
-                    data[k] = datetime.fromisoformat(v).date()
+                    data[k] = datetime.fromisoformat(v)
                 except ValueError:
                     pass
         data["id"] = data.pop("_id", None)

@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient, type QueryFilters } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { fetch_backend, fetch_backend_auth } from "../utils/helper";
 import type { Student } from "../types";
@@ -68,6 +68,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logoutMutation = useMutation({
     mutationFn: async () => {
       Cookies.remove("access_token");
+      queryClient.removeQueries(['recent-timer-data'] as QueryFilters)
+      queryClient.removeQueries(['modules-data'] as QueryFilters)
+      queryClient.removeQueries(['todo-data'] as QueryFilters)
     },
     onSuccess: () => {
       queryClient.setQueryData(["auth-user"], null);

@@ -2,10 +2,12 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import Layout from "../../../components/layout/Layout";
 import { Link } from "react-router-dom";
-import { H1, H3 } from "../../../components/Text";
+import {H1, H3, H4 } from "../../../components/Text";
 
 import { useParams } from "react-router-dom";
 import { useTimer, type TimerModulesResponse } from "./useTimer";
+import { ArrowLeft, Send } from "lucide-react";
+import { Loading } from "../../../components/Loading";
 
 const ErrorMessage = {
     INCOMPLETE_TIME: "Unvollständige Zeitangabe",
@@ -26,12 +28,12 @@ export default function Timer() {
     const [inputIndex, setInputIndex] = useState<number>(0);
 
     if (recentIsLoading || modulesIsLoading) {
-        return <>Loading...</>
+        return <Loading isLoading={recentIsLoading || modulesIsLoading} />
     }
-    if (recentIsError || !recentData) {
+    if (recentIsError) {
         return <>{recentError?.message}</>
     }
-    if (modulesIsError || !modulesData) {
+    if (modulesIsError) {
         return <>{modulesError?.message}</>
     }
     if (!params.subjectId)
@@ -95,7 +97,7 @@ export default function Timer() {
         const isActive = index === inputIndex;
         return (
             <span
-                key={index}
+                key={index * 1000}
                 className={`w-6 text-center text-2xl inline-block 
                     ${isActive ? "animate-pulse text-blue-500" : ""}`}
             >
@@ -107,7 +109,7 @@ export default function Timer() {
     return (
         <Layout backURL={"/timer"}>
             <div className="flex flex-col items-center justify-center space-y-6">
-                <H1>{subject.module_name}</H1>
+                <H3>{subject.module_name}</H3>
                 <div className="text-3xl">
                     {renderDigit(input[0], 0)}
                     {renderDigit(input[1], 1)}
@@ -120,7 +122,7 @@ export default function Timer() {
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
                         <button
                             key={i}
-                            className="rounded bg-gray-300 p-4 flex items-center justify-center aspect-square"
+                            className="rounded bg-gray-300 p-4 flex items-center justify-center aspect-square text-2xl"
                             onClick={() => addDigit(String(i))}
                         >
                             {i}
@@ -132,10 +134,10 @@ export default function Timer() {
                         className="rounded bg-gray-300 p-4 flex items-center justify-center aspect-square"
                         onClick={() => saveTime()}
                     >
-                        ➤
+                        <Send></Send>
                     </button>
                     <button
-                        className="rounded bg-gray-300 p-4 flex items-center justify-center aspect-square"
+                        className="rounded bg-gray-300 p-4 flex items-center justify-center aspect-square text-2xl  "
                         onClick={() => addDigit("0")}
                     >
                         0
@@ -145,7 +147,7 @@ export default function Timer() {
                         className="rounded bg-gray-300 p-4 flex items-center justify-center aspect-square"
                         onClick={() => removeLastDigit()}
                     >
-                        ⌫
+                        <ArrowLeft></ArrowLeft>
                     </button>
 
                 </div>
@@ -154,11 +156,11 @@ export default function Timer() {
                     <p className="text-red-500">{ErrorMessage[errorMessage]}</p>
                 )}
 
-                <H3>Letzten Aktivitäten</H3>
-                {recentData.reverse().slice(0, 3).map((i) => (
-                    <div key={i.module_id + i.duration_in_min + i.owner_id} className="grid grid-cols-2 items-center w-full">
-                        <p className="text-center">{modulesData.all_modules.find((module) => module.module_id === i.module_id)?.module_name}</p>
-                        <p className="text-center">{i.duration_in_min >= 60 ? Math.floor(i.duration_in_min / 60) + "h" : ""} {i.duration_in_min % 60 == 0 ? "00m" : i.duration_in_min % 60 + "m"}</p>
+                <H4>Letzten Aktivitäten</H4>
+                {!recentData || !modulesData ? (<></>) : recentData.slice(0, 5).map((i, index) => (
+                    <div key={i.module_id + i.duration_in_min + i.owner_id + index} className="grid grid-cols-2 items-center w-full">
+                        <p className="text-left">{modulesData.all_modules.find((module) => module.module_id === i.module_id)?.module_name}</p>
+                        <p className="text-right">{i.duration_in_min >= 60 ? Math.floor(i.duration_in_min / 60) + "h" : ""} {i.duration_in_min % 60 == 0 ? "00m" : i.duration_in_min % 60 + "m"}</p>
                     </div>
                 ))}
             </div>
@@ -183,7 +185,6 @@ function ChooseSubject({ data }: { data: TimerModulesResponse }) {
                                 </div>
                             </Link>
                         ))}
-
                 </div>
 
                 <div className="flex flex-col w-full space-y-2">

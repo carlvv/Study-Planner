@@ -38,18 +38,7 @@ export function useTimer() {
             throw new Error(err.error ?? "Fehler beim Laden der Module")
             }
 
-            const data = await res.json() as TimerModulesResponse
-
-            const uniqueActiveModules = Array.from(
-            new Map(
-                data.active_modules.map(m => [m.module_id, m])
-            ).values()
-            )
-
-            return {
-            ...data,
-            active_modules: uniqueActiveModules
-            }
+            return  await res.json() as TimerModulesResponse
         },
         staleTime: 1000 * 60 * 5,
     })
