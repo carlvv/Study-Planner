@@ -1,9 +1,7 @@
 import datetime
 from flask import Blueprint, current_app, jsonify, request
 from flask_jwt_extended import get_jwt_identity, jwt_required
-from numpy import identity
-from trio import Process
-from db.managers import CourseManager, CurriculaManager, ModuleManager, StudentManager, StudentProcessManager
+from db.managers import CurriculaManager, StudentManager, StudentProcessManager
 
 curricula_bp = Blueprint('curricula', __name__, url_prefix='/')
 from flask import jsonify
@@ -32,17 +30,30 @@ def get_all_programs():
 
 
 def count_semester(start):
+    if start == "":
+        return 1
+
     now = datetime.datetime.now()
     month = now.month
     year = now.year
-    is_summer = False
 
-    if month > 3: 
+    # Semester bestimmen
+    if 4 <= month <= 9:
         is_summer = True
+    else:
+        is_summer = False
 
-    start_year = (int(start[2:]) + year // 100 * 100)
-    start_summer = start[0:2] == "SS"
-    return (year - start_year) * 2 - (0 if start_summer == is_summer else 1) + 1
+    start_year = int(start[2:])
+    start_year += (year // 100) * 100
+
+    start_summer = start.startswith("SS")
+
+    semester_diff = (year - start_year) * 2
+
+    if start_summer != is_summer:
+        semester_diff -= 1
+
+    return max(1, semester_diff + 1)
 
 @curricula_bp.route("/curricula", methods=["GET"])
 @jwt_required()

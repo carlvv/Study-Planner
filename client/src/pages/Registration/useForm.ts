@@ -29,6 +29,18 @@ function validateForm(formData: FormType): FormType {
     if (!formData[key]) errors[key] = "Fülle das Feld aus";
   });
 
+  // Start-Semester Pflichtfeld prüfen
+  if (!formData.start_semester) {
+    errors.start_semester = "Fülle das Feld aus";
+  } else {
+    const semesterRegex = /^(WS|SS)\d{2}$/;
+
+    if (!semesterRegex.test(formData.start_semester)) {
+      errors.start_semester =
+        "Ungültiges Format. Beispiel: WS25 oder SS23";
+    }
+  }
+
   const studentNumber = Number(formData.student_id);
   if (
     formData.student_id &&
@@ -44,8 +56,6 @@ function validateForm(formData: FormType): FormType {
   if (formData.password !== formData.password_confirm) {
     errors.password_confirm = "Die Passwort-Bestätigung ist nicht korrekt";
   }
-
-  errors.start_semester = "";
 
   return errors;
 }

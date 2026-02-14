@@ -1,21 +1,15 @@
 import datetime
-from math import fabs
 from random import randint
-from turtle import title
 from bson import ObjectId
-from discord import Object
+
 from flask import Blueprint, current_app, jsonify, request
 from flask_jwt_extended import get_jwt_identity, jwt_required
-from numpy import identity
 
-from db.collections import curricula, student
 from db.collections.events import Event
 from db.collections.timetable import TimeTable, Timetable
 from db.managers import (
     CurriculaManager,
     EventManager,
-    LearnTimeManager,
-    ModuleManager,
     StudentManager,
     TimeTableManager,
 )
