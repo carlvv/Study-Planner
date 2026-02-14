@@ -95,7 +95,7 @@ def create_timetable():
     active = True
     if len(list(manager._collection.find({"owner_id": identity}))) != 0:
         active = False
-    
+
     obj = request.get_json()
     if "module_ids" in obj:
         tt = TimeTable(
@@ -108,24 +108,28 @@ def create_timetable():
         manager._create(tt)
 
     elif "name" in obj:
-        student = StudentManager(current_app.mongo.db)._get_by_dict({"student_id": identity})
-        curricula = CurriculaManager(current_app.mongo.db)._get_by_dict({"programm_version": student.study_id})
+        student = StudentManager(current_app.mongo.db)._get_by_dict(
+            {"student_id": identity}
+        )
+        curricula = CurriculaManager(current_app.mongo.db)._get_by_dict(
+            {"programm_version": student.study_id}
+        )
         events = EventManager(current_app.mongo.db).get_open_events(curricula, identity)
         name = obj["name"]
 
         for event in events:
             event.pop("course")
 
-        res = Timetable.get_max_conflict_free_timetables([Event.from_dict(e) for e in events ])
+        res = Timetable.get_max_conflict_free_timetables(
+            [Event.from_dict(e) for e in events]
+        )
         tt = TimeTable(
             name=name,
             semester=current_semester(),
             owner_id=identity,
-            event_ids=[e.event_id for e in  res[randint(0, len(res) - 1)].get_events() ],
+            event_ids=[e.event_id for e in res[randint(0, len(res) - 1)].get_events()],
             active=active,
         )
         manager._create(tt)
 
-    
-    
     return jsonify(), 200

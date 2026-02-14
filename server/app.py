@@ -5,7 +5,6 @@ import os
 from flask_cors import CORS
 from flask_pymongo import PyMongo
 
-from db.collections import timetable
 
 
 def create_app():

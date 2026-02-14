@@ -1,7 +1,7 @@
 from dataclasses import dataclass, asdict, field
 from typing import Optional, Type, TypeVar, Dict, Any
 from bson import ObjectId
-from datetime import date, datetime, timezone
+from datetime import date, datetime
 
 T = TypeVar("T", bound="BaseModel")
 

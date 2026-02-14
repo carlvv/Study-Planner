@@ -2,7 +2,6 @@ import hashlib
 import secrets
 from dataclasses import dataclass
 
-from bson import ObjectId
 
 from db.collections.base_model import BaseModel
 

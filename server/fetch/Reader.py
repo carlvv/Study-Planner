@@ -1,14 +1,12 @@
 
 import math
 import re
-from numpy import number
 import requests
 import pdfplumber
 import pandas as pd
 from io import BytesIO
 from db.collections.course import Course
 from db.collections.module import Module
-from db.collections.curricula import Curricula
 class ModulReader:
     def __init__(self, df, i):
         self.df = df

@@ -1,11 +1,7 @@
-import datetime
-from turtle import title
-from flask import Blueprint, current_app, jsonify, request
+from flask import Blueprint, current_app, jsonify
 from flask_jwt_extended import get_jwt_identity, jwt_required
-from numpy import identity
 
-from db.collections.todo import Todo
-from db.managers import LearnTimeManager, ModuleManager, TodoManager
+from db.managers import LearnTimeManager
 
 dashboard_bp = Blueprint('dashboard', __name__, url_prefix='/')
 from flask import jsonify

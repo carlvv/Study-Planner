@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from datetime import datetime
-from webbrowser import get
 
 from db.collections.base_model import BaseModel
 

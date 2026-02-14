@@ -1,8 +1,6 @@
-from genericpath import exists
 from datetime import datetime, date, timedelta, time, timezone
 from typing import Any, Dict, List, Optional
 from bson import ObjectId
-from numpy import identity
 from datetime import datetime, date, timedelta, time, timezone
 from pymongo import MongoClient
 from db.collections.course import Course

@@ -1,7 +1,7 @@
 from flask import Blueprint, current_app, jsonify
-from flask_jwt_extended import get_jwt, get_jwt_identity, jwt_required
+from flask_jwt_extended import get_jwt_identity, jwt_required
 
-from db.managers import CurriculaManager, LearnTimeManager, ModuleManager, StudentManager, TimeTableManager, TodoManager
+from db.managers import CurriculaManager, LearnTimeManager, StudentManager, TimeTableManager, TodoManager
 
 
 main_bp = Blueprint('main', __name__, url_prefix='/')
