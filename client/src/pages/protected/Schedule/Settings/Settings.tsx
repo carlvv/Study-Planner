@@ -24,7 +24,10 @@ export const ScheduleSettings = () => {
     queryKey: ["all_timetable"],
     queryFn: async () => {
       const res = await fetch_backend_auth("/timetable/get_all");
-      const items: Data[] = await res.json();
+      const items: Data[] | null = await res.json();
+      if (items == null) {
+        return []
+      }
       const grouped: Record<string, Data[]> = items.reduce((acc, item) => {
         const key = item.semester;
         if (!acc[key]) acc[key] = [];
@@ -39,7 +42,7 @@ export const ScheduleSettings = () => {
   const queryClient = useQueryClient()
   const { mutate } = useMutation({
     mutationKey: ["all_timetable"],
-    mutationFn: async ({ id }: { id: string }) => {      
+    mutationFn: async ({ id }: { id: string }) => {
       const res = await fetch_backend_auth("/timetable/set_active", {
         method: "POST",
         body: JSON.stringify(id)
@@ -70,42 +73,44 @@ export const ScheduleSettings = () => {
           className="ml-auto bg-gray-800 rounded-xl p-2 text-white"
         />
       </div>
-
-      {data?.map(([semester, data]) => (
-        <div key={semester} className="mb-6">
-          <h2 className="font-medium text-gray-700 mb-2">
-            {semester}
-          </h2>
-          <div className="space-y-2">
-            {data.map((plan, id) => (
-              <div 
-                onClick={() => mutate({id: plan._id.$oid})}
-                key={id + plan.semester}
-                className={`p-4 rounded-md border border-gray-400 ${plan.active
-                  ? "bg-gray-300"
-                  : "bg-gray-100"
-                  } flex justify-between items-center`}
-              >
-                <div>
-                  <div className="font-medium">{plan.name}</div>
-                  <div className="text-sm text-white flex flex-wrap">
-                    {[...new Set(plan.events.map(e => e.name +" "+  (!e.name_add ? "" : e.name_add) ))].map(name => (
+      {data?.length == 0 ? <p className="text-gray-500">Keine  Stundenpläne erstellt</p> :
+        <>
+          {data?.map(([semester, data]) => (
+            <div key={semester} className="mb-6">
+              <h2 className="font-medium text-gray-700 mb-2">
+                {semester}
+              </h2>
+              <div className="space-y-2">
+                {data.map((plan, id) => (
                   <div
-                    key={name}
-                    className="bg-gray-500 m-1 px-4 py-1 rounded-2xl"
+                    onClick={() => mutate({ id: plan._id.$oid })}
+                    key={id + plan.semester}
+                    className={`p-4 rounded-md border border-gray-400 ${plan.active
+                      ? "bg-gray-300"
+                      : "bg-gray-100"
+                      } flex justify-between items-center`}
                   >
-                    {name}
+                    <div>
+                      <div className="font-medium">{plan.name}</div>
+                      <div className="text-sm text-white flex flex-wrap">
+                        {[...new Set(plan.events.map(e => e.name + " " + (!e.name_add ? "" : e.name_add)))].map(name => (
+                          <div
+                            key={name}
+                            className="bg-gray-500 m-1 px-4 py-1 rounded-2xl"
+                          >
+                            {name}
+                          </div>
+                        ))}
+
+                      </div>
+                    </div>
+                    {plan.active && <Check size={50} />}
                   </div>
                 ))}
-
-                  </div>
-                </div>
-                {plan.active && <Check size={50} />}
               </div>
-            ))}
-          </div>
-        </div>
-      ))}
+            </div>
+          ))}
+        </>}
 
       {open && <CreateScheduleModal onClose={() => setOpen(false)} />}
     </Layout>
@@ -187,7 +192,7 @@ const StepOne = ({
           </label>
           {/* TODO */}
           <div className="space-y-2">
-            {["manuell", "automatisch" ].map((v) => ( 
+            {["manuell", "automatisch"].map((v) => (
               <label key={v} className="flex items-center gap-2">
                 <input
                   type="radio"
@@ -364,7 +369,7 @@ const StepThree = ({
         </div>
 
         <button
-          disabled={text=="" || createMutation.isPending}
+          disabled={text == "" || createMutation.isPending}
           onClick={() => createMutation.mutate()}
           className="w-full bg-gray-900 text-white py-2 rounded-md disabled:opacity-50"
         >

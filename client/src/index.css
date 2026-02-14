@@ -29,7 +29,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #EEEEEE;
+  background-color: #ffffff;
 }
 
 @media (prefers-color-scheme: light) {
