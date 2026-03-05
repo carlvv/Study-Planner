@@ -98,7 +98,7 @@ export function Statistics() {
                 <P>{displayTotalTime(a.totalTime / a.sessionCount)}</P>
               </div>
               <div className="flex justify-between w-full">
-                <p className="text-gray-500 text-sm">Gesamtzeit</p>
+                <p className="text-gray-500 text-sm">Letzte Session</p>
                 <P>{new Date(a.last_session).toLocaleDateString()}</P>
               </div>
             </CardWrapper>
