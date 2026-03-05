@@ -1,14 +1,8 @@
-FROM node:22-alpine
+FROM node:22-bookworm
 
 WORKDIR /client
 
-RUN apk add --no-cache git
-
-# zuerst nur package-Dateien (Cache!)
-COPY package.json package-lock.json* ./
+COPY package*.json ./
 RUN npm install
-
 COPY . .
-
 EXPOSE 5173
-

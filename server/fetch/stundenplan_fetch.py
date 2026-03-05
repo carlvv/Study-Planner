@@ -124,7 +124,7 @@ def parse_schedule(stundenplan):
 
 
 def schedule_to_db(events):
-    myclient = mongo.MongoClient("mongodb://localhost:27017/")
+    myclient = mongo.MongoClient("mongodb://mongo-server:27017/")
     eventManager = EventManager(myclient["db"])
     eventManager.clear_table()
     i = 0

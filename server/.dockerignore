@@ -3,6 +3,6 @@ venv
 .venv
 .git
 .gitignore
-.env
+#.env
 .DS_Store
 *.pyc

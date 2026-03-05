@@ -194,7 +194,7 @@ def fetch_and_save(mongoClient: pymongo.MongoClient | None = None, delete_existi
         mongoClient: An optional pymongo.MongoClient instance. If None, a new client will be created.
     """
     if mongoClient is None:
-        mongoClient = pymongo.MongoClient("mongodb://localhost:27017/")
+        mongoClient = pymongo.MongoClient("mongodb://mongo-server:27017/")
     
     db = mongoClient["db"]
     

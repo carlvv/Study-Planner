@@ -3,10 +3,14 @@ services:
   client:
     build:
       context: ./client
-      dockerfile: Dockerfile.dev
+      dockerfile: "Dockerfile.dev"
+    working_dir: /client/
     volumes:
-      - ./client:/client
-    command: sleep infinity
+      - ./app:/app
+      - /app/node_modules
+    ports:
+      - 5173:5173
+    command: npm run dev --host
 
   server:
     build:
@@ -17,7 +21,9 @@ services:
       - .:/workspace
     env_file:
       - ./server/.env
-    command: sleep infinity
+    ports:
+      - 5000:5000
+    command: /bin/bash -c "cd /home/studyplanner-server/server/ && python3 load.py && python3 app.py"
     depends_on:
       - mongo
 
@@ -29,7 +35,7 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
-
+    hostname: "mongo-server"
 
 volumes:
   mongo_data:
