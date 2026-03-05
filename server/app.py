@@ -11,7 +11,7 @@ def create_app():
     app = Flask(__name__)
     # app.config['JWT_SECRET_KEY'] = secrets.token_hex(32) 
     app.config['JWT_SECRET_KEY'] = "dev-secret-key-change-me"
-    app.config["MONGO_URI"] = os.environ.get("MONGO_URI", "mongodb://localhost:27017/db") 
+    app.config["MONGO_URI"] = os.environ.get("MONGO_URI", "mongodb://mongo-server:27017/db") 
 
     jwt = JWTManager(app)
     app.mongo = PyMongo(app)
